@@ -1,5 +1,5 @@
-import { Box, Stack, StackDivider } from "@chakra-ui/react"
 import * as React from "react"
+import { Box, Stack, StackDivider } from "@chakra-ui/react"
 import { Copyright } from "../Copyright"
 import { LinkGrid } from "../LinkGrid"
 import { Logo } from "../Logo"
@@ -12,7 +12,7 @@ export const Footer = () => (
     mx="auto"
     maxW="7xl"
     py="12"
-    px={{ base: "4", md: "8" }}
+    px={{ small: "4", med: "8" }}
   >
     <Stack spacing="10" divider={<StackDivider />}>
       <Stack
@@ -30,7 +30,7 @@ export const Footer = () => (
         </Stack>
       </Stack>
       <Stack
-        direction={{ base: "column-reverse", md: "row" }}
+        direction={{ sm: "column-reverse", md: "row" }}
         justifyContent="space-between"
         alignItems="center"
       >
