@@ -30,11 +30,6 @@ export const Header = () => {
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="/client">
-              <a>Client</a>
-            </Link>
-          </ListItem>
-          <ListItem>
             <Link href="/server">
               <a>Server</a>
             </Link>
@@ -72,13 +67,13 @@ export const Header = () => {
             )}
             {session?.user && (
               <>
-                {session.user.image && (
+                {/* {session.user.image && (
                   <Image
                     src={session.user.image}
-                    alt="Dan Abramov"
+                    alt="profilbild"
                     borderRadius="full"
                   />
-                )}
+                )} */}
                 <Dropdown title={session.user.name ?? session.user.email}>
                   <a
                     href={`/api/auth/signout`}

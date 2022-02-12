@@ -13,14 +13,14 @@ import { ChevronDownIcon } from "@chakra-ui/icons"
 import { FC } from "react"
 
 type Props = {
-  title?: string
+  title?: string | null
 }
 
 export const Dropdown: FC<Props> = ({ title, children }) => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-        {title}
+        {title ?? "login"}
       </MenuButton>
       <MenuList>
         <MenuItem>{children}</MenuItem>
