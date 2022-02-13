@@ -1,4 +1,4 @@
-import { Header } from "../Header"
+import { Nav } from "../Nav"
 import { Footer } from "../Footer"
 import { Box } from "@chakra-ui/react"
 
@@ -9,7 +9,7 @@ interface Props {
 export const Layout = ({ children }: Props) => {
   return (
     <Box width={{ sm: "100%", lg: "70%" }} mx="auto">
-      <Header />
+      <Nav />
       <main>{children}</main>
       <Footer />
     </Box>
