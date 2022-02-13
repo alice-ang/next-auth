@@ -12,7 +12,6 @@ import {
   MenuItem,
   MenuDivider,
   useDisclosure,
-  useColorModeValue,
   Stack,
 } from "@chakra-ui/react"
 import Link from "next/link"
@@ -23,8 +22,11 @@ const Links = [
   { title: "Server", url: "server" },
   { title: "Protected", url: "protected" },
   { title: "API", url: "api-example" },
+]
+
+const DropDownLinks = [
+  { title: "Profile", url: "profile" },
   { title: "Admin", url: "admin" },
-  { title: "Me", url: "me" },
 ]
 
 export const Nav = () => {
@@ -63,6 +65,9 @@ export const Nav = () => {
                       e.preventDefault()
                       signIn()
                     }}
+                    bg="brand.primary"
+                    color="white"
+                    _hover={{ bg: "brand.primaryDark" }}
                   >
                     <a href={`/api/auth/signin`}>Sign in</a>
                   </Button>
@@ -77,8 +82,11 @@ export const Nav = () => {
               </>
               {session?.user && (
                 <MenuList>
-                  <MenuItem>Link 1</MenuItem>
-                  <MenuItem>Link 2</MenuItem>
+                  {DropDownLinks.map((link) => (
+                    <MenuItem>
+                      <Link href={`/${link.url}`}>{link.title}</Link>
+                    </MenuItem>
+                  ))}
                   <MenuDivider />
                   <MenuItem>
                     <a
@@ -101,18 +109,7 @@ export const Nav = () => {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
-                <Link
-                  px={2}
-                  py={1}
-                  rounded={"md"}
-                  _hover={{
-                    textDecoration: "none",
-                    bg: useColorModeValue("gray.200", "gray.700"),
-                  }}
-                  href={`/${link.url}`}
-                >
-                  {link.title}
-                </Link>
+                <Link href={`/${link.url}`}>{link.title}</Link>
               ))}
             </Stack>
           </Box>
