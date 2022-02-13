@@ -35,7 +35,7 @@ export const Nav = () => {
 
   return (
     <>
-      <Box px={4}>
+      <Box p={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -74,7 +74,9 @@ export const Nav = () => {
                 )}
                 {session?.user && (
                   <MenuButton>
-                    {session.user.image && <Avatar src={session.user.image} />}
+                    {session.user.image && (
+                      <Avatar size="sm" src={session.user.image} />
+                    )}
                     <br />
                     <small>{session.user.name ?? session.user.email}</small>
                   </MenuButton>

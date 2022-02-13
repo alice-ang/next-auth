@@ -11,7 +11,7 @@ export const Footer = () => (
     role="contentinfo"
     mx="auto"
     maxW="7xl"
-    py="12"
+    pt="12"
     px={{ small: "4", med: "8" }}
   >
     <Stack spacing="10" divider={<StackDivider />}>
@@ -30,12 +30,13 @@ export const Footer = () => (
         </Stack>
       </Stack>
       <Stack
-        direction={{ sm: "column-reverse", md: "row" }}
+        direction={{ md: "row-reverse" }}
         justifyContent="space-between"
         alignItems="center"
+        flexWrap="wrap"
       >
-        <Copyright />
         <SocialMediaLinks />
+        <Copyright />
       </Stack>
     </Stack>
   </Box>

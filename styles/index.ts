@@ -13,9 +13,9 @@ const colors = {
 export const breakpoints = createBreakpoints({
   sm: "@media (min-width: 576px)",
   md: "@media (min-width: 768px)",
-  Large: "@media (min-width: 992px)",
-  lg: "@media (min-width: 1200px)",
-  xl: "@media (min-width: 1400px)",
+  lg: "@media (min-width: 992px)",
+  xl: "@media (min-width: 1200px)",
+  xxl: "@media (min-width: 1440px)",
 })
 
 export const theme = extendTheme({ colors })
