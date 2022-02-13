@@ -1,4 +1,3 @@
-import { Nav } from "../Nav"
 import { Footer } from "../Footer"
 import { Box } from "@chakra-ui/react"
 import { Sidebar } from "../Sidebar"
