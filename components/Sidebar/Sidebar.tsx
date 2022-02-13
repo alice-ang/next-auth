@@ -37,6 +37,7 @@ import { ReactText } from "react"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { useTranslation } from "react-i18next"
 import i18n from "../../i18n"
+import { useRouter } from "next/router"
 
 type LinkItemProps = {
   name: string
@@ -89,6 +90,8 @@ type SidebarProps = BoxProps & {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+  const { locale } = useRouter()
+
   return (
     <Box
       transition="3s ease"
@@ -122,8 +125,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               i18n.changeLanguage(e.target.value)
             }}
           >
-            <option value="en">English</option>
-            <option value="sv">Swedish</option>
+            <option value="en" selected={locale === "en"}>
+              English
+            </option>
+            <option value="sv" selected={locale === "sv"}>
+              Swedish
+            </option>
           </Select>
         </Box>
       </VStack>
@@ -269,17 +276,15 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 )
               })}
               <MenuDivider />
-              <MenuItem>
-                <a
-                  href={`/api/auth/signout`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    signOut()
-                  }}
-                >
-                  {t("sidebar.signOut")}
-                </a>
-              </MenuItem>
+              <a
+                href={`/api/auth/signout`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  signOut()
+                }}
+              >
+                <MenuItem>{t("sidebar.signOut")}</MenuItem>
+              </a>
             </MenuList>
           </Menu>
         </Flex>
