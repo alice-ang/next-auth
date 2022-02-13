@@ -1,7 +1,8 @@
 import { Footer } from "../Footer"
 import { Box } from "@chakra-ui/react"
 import { Sidebar } from "../Sidebar"
-interface Props {
+
+type Props = {
   children: React.ReactNode
 }
 

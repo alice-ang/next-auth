@@ -21,13 +21,12 @@ import {
   MenuItem,
   MenuList,
   Button,
+  Select,
 } from "@chakra-ui/react"
 import {
   FiHome,
   FiTrendingUp,
   FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
   FiBell,
   FiChevronDown,
@@ -36,19 +35,15 @@ import Link from "next/link"
 import { IconType } from "react-icons"
 import { ReactText } from "react"
 import { signIn, signOut, useSession } from "next-auth/react"
+import { useTranslation } from "react-i18next"
+import i18n from "../../i18n"
 
-interface LinkItemProps {
+type LinkItemProps = {
   name: string
   icon?: IconType
   url: string
 }
-// const LinkItems: Array<LinkItemProps> = [
-//   { name: "Home", icon: FiHome },
-//   { name: "Trending", icon: FiTrendingUp },
-//   { name: "Explore", icon: FiCompass },
-//   { name: "Favourites", icon: FiStar },
-//   { name: "Settings", icon: FiSettings },
-// ]
+
 const Links: Array<LinkItemProps> = [
   { name: "Server", url: "server", icon: FiHome },
   { name: "Protected", url: "protected", icon: FiTrendingUp },
@@ -84,14 +79,12 @@ export const Sidebar = ({ children }: { children: ReactNode }) => {
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
-      </Box>
+      <Box ml={{ base: 0, md: 60 }}>{children}</Box>
     </Box>
   )
 }
 
-interface SidebarProps extends BoxProps {
+type SidebarProps = BoxProps & {
   onClose: () => void
 }
 
@@ -113,16 +106,32 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      {Links.map((link) => (
-        <NavItem key={link.name} icon={link.icon} url={link.url}>
-          {link.name}
-        </NavItem>
-      ))}
+      <VStack alignItems="start">
+        <Box>
+          {Links.map((link) => (
+            <NavItem key={link.name} icon={link.icon} url={link.url}>
+              {link.name}
+            </NavItem>
+          ))}
+        </Box>
+        <Box>
+          <Select
+            variant="filled"
+            name="language"
+            onChange={(e) => {
+              i18n.changeLanguage(e.target.value)
+            }}
+          >
+            <option value="en">English</option>
+            <option value="sv">Swedish</option>
+          </Select>
+        </Box>
+      </VStack>
     </Box>
   )
 }
 
-interface NavItemProps extends FlexProps {
+type NavItemProps = FlexProps & {
   icon?: IconType
   children: ReactText
   url: string
@@ -164,6 +173,7 @@ interface MobileProps extends FlexProps {
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const { data: session, status } = useSession()
+  const { t } = useTranslation()
 
   return (
     <Flex
@@ -218,7 +228,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                       color="white"
                       _hover={{ bg: "brand.primaryDark" }}
                     >
-                      <a href={`/api/auth/signin`}>Sign in</a>
+                      <a href={`/api/auth/signin`}>{t("sidebar.signIn")}</a>
                     </Button>
                   )}
                   {session?.user && (
@@ -253,7 +263,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             >
               {DropDownLinks.map((link) => {
                 return (
-                  <MenuItem>
+                  <MenuItem key={link.name}>
                     <Link href={`/${link.url}`}>{link.name}</Link>
                   </MenuItem>
                 )
@@ -267,7 +277,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                     signOut()
                   }}
                 >
-                  Sign out
+                  {t("sidebar.signOut")}
                 </a>
               </MenuItem>
             </MenuList>
