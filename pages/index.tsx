@@ -1,8 +1,9 @@
 import { Layout } from "../components/Layout"
-
+import { Hero } from "../components/Hero"
 export default function IndexPage() {
   return (
     <Layout>
+      <Hero />
       <h1>NextAuth.js Example</h1>
       <p>
         This is an example site to demonstrate how to use{" "}

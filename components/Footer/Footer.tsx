@@ -11,8 +11,9 @@ export const Footer = () => (
     role="contentinfo"
     mx="auto"
     maxW="7xl"
-    py="12"
-    px={{ small: "4", med: "8" }}
+    pt="12"
+    bgColor="white"
+    px={{ sm: "4", md: "8" }}
   >
     <Stack spacing="10" divider={<StackDivider />}>
       <Stack
@@ -23,19 +24,20 @@ export const Footer = () => (
           <Logo />
         </Box>
         <Stack
-          direction={{ base: "column", md: "row" }}
-          spacing={{ base: "10", md: "20" }}
+          direction={{ sm: "column", md: "row" }}
+          spacing={{ sm: "10", md: "20" }}
         >
-          <LinkGrid spacing={{ base: "10", md: "20", lg: "28" }} flex="1" />
+          <LinkGrid spacing={{ sm: "10", md: "20", lg: "28" }} flex="1" />
         </Stack>
       </Stack>
       <Stack
-        direction={{ sm: "column-reverse", md: "row" }}
-        justifyContent="space-between"
+        direction={{ md: "row-reverse" }}
+        justifyContent={{ sm: "center", md: "space-between" }}
         alignItems="center"
+        flexWrap="wrap"
       >
-        <Copyright />
         <SocialMediaLinks />
+        <Copyright />
       </Stack>
     </Stack>
   </Box>
