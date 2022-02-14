@@ -270,9 +270,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             >
               {DropDownLinks.map((link) => {
                 return (
-                  <MenuItem key={link.name}>
-                    <Link href={`/${link.url}`}>{link.name}</Link>
-                  </MenuItem>
+                  <Link href={`/${link.url}`}>
+                    <MenuItem key={link.name}>{link.name}</MenuItem>
+                  </Link>
                 )
               })}
               <MenuDivider />
