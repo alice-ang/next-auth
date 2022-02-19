@@ -14,7 +14,11 @@ export const LanguageSelect: React.FC<SelectProps> = ({ options }) => {
   return (
     <Select placeholder="Select option">
       {options.map((option) => {
-        return <option value={option.value}>{option.name}</option>
+        return (
+          <option value={option.value} key={option.value}>
+            {option.name}
+          </option>
+        )
       })}
     </Select>
   )

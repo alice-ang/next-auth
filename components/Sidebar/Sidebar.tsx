@@ -145,7 +145,7 @@ type NavItemProps = FlexProps & {
 }
 const NavItem = ({ icon, url, children, ...rest }: NavItemProps) => {
   return (
-    <Link href={`/${url}`}>
+    <Link href={`/${url}`} passHref>
       <Flex
         align="center"
         p="4"
@@ -270,9 +270,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             >
               {DropDownLinks.map((link) => {
                 return (
-                  <MenuItem key={link.name}>
-                    <Link href={`/${link.url}`}>{link.name}</Link>
-                  </MenuItem>
+                  <Link href={`/${link.url}`} key={link.name} passHref>
+                    <MenuItem>{link.name}</MenuItem>
+                  </Link>
                 )
               })}
               <MenuDivider />
