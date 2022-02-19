@@ -33,7 +33,6 @@ type LoginProps = {
 }
 
 export default function LoginPage({ providers }: LoginProps) {
-  console.log(providers)
   return (
     <Layout>
       <Stack direction={{ base: "column", md: "row" }}>
