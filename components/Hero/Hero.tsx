@@ -16,7 +16,7 @@ export const Hero = () => {
         textAlign={"center"}
         align={"center"}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
+        py={{ base: 14 }}
       >
         <Heading
           fontWeight={600}
@@ -48,10 +48,7 @@ export const Hero = () => {
           </Button>
         </Stack>
         <Flex w={"full"}>
-          <Illustration
-            height={{ sm: "24rem", lg: "28rem" }}
-            mt={{ base: 12, sm: 16 }}
-          />
+          <Illustration height={{ sm: "24rem", lg: "28rem" }} />
         </Flex>
       </Stack>
     </Container>

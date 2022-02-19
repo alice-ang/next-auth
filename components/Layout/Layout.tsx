@@ -10,7 +10,9 @@ export const Layout = ({ children }: Props) => {
   return (
     <Box width={{ sm: "100%", xxl: "70%" }} mx="auto">
       <Sidebar>
-        <main>{children}</main>
+        <Box as={"main"} bgColor={"#fcfcfc"}>
+          {children}
+        </Box>
         <Footer />
       </Sidebar>
     </Box>
