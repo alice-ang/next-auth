@@ -7,6 +7,7 @@ const colors = {
     primary: "#6B63F3",
     primaryDark: "#4C4AA0",
     700: "#2a69ac",
+    purple: "#8842e1",
   },
 }
 

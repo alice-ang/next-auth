@@ -25,6 +25,9 @@ export default NextAuth({
   theme: {
     colorScheme: "light",
   },
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
     async jwt({ token }) {
       token.userRole = "admin"
