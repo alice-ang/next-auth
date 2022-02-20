@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react"
 
-export const Illustration = (props: IconProps) => {
+export const ReadingBook = (props: IconProps) => {
   return (
     <Icon
       width="100%"
