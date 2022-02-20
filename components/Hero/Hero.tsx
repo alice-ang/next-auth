@@ -21,9 +21,9 @@ export const Hero = () => {
           </Text>
         </Heading>
         <Text color={"gray.500"} maxW={"3xl"}>
-          New to the area? New to the country? Don't stress! Keep up with
-          reviews from current and old students to make it simple for you to
-          find the information needed to find the perfect housing for you.
+          New to the area? Perhaps new to the country? Don't stress! Keep up
+          with reviews from current and old students to make it easier for you
+          to find YOUR perfect housing.
         </Text>
         <Stack spacing={6} direction={"row"}>
           <Button
@@ -35,7 +35,12 @@ export const Hero = () => {
           >
             Get started
           </Button>
-          <Button rounded={"full"} px={6}>
+          <Button
+            rounded={"full"}
+            px={6}
+            variant={"outline"}
+            colorScheme={"yellow"}
+          >
             Learn more
           </Button>
         </Stack>

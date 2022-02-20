@@ -6,6 +6,8 @@ const colors = {
   brand: {
     primary: "#6B63F3",
     primaryDark: "#4C4AA0",
+    complementary: "#EBF363",
+    monochromatic: "#3E34EF",
     700: "#2a69ac",
     purple: "#8842e1",
   },

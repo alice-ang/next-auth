@@ -37,11 +37,16 @@ export default function LoginPage({ providers }: LoginProps) {
   return (
     <Layout>
       <Stack
-        minH={"100vh"}
         direction={{ base: "column-reverse", md: "row" }}
         bgColor={"white"}
       >
-        <Flex p={8} flex={1} align={"center"} justify={"center"}>
+        <Flex
+          p={8}
+          flex={1}
+          align={"center"}
+          justify={"center"}
+          py={{ base: 8, md: 12 }}
+        >
           <Stack spacing={4} w={"full"} maxW={"md"}>
             <Heading fontSize={"2xl"} textAlign={"center"}>
               Sign in to your account

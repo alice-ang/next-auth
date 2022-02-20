@@ -104,9 +104,17 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Link href={"/"}>
+          <Text
+            fontSize="2xl"
+            fontFamily="monospace"
+            fontWeight="bold"
+            cursor="pointer"
+          >
+            Logo
+          </Text>
+        </Link>
+
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       <VStack alignItems="start">
@@ -118,20 +126,22 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           ))}
         </Box>
         <Box>
-          <Select
-            variant="filled"
-            name="language"
-            onChange={(e) => {
-              i18n.changeLanguage(e.target.value)
-            }}
-          >
-            <option value="en" selected={locale === "en"}>
-              English
-            </option>
-            <option value="sv" selected={locale === "sv"}>
-              Swedish
-            </option>
-          </Select>
+          <Flex align="center" p="4" mx="4" borderRadius="lg" role="group">
+            <Select
+              variant="filled"
+              name="language"
+              onChange={(e) => {
+                i18n.changeLanguage(e.target.value)
+              }}
+            >
+              <option value="en" selected={locale === "en"}>
+                English
+              </option>
+              <option value="sv" selected={locale === "sv"}>
+                Swedish
+              </option>
+            </Select>
+          </Flex>
         </Box>
       </VStack>
     </Box>
