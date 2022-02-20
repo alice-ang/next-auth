@@ -16,7 +16,10 @@ import {
 } from "@chakra-ui/react"
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebook } from "react-icons/fa"
-import { signIn, getProviders } from "next-auth/react"
+import { signIn, getProviders, getSession, getCsrfToken } from "next-auth/react"
+import { Session } from "next-auth"
+import { IncomingMessage } from "http"
+import type { NextApiRequest, NextApiResponse } from "next"
 
 type Provider = {
   id: string
@@ -51,7 +54,9 @@ export default function LoginPage({ providers }: LoginProps) {
                   key={provider.name}
                   onClick={(e) => {
                     e.preventDefault()
-                    signIn(provider.id)
+                    signIn(provider.id, {
+                      callbackUrl: `${window.location.origin}/`,
+                    })
                   }}
                   colorScheme={
                     provider.name == "Facebook" ? "facebook" : undefined
@@ -109,10 +114,13 @@ export default function LoginPage({ providers }: LoginProps) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(req: NextApiRequest) {
+  const session = await getSession({ req })
+
   return {
     props: {
       providers: await getProviders(),
+      csrfToken: await getCsrfToken(),
     },
   }
 }
