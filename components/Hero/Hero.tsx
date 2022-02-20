@@ -1,5 +1,5 @@
 import { Flex, Container, Heading, Stack, Text, Button } from "@chakra-ui/react"
-import { HouseReview } from "../Illustrations"
+import { HouseReview } from "../Graphics"
 
 export const Hero = () => {
   return (
