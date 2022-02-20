@@ -21,7 +21,7 @@ export const Hero = () => {
           </Text>
         </Heading>
         <Text color={"gray.500"} maxW={"3xl"}>
-          New to the area? Perhaps new to the country? Don't stress! Keep up
+          New to the area? Perhaps new to the country? Don&#39;t stress! Keep up
           with reviews from current and old students to make it easier for you
           to find YOUR perfect housing.
         </Text>

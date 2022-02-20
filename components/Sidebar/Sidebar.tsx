@@ -102,7 +102,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Link href={"/"}>
+        <Link href={"/"} passHref>
           <Text
             fontSize="2xl"
             fontFamily="monospace"
