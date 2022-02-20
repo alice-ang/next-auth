@@ -35,8 +35,6 @@ import Link from "next/link"
 import { IconType } from "react-icons"
 import { ReactText } from "react"
 import { signIn, signOut, useSession } from "next-auth/react"
-import { useTranslation } from "react-i18next"
-import i18n from "../../i18n"
 import { useRouter } from "next/router"
 
 type LinkItemProps = {
@@ -104,9 +102,17 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Link href={"/"} passHref>
+          <Text
+            fontSize="2xl"
+            fontFamily="monospace"
+            fontWeight="bold"
+            cursor="pointer"
+          >
+            Logo
+          </Text>
+        </Link>
+
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       <VStack alignItems="start">
@@ -117,22 +123,24 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             </NavItem>
           ))}
         </Box>
-        <Box>
-          <Select
-            variant="filled"
-            name="language"
-            onChange={(e) => {
-              i18n.changeLanguage(e.target.value)
-            }}
-          >
-            <option value="en" selected={locale === "en"}>
-              English
-            </option>
-            <option value="sv" selected={locale === "sv"}>
-              Swedish
-            </option>
-          </Select>
-        </Box>
+        {/* <Box>
+          <Flex align="center" p="4" mx="4" borderRadius="lg" role="group">
+            <Select
+              variant="filled"
+              name="language"
+              onChange={(e) => {
+                i18n.changeLanguage(e.target.value)
+              }}
+            >
+              <option value="en" selected={locale === "en"}>
+                English
+              </option>
+              <option value="sv" selected={locale === "sv"}>
+                Swedish
+              </option>
+            </Select>
+          </Flex>
+        </Box> */}
       </VStack>
     </Box>
   )
@@ -180,7 +188,6 @@ interface MobileProps extends FlexProps {
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const { data: session, status } = useSession()
-  const { t } = useTranslation()
 
   return (
     <Flex
@@ -235,7 +242,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                       color="white"
                       _hover={{ bg: "brand.primaryDark" }}
                     >
-                      <a href={`/api/auth/signin`}>{t("sidebar.signIn")}</a>
+                      <a href={`/api/auth/signin`}>Sign in</a>
                     </Button>
                   )}
                   {session?.user && (
@@ -283,7 +290,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   signOut()
                 }}
               >
-                <MenuItem>{t("sidebar.signOut")}</MenuItem>
+                <MenuItem>Sign out</MenuItem>
               </a>
             </MenuList>
           </Menu>

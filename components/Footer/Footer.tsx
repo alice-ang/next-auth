@@ -24,15 +24,16 @@ export const Footer = () => (
           <Logo />
         </Box>
         <Stack
-          direction={{ sm: "column", md: "row" }}
+          direction={{ base: "column", md: "row" }}
           spacing={{ sm: "10", md: "20" }}
+          alignItems={"center"}
         >
           <LinkGrid spacing={{ sm: "10", md: "20", lg: "28" }} flex="1" />
         </Stack>
       </Stack>
       <Stack
         direction={{ md: "row-reverse" }}
-        justifyContent={{ sm: "center", md: "space-between" }}
+        justifyContent={{ base: "center", md: "space-between" }}
         alignItems="center"
         flexWrap="wrap"
       >

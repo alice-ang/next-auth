@@ -1,5 +1,5 @@
 import { Flex, Container, Heading, Stack, Text, Button } from "@chakra-ui/react"
-import { Illustration } from "../Illustration"
+import { HouseReview } from "../Graphics"
 
 export const Hero = () => {
   return (
@@ -15,15 +15,15 @@ export const Hero = () => {
           fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
           lineHeight={"110%"}
         >
-          Meeting scheduling{" "}
+          Finding your student housing{" "}
           <Text as={"span"} color={"brand.primary"}>
             made easy
           </Text>
         </Heading>
         <Text color={"gray.500"} maxW={"3xl"}>
-          Never miss a meeting. Never be late for one too. Keep track of your
-          meetings and receive smart reminders in appropriate times. Read your
-          smart “Daily Agenda” every morning.
+          New to the area? Perhaps new to the country? Don&#39;t stress! Keep up
+          with reviews from current and old students to make it easier for you
+          to find YOUR perfect housing.
         </Text>
         <Stack spacing={6} direction={"row"}>
           <Button
@@ -35,12 +35,17 @@ export const Hero = () => {
           >
             Get started
           </Button>
-          <Button rounded={"full"} px={6}>
+          <Button
+            rounded={"full"}
+            px={6}
+            variant={"outline"}
+            colorScheme={"yellow"}
+          >
             Learn more
           </Button>
         </Stack>
         <Flex w={"full"}>
-          <Illustration height={{ sm: "24rem", lg: "28rem" }} />
+          <HouseReview height={{ sm: "24rem", lg: "28rem" }} />
         </Flex>
       </Stack>
     </Container>
