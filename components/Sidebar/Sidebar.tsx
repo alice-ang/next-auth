@@ -35,8 +35,6 @@ import Link from "next/link"
 import { IconType } from "react-icons"
 import { ReactText } from "react"
 import { signIn, signOut, useSession } from "next-auth/react"
-import { useTranslation } from "react-i18next"
-import i18n from "../../i18n"
 import { useRouter } from "next/router"
 
 type LinkItemProps = {
@@ -125,7 +123,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             </NavItem>
           ))}
         </Box>
-        <Box>
+        {/* <Box>
           <Flex align="center" p="4" mx="4" borderRadius="lg" role="group">
             <Select
               variant="filled"
@@ -142,7 +140,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               </option>
             </Select>
           </Flex>
-        </Box>
+        </Box> */}
       </VStack>
     </Box>
   )
@@ -190,7 +188,6 @@ interface MobileProps extends FlexProps {
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const { data: session, status } = useSession()
-  const { t } = useTranslation()
 
   return (
     <Flex
@@ -245,7 +242,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                       color="white"
                       _hover={{ bg: "brand.primaryDark" }}
                     >
-                      <a href={`/api/auth/signin`}>{t("sidebar.signIn")}</a>
+                      <a href={`/api/auth/signin`}>Sign in</a>
                     </Button>
                   )}
                   {session?.user && (
@@ -293,7 +290,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   signOut()
                 }}
               >
-                <MenuItem>{t("sidebar.signOut")}</MenuItem>
+                <MenuItem>Sign out</MenuItem>
               </a>
             </MenuList>
           </Menu>

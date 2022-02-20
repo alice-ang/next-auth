@@ -96,7 +96,7 @@ export default function LoginPage({ providers }: LoginProps) {
                 justify={"space-between"}
               >
                 <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.500"}>Forgot password?</Link>
+                <Link color={"brand.complementary"}>Forgot password?</Link>
               </Stack>
               <Button
                 bgColor={"brand.primary"}

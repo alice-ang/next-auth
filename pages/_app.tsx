@@ -3,7 +3,6 @@ import type { AppProps } from "next/app"
 import "./styles.css"
 import { ChakraProvider } from "@chakra-ui/react"
 import { theme } from "../styles"
-import "../i18n"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
