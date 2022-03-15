@@ -1,5 +1,4 @@
 import { useSession, getSession } from "next-auth/react"
-import { Layout } from "../components/Layout"
 import type { NextPageContext } from "next"
 
 export default function ServerSidePage() {
@@ -11,7 +10,7 @@ export default function ServerSidePage() {
   const loading = status === "loading"
 
   return (
-    <Layout>
+    <div>
       <h1>Server Side Rendering</h1>
       <p>
         This page uses the universal <strong>getSession()</strong> method in{" "}
@@ -30,7 +29,7 @@ export default function ServerSidePage() {
         The disadvantage of Server Side Rendering is that this page is slower to
         render.
       </p>
-    </Layout>
+    </div>
   )
 }
 
