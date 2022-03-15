@@ -1,13 +1,5 @@
 import { SVGProps } from "react"
 
-import { SVGProps } from "react"
-
-import { SVGProps } from "react"
-
-import { SVGProps } from "react"
-
-import { SVGProps } from "react"
-
 const navigation = {
   solutions: [
     { name: "Marketing", href: "#" },
