@@ -96,31 +96,8 @@ export const Footer = () => {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="space-y-8 xl:col-span-1">
-            <img
-              className="h-10"
-              src="https://tailwindui.com/img/logos/workflow-mark-gray-300.svg"
-              alt="Company name"
-            />
-            <p className="text-gray-500 text-base">
-              Making the world a better place through constructing elegant
-              hierarchies.
-            </p>
-            <div className="flex space-x-6">
-              {navigation.social.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-400 hover:text-gray-500"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-6 w-6" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
-          </div>
+      <div className="max-w-7xl mx-auto pb-4 pt-12 px-4 sm:px-6 lg:px-8">
+        <div className="xl:grid xl:grid-cols-2 xl:gap-8">
           <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
@@ -196,9 +173,25 @@ export const Footer = () => {
             </div>
           </div>
         </div>
+
         <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-400 xl:text-center">
-            &copy; 2020 Workflow, Inc. All rights reserved.
+          <div className="flex space-y-8 xl:col-span-1 justify-center">
+            <div className="flex space-x-6 pb-4">
+              {navigation.social.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-400 hover:text-gray-500"
+                >
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon className="h-6 w-6" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
+          <p className="text-base text-gray-400 text-center">
+            &copy; {new Date().getFullYear()} Studenthem AB | All rights
+            reserved.
           </p>
         </div>
       </div>

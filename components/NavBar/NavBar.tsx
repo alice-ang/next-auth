@@ -3,12 +3,12 @@ import { Fragment } from "react"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline"
 import { signIn, signOut, useSession } from "next-auth/react"
-import { IoMdSchool } from "react-icons/io"
+import { Logo } from "../Logo"
 import Link from "next/link"
+import { classNames } from "../../utils"
+import { Avatar } from "../Avatar"
+import { AvatarButton } from "./AvatarButton"
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ")
-}
 export const NavBar = () => {
   const { data: session, status } = useSession()
 
@@ -20,16 +20,7 @@ export const NavBar = () => {
             <div className="flex justify-between h-16">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
-                  <div className="flex items-center">
-                    <IoMdSchool
-                      className="block h-8 w-auto pr-2"
-                      size={40}
-                      color="#4f46e5"
-                    />
-                    <h3 className="hidden sm:block font-bold text-xl text-gray-500 ">
-                      StudentHem
-                    </h3>
-                  </div>
+                  <Logo />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
@@ -77,16 +68,14 @@ export const NavBar = () => {
                         </button>
                       </Link>
                     ) : (
-                      <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span className="sr-only">Open user menu</span>
-                        {session.user?.image && (
-                          <img
-                            className="h-8 w-8 rounded-full"
-                            src={session.user.image}
-                            alt=""
+                      <>
+                        {session.user && (
+                          <AvatarButton
+                            url={session.user.image ?? ""}
+                            name={session.user.name}
                           />
                         )}
-                      </Menu.Button>
+                      </>
                     )}
                   </div>
                   <Transition
