@@ -2,11 +2,14 @@
 import { Fragment } from "react"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline"
-
+import { signIn, signOut, useSession } from "next-auth/react"
+import { IoMdSchool } from "react-icons/io"
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
 }
 export const NavBar = () => {
+  const { data: session, status } = useSession()
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -15,16 +18,16 @@ export const NavBar = () => {
             <div className="flex justify-between h-16">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
-                  <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                    alt="Workflow"
-                  />
+                  <div className="flex items-center">
+                    <IoMdSchool
+                      className="block h-8 w-auto pr-2"
+                      size={40}
+                      color="#4f46e5"
+                    />
+                    <h3 className="hidden sm:block font-bold text-xl text-gray-500 ">
+                      StudentHem
+                    </h3>
+                  </div>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
@@ -58,20 +61,31 @@ export const NavBar = () => {
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
                   <div>
-                    {/* <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </Menu.Button> */}
-                    <button
-                      type="button"
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      Log in
-                    </button>
+                    {!session ? (
+                      <a href={`/api/auth/signin`}>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault()
+                            signIn()
+                          }}
+                          type="button"
+                          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                          Log in
+                        </button>
+                      </a>
+                    ) : (
+                      <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <span className="sr-only">Open user menu</span>
+                        {session.user?.image && (
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={session.user.image}
+                            alt=""
+                          />
+                        )}
+                      </Menu.Button>
+                    )}
                   </div>
                   <Transition
                     as={Fragment}
@@ -86,13 +100,13 @@ export const NavBar = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/profile"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Your Profile
+                            Profile
                           </a>
                         )}
                       </Menu.Item>
@@ -112,7 +126,11 @@ export const NavBar = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href={`/api/auth/signout`}
+                            onClick={(e) => {
+                              e.preventDefault()
+                              signOut()
+                            }}
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"

@@ -1,5 +1,9 @@
-import { Hero } from "../components"
+import { Hero, Layout } from "../components"
 
 export default function IndexPage() {
-  return <Hero />
+  return (
+    <Layout>
+      <Hero />
+    </Layout>
+  )
 }
