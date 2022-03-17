@@ -1,23 +1,7 @@
-import { Layout } from "../components/Layout"
-import {
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  Link,
-  Stack,
-  Image,
-  IconButton,
-  HStack,
-  Divider,
-} from "@chakra-ui/react"
-import { FcGoogle } from "react-icons/fc"
-import { FaFacebook } from "react-icons/fa"
+import { FaFacebook, FaGoogle } from "react-icons/fa"
 import { signIn, getProviders, getCsrfToken } from "next-auth/react"
 import type { NextApiRequest } from "next"
+import { Layout } from "../components"
 
 type Provider = {
   id: string
@@ -36,91 +20,144 @@ type LoginProps = {
 export default function LoginPage({ providers }: LoginProps) {
   return (
     <Layout>
-      <Stack
-        direction={{ base: "column-reverse", md: "row" }}
-        bgColor={"white"}
-      >
-        <Flex
-          p={8}
-          flex={1}
-          align={"center"}
-          justify={"center"}
-          py={{ base: 8, md: 12 }}
-        >
-          <Stack spacing={4} w={"full"} maxW={"md"}>
-            <Heading fontSize={"2xl"} textAlign={"center"}>
-              Sign in to your account
-            </Heading>
-            <HStack spacing={4} justifyContent={"center"}>
-              {Object.values(providers).map((provider) => {
-                return (
-                  <IconButton
-                    key={provider.name}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      signIn(provider.id, {
-                        callbackUrl: `${window.location.origin}/`,
-                      })
-                    }}
-                    colorScheme={
-                      provider.name == "Facebook" ? "facebook" : undefined
-                    }
-                    variant={
-                      provider.name == "Facebook" ? undefined : "outline"
-                    }
-                    aria-label={`login with ${provider.name}`}
-                    icon={
-                      provider.name == "Facebook" ? (
-                        <FaFacebook />
-                      ) : (
-                        <FcGoogle />
-                      )
-                    }
-                  />
-                )
-              })}
-            </HStack>
-            <Divider my={4} />
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input type="password" />
-            </FormControl>
-            <Stack spacing={6}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"brand.complementary"}>Forgot password?</Link>
-              </Stack>
-              <Button
-                bgColor={"brand.primary"}
-                variant={"solid"}
-                color={"white"}
-                _hover={{
-                  bg: "brand.primaryDark",
-                }}
-              >
-                Sign in
-              </Button>
-            </Stack>
-          </Stack>
-        </Flex>
-        <Flex flex={1}>
-          <Image
-            alt={"Login Image"}
-            objectFit={"cover"}
-            src={
-              "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"
-            }
+      <div className="min-h-full flex">
+        <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+          <div className="mx-auto w-full max-w-sm lg:w-96">
+            <div>
+              <h2 className="mt-6 text-3xl font-extrabold text-gray-900 text-center">
+                Sign in to your account
+              </h2>
+            </div>
+            <div className="mt-8">
+              <div>
+                <div className="mt-1 grid grid-cols-2 gap-3">
+                  {Object.values(providers).map((provider) => {
+                    console.log(provider)
+                    return (
+                      <div key={provider.id}>
+                        <a
+                          onClick={(e) => {
+                            e.preventDefault()
+                            signIn(provider.id, {
+                              callbackUrl: `${window.location.origin}/`,
+                            })
+                          }}
+                          className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                        >
+                          <span className="sr-only">{`Sign in with ${provider.name}`}</span>
+                          {provider.name == "Facebook" ? (
+                            <FaFacebook size={24} />
+                          ) : (
+                            <FaGoogle size={24} />
+                          )}
+                        </a>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <div className="mt-6 relative">
+                  <div
+                    className="absolute inset-0 flex items-center"
+                    aria-hidden="true"
+                  >
+                    <div className="w-full border-t border-gray-300" />
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">
+                      Or continue with
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <form action="#" method="POST" className="space-y-6">
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Email address
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        required
+                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Password
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autoComplete="current-password"
+                        required
+                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <input
+                        id="remember-me"
+                        name="remember-me"
+                        type="checkbox"
+                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                      />
+                      <label
+                        htmlFor="remember-me"
+                        className="ml-2 block text-sm text-gray-900"
+                      >
+                        Remember me
+                      </label>
+                    </div>
+
+                    <div className="text-sm">
+                      <a
+                        href="#"
+                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                      >
+                        Forgot your password?
+                      </a>
+                    </div>
+                  </div>
+
+                  <div>
+                    <button
+                      type="submit"
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Sign in
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="hidden lg:block relative w-0 flex-1">
+          <img
+            className="absolute inset-0 h-full w-full object-cover"
+            src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
+            alt=""
           />
-        </Flex>
-      </Stack>
+        </div>
+      </div>
     </Layout>
   )
 }
