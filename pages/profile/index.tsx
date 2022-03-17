@@ -39,6 +39,8 @@ const secondaryNavigation = [
 ]
 const cards = [
   { name: "Account balance", href: "#", icon: ScaleIcon, amount: "$30,659.45" },
+  { name: "Account balance", href: "#", icon: ScaleIcon, amount: "$30,659.45" },
+  { name: "Account balance", href: "#", icon: ScaleIcon, amount: "$30,659.45" },
   // More items...
 ]
 const transactions = [
@@ -374,7 +376,10 @@ export default function ProfilePage() {
                             alt=""
                           />
                           <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
-                            Good morning, Emilia Birch
+                            Hello, Emilia Birch{" "}
+                            <span role="img" aria-label="waving hand">
+                              👋
+                            </span>
                           </h1>
                         </div>
                         <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
@@ -397,20 +402,6 @@ export default function ProfilePage() {
                         </dl>
                       </div>
                     </div>
-                  </div>
-                  <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
-                    <button
-                      type="button"
-                      className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                    >
-                      Add money
-                    </button>
-                    <button
-                      type="button"
-                      className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                    >
-                      Send money
-                    </button>
                   </div>
                 </div>
               </div>
@@ -545,10 +536,7 @@ export default function ProfilePage() {
                               Transaction
                             </th>
                             <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Amount
-                            </th>
-                            <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
-                              Status
+                              Type
                             </th>
                             <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                               Date
@@ -580,16 +568,7 @@ export default function ProfilePage() {
                                 </span>
                                 {transaction.currency}
                               </td>
-                              <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
-                                <span
-                                  className={classNames(
-                                    statusStyles[transaction.status],
-                                    "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize"
-                                  )}
-                                >
-                                  {transaction.status}
-                                </span>
-                              </td>
+
                               <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
                                 <time dateTime={transaction.datetime}>
                                   {transaction.date}

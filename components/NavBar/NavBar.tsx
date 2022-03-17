@@ -4,6 +4,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { IoMdSchool } from "react-icons/io"
+import Link from "next/link"
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
 }
@@ -62,7 +64,7 @@ export const NavBar = () => {
                 <Menu as="div" className="ml-3 relative">
                   <div>
                     {!session ? (
-                      <a href={`/api/auth/signin`}>
+                      <Link href={`/api/auth/signin`}>
                         <button
                           onClick={(e) => {
                             e.preventDefault()
@@ -73,7 +75,7 @@ export const NavBar = () => {
                         >
                           Log in
                         </button>
-                      </a>
+                      </Link>
                     ) : (
                       <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span className="sr-only">Open user menu</span>
@@ -99,28 +101,30 @@ export const NavBar = () => {
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="/profile"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Profile
-                          </a>
+                          <Link href="/profile" passHref>
+                            <a
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Profile
+                            </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Settings
-                          </a>
+                          <Link href="#">
+                            <a
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Settings
+                            </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
