@@ -1,9 +1,11 @@
 import { classNames } from "../../utils"
 import { Menu, Transition } from "@headlessui/react"
-import { AvatarProps } from "../Avatar"
+import { Avatar, AvatarProps } from "../Avatar"
 import { FC, Fragment } from "react"
 import { ChevronDownIcon } from "@heroicons/react/solid"
 import { User } from "../../utils"
+import Link from "next/link"
+import { signOut } from "next-auth/react"
 
 type AvatarButtonProps = AvatarProps & User
 
@@ -18,7 +20,7 @@ export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
       <Menu as="div" className="ml-3 relative">
         <div>
           <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
-            {url && <img className="h-8 w-8 rounded-full" src={url} alt="" />}
+            {url && <Avatar className="h-8 w-8 rounded-full" url={url} />}
 
             <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
               <span className="sr-only">Open user menu for </span>
@@ -42,34 +44,27 @@ export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
           <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/profile"
-                  className={classNames(
-                    active ? "bg-gray-100" : "",
-                    "block px-4 py-2 text-sm text-gray-700"
-                  )}
-                >
-                  Profile
-                </a>
+                <Link href="/profile" passHref>
+                  <a
+                    className={classNames(
+                      active ? "bg-gray-100" : "",
+                      "block px-4 py-2 text-sm text-gray-700"
+                    )}
+                  >
+                    Profile
+                  </a>
+                </Link>
               )}
             </Menu.Item>
+
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100" : "",
-                    "block px-4 py-2 text-sm text-gray-700"
-                  )}
-                >
-                  Settings
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
+                  href={`/api/auth/signout`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    signOut()
+                  }}
                   className={classNames(
                     active ? "bg-gray-100" : "",
                     "block px-4 py-2 text-sm text-gray-700"

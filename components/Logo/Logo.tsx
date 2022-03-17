@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { FC } from "react"
 import { IoMdSchool } from "react-icons/io"
 
@@ -8,11 +9,11 @@ type LogoProps = {
 
 export const Logo: FC<LogoProps> = ({ hasNoBreakpoint, className }) => {
   return (
-    <a href="/">
+    <Link href="/">
       <div className={className}>
         <div className="flex items-center">
           <IoMdSchool
-            className="block h-8 w-auto pr-2"
+            className="block h-8 sw-auto pr-2"
             size={40}
             color="#4f46e5"
           />
@@ -26,6 +27,6 @@ export const Logo: FC<LogoProps> = ({ hasNoBreakpoint, className }) => {
           )}
         </div>
       </div>
-    </a>
+    </Link>
   )
 }
