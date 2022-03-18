@@ -32,7 +32,6 @@ export default function LoginPage({ providers }: LoginProps) {
               <div>
                 <div className="mt-1 grid grid-cols-2 gap-3">
                   {Object.values(providers).map((provider) => {
-                    console.log(provider)
                     return (
                       <div key={provider.id}>
                         <a
