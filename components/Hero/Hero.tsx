@@ -12,6 +12,9 @@ export const Hero = () => {
           you to find YOUR perfect housing.
         </p>
       </div>
+      <div>
+        <img className="m-auto" src="/location_review.svg" />
+      </div>
     </div>
   )
 }
