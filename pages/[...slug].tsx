@@ -1,6 +1,6 @@
-import { Layout } from "../../components"
+import { Layout } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
-import { classNames } from "../../utils"
+import { classNames } from "../utils"
 
 const reviews = {
   average: 4,
