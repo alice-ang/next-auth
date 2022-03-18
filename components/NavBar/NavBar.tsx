@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline"
+import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { Logo } from "../Logo"
 import Link from "next/link"
@@ -10,7 +10,7 @@ import { AvatarButton } from "./AvatarButton"
 import { Avatar } from "../Avatar"
 
 export const NavBar = () => {
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -55,7 +55,7 @@ export const NavBar = () => {
                 <Menu as="div" className="ml-3 relative">
                   <div>
                     {!session ? (
-                      <Link href={`/api/auth/signin`}>
+                      <Link href={`/api/auth/signin`} passHref>
                         <button
                           onClick={(e) => {
                             e.preventDefault()
