@@ -1,6 +1,6 @@
 export const Hero = () => {
   return (
-    <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <div className="text-center">
         <h2 className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
           Finding <span className="text-indigo-600">your</span> student housing
@@ -13,7 +13,7 @@ export const Hero = () => {
         </p>
       </div>
       <div>
-        <img className="m-auto" src="/location_review.svg" />
+        <img className="m-auto w-[50%] pt-8" src="/location_review.svg" />
       </div>
     </div>
   )
