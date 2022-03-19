@@ -1,3 +1,5 @@
+import { Search } from "../Search"
+
 export const Hero = () => {
   return (
     <div className="max-w-7xl mx-auto sm: py-8 px-4 lg:py-16 sm:px-6 lg:px-8">
@@ -12,8 +14,11 @@ export const Hero = () => {
           you to find YOUR perfect housing.
         </p>
       </div>
+      <div className="w-[50%] m-auto pt-8">
+        <Search />
+      </div>
       <div>
-        <img className="m-auto w-[50%] pt-8" src="/location_review.svg" />
+        <img className="m-auto w-[50%]" src="/location_review.svg" />
       </div>
     </div>
   )

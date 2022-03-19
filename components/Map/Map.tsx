@@ -1,6 +1,6 @@
 import { FC, useRef, useEffect, useState } from "react"
 // eslint-disable-line import/no-webpack-loader-syntax
-const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js")
+import mapboxgl from "mapbox-gl"
 
 type MapProps = {
   lat: number
