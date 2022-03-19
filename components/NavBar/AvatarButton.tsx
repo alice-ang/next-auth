@@ -14,12 +14,12 @@ export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
     <div className="mx-4 flex items-center md:mx-6">
       <button
         type="button"
-        className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+        className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
       ></button>
 
       <Menu as="div" className="ml-3 relative">
         <div>
-          <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
+          <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
             {url && <Avatar className="h-8 w-8 rounded-full" url={url} />}
 
             <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
@@ -41,7 +41,7 @@ export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
             <Menu.Item>
               {({ active }) => (
                 <Link href="/profile" passHref>
