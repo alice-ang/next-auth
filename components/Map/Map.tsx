@@ -32,5 +32,5 @@ export const Map: FC<MapProps> = ({ lat, lng }) => {
     )
   }, [])
 
-  return <div id="my-map" style={{ height: 500, width: "100%" }} />
+  return <div id="my-map" style={{ height: 450, width: "100%" }} />
 }
