@@ -30,9 +30,7 @@ const reviews = {
 export default function SchoolPage() {
   return (
     <Layout>
-      <div>
-        <Map lat={58.3941248} lng={13.8534906} />
-      </div>
+      <Map lat={58.3941248} lng={13.8534906} />
       <div className="max-w-2xl mx-auto py-16 px-4 sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
         <div className="lg:col-span-4">
           <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
@@ -123,7 +121,6 @@ export default function SchoolPage() {
             </a>
           </div>
         </div>
-
         <div className="mt-16 lg:mt-0 lg:col-start-6 lg:col-span-7">
           <h3 className="sr-only">Recent reviews</h3>
 
