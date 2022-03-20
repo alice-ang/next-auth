@@ -31,7 +31,7 @@ export default function SchoolPage() {
   return (
     <Layout>
       <Map lat={58.3941248} lng={13.8534906} />
-      <div className="max-w-2xl mx-auto py-16 px-4 sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
+      <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
         <div className="lg:col-span-4">
           <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
             Student Reviews
