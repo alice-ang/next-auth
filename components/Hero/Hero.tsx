@@ -1,4 +1,4 @@
-import { Search } from "../Search"
+// import { Search } from "../Search"
 
 export const Hero = () => {
   return (
@@ -14,9 +14,9 @@ export const Hero = () => {
           you to find YOUR perfect housing.
         </p>
       </div>
-      <div className="w-[50%] m-auto pt-8">
+      {/* <div className="w-[50%] m-auto pt-8">
         <Search />
-      </div>
+      </div> */}
       <div>
         <img className="m-auto w-[50%]" src="/location_review.svg" />
       </div>

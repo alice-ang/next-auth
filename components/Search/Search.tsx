@@ -1,20 +1,4 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { SortAscendingIcon, UsersIcon } from "@heroicons/react/solid"
+import { SortAscendingIcon, AcademicCapIcon } from "@heroicons/react/solid"
 
 export const Search = () => {
   return (
@@ -22,7 +6,10 @@ export const Search = () => {
       <div className="mt-1 flex rounded-md shadow-sm">
         <div className="relative flex items-stretch flex-grow focus-within:z-10">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <UsersIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+            <AcademicCapIcon
+              className="h-5 w-5 text-gray-400"
+              aria-hidden="true"
+            />
           </div>
           <input
             type="text"

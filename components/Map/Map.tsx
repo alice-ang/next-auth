@@ -1,5 +1,4 @@
 import { FC, useRef, useEffect, useState } from "react"
-// eslint-disable-line import/no-webpack-loader-syntax
 import mapboxgl from "mapbox-gl"
 
 type MapProps = {
@@ -8,21 +7,24 @@ type MapProps = {
 }
 
 export const Map: FC<MapProps> = ({ lat, lng }) => {
-  const [pageIsMounted, setPageIsMounted] = useState(false)
-
-  mapboxgl.accessToken =
-    "pk.eyJ1IjoiYWFsaWNlZWxpbiIsImEiOiJjbDB3djc2aXgxZHQ4M2lubTdvcm02ZXR4In0.QsCTqXv66yNjcaFfWu7w8Q"
+  const [map, setMap] = useState<mapboxgl.Map>()
+  const mapNode = useRef(null)
 
   useEffect(() => {
-    setPageIsMounted(true)
-    const map = new mapboxgl.Map({
-      container: "my-map",
+    const node = mapNode.current
+    if (typeof window === "undefined" || node === null) return
+
+    const mapboxMap = new mapboxgl.Map({
+      container: node,
+      // accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
+      accessToken:
+        "pk.eyJ1IjoiYWFsaWNlZWxpbiIsImEiOiJjbDB3djc2aXgxZHQ4M2lubTdvcm02ZXR4In0.QsCTqXv66yNjcaFfWu7w8Q",
       style: "mapbox://styles/mapbox/streets-v11",
       center: [lng, lat],
       zoom: 14,
     })
 
-    map.addControl(
+    mapboxMap.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
@@ -30,7 +32,12 @@ export const Map: FC<MapProps> = ({ lat, lng }) => {
         trackUserLocation: true,
       })
     )
+    setMap(mapboxMap)
+
+    return () => {
+      mapboxMap.remove()
+    }
   }, [])
 
-  return <div id="my-map" style={{ height: 450, width: "100%" }} />
+  return <div ref={mapNode} style={{ width: "100%", height: "450px" }} />
 }
