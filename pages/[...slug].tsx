@@ -16,6 +16,11 @@ import {
   PlusSmIcon,
 } from "@heroicons/react/solid"
 
+const tabs = [
+  { id: "ratings", name: "Ratings", href: "#", current: false },
+  { id: "reviews", name: "Reviews", href: "#", current: true },
+]
+
 const reviews = {
   average: 4,
   totalCount: 1624,
@@ -96,41 +101,34 @@ const reviews = {
 }
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
+  { name: "Best Rating", href: "#", current: true },
   { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
 ]
 const subCategories = [
-  { name: "Totes", href: "#" },
-  { name: "Backpacks", href: "#" },
-  { name: "Travel Bags", href: "#" },
-  { name: "Hip Bags", href: "#" },
-  { name: "Laptop Sleeves", href: "#" },
+  { name: "Doorms", href: "#" },
+  { name: "Student appartmets", href: "#" },
+  { name: "Regular appartments", href: "#" },
 ]
 const filters = [
   {
-    id: "color",
-    name: "Color",
+    id: "amenities",
+    name: "Amenities",
     options: [
-      { value: "white", label: "White", checked: false },
-      { value: "beige", label: "Beige", checked: false },
-      { value: "blue", label: "Blue", checked: true },
-      { value: "brown", label: "Brown", checked: false },
-      { value: "green", label: "Green", checked: false },
-      { value: "purple", label: "Purple", checked: false },
+      { value: "washer", label: "Washer", checked: false },
+      { value: "balcony", label: "Balcony", checked: false },
+      { value: "room_size", label: "Room size", checked: true },
+      { value: "room_size", label: "Room size", checked: true },
     ],
   },
   {
-    id: "category",
-    name: "Category",
+    id: "distance",
+    name: "Distance",
     options: [
-      { value: "new-arrivals", label: "New Arrivals", checked: false },
-      { value: "sale", label: "Sale", checked: false },
-      { value: "travel", label: "Travel", checked: true },
-      { value: "organization", label: "Organization", checked: false },
-      { value: "accessories", label: "Accessories", checked: false },
+      { value: "birds_eye_view", label: "Bird's-eye View", checked: false },
+      { value: "driving", label: "Sale", checked: false },
+      { value: "biking", label: "Biking", checked: true },
+      { value: "walking", label: "Walking", checked: false },
+      { value: "block", label: "Within four blocks", checked: false },
     ],
   },
   {
@@ -149,6 +147,7 @@ const filters = [
 
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [currentTab, setCurrentTab] = useState("ratings")
   return (
     <Layout>
       <div>
@@ -420,295 +419,255 @@ export default function SchoolPage() {
                       )}
                     </Disclosure>
                   ))}
-                  <div className="hidden lg:block py-6">
-                    <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-                      Student Reviews2
-                    </h2>
+                </form>
 
-                    <div className="mt-3 flex items-center">
-                      <div>
-                        <div className="flex items-center">
-                          {[0, 1, 2, 3, 4].map((rating) => (
-                            <StarIcon
-                              key={rating}
-                              className={classNames(
-                                reviews.average > rating
-                                  ? "text-yellow-400"
-                                  : "text-gray-300",
-                                "flex-shrink-0 h-5 w-5"
-                              )}
+                <div className=" lg:col-span-3 ">
+                  <Map lat={58.3941248} lng={13.8534906} />
+                  <div className="max-w-2xl mx-auto py-8 lg:max-w-7xl">
+                    {/* TABS */}
+                    <div className="sm:hidden">
+                      <label htmlFor="tabs" className="sr-only">
+                        Select a tab
+                      </label>
+                      {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
+                      <select
+                        id="tabs"
+                        name="tabs"
+                        className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        defaultValue={tabs.find((tab) => tab.current).name}
+                      >
+                        {tabs.map((tab) => (
+                          <option key={tab.name}>{tab.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="hidden sm:block">
+                      <nav
+                        className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
+                        aria-label="Tabs"
+                      >
+                        {tabs.map((tab, tabIdx) => (
+                          <a
+                            key={tab.name}
+                            href={tab.href}
+                            onClick={() => setCurrentTab(tab.id)}
+                            className={classNames(
+                              tab.current
+                                ? "text-gray-900"
+                                : "text-gray-500 hover:text-gray-700",
+                              tabIdx === 0 ? "rounded-l-lg" : "",
+                              tabIdx === tabs.length - 1 ? "rounded-r-lg" : "",
+                              "group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
+                            )}
+                            aria-current={tab.current ? "page" : undefined}
+                          >
+                            <span>{tab.name}</span>
+                            <span
                               aria-hidden="true"
+                              className={classNames(
+                                tab.current
+                                  ? "bg-indigo-500"
+                                  : "bg-transparent",
+                                "absolute inset-x-0 bottom-0 h-0.5"
+                              )}
                             />
-                          ))}
-                        </div>
-                        <p className="sr-only">
-                          {reviews.average} out of 5 stars
-                        </p>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-900">
-                        Based on {reviews.totalCount} reviews
-                      </p>
+                          </a>
+                        ))}
+                      </nav>
                     </div>
 
-                    <div className="mt-6">
-                      <h3 className="sr-only">Review data</h3>
+                    {currentTab === "ratings" && (
+                      <div className="lg:col-span-4 p-8 bg-white shadow rounded">
+                        <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+                          Student Reviews
+                        </h2>
 
-                      <dl className="space-y-3">
-                        {reviews.counts.map((count) => (
-                          <div
-                            key={count.rating}
-                            className="flex items-center text-sm"
-                          >
-                            <dt className="flex-1 flex items-center">
-                              <p className="w-3 font-medium text-gray-900">
-                                {count.rating}
-                                <span className="sr-only"> star reviews</span>
-                              </p>
-                              <div
-                                aria-hidden="true"
-                                className="ml-1 flex-1 flex items-center"
-                              >
+                        <div className="mt-3 flex items-center">
+                          <div>
+                            <div className="flex items-center">
+                              {[0, 1, 2, 3, 4].map((rating) => (
                                 <StarIcon
+                                  key={rating}
                                   className={classNames(
-                                    count.count > 0
+                                    reviews.average > rating
                                       ? "text-yellow-400"
                                       : "text-gray-300",
                                     "flex-shrink-0 h-5 w-5"
                                   )}
                                   aria-hidden="true"
                                 />
-
-                                <div className="ml-3 relative flex-1">
-                                  <div className="h-3 bg-gray-100 border border-gray-200 rounded-full" />
-                                  {count.count > 0 ? (
-                                    <div
-                                      className="absolute inset-y-0 bg-yellow-400 border border-yellow-400 rounded-full"
-                                      style={{
-                                        width: `calc(${count.count} / ${reviews.totalCount} * 100%)`,
-                                      }}
-                                    />
-                                  ) : null}
-                                </div>
-                              </div>
-                            </dt>
-                            <dd className="ml-3 w-10 text-right tabular-nums text-sm text-gray-900">
-                              {Math.round(
-                                (count.count / reviews.totalCount) * 100
-                              )}
-                              %
-                            </dd>
+                              ))}
+                            </div>
+                            <p className="sr-only">
+                              {reviews.average} out of 5 stars
+                            </p>
                           </div>
-                        ))}
-                      </dl>
-                    </div>
-
-                    <div className="mt-10">
-                      <h3 className="text-lg font-medium text-gray-900">
-                        Share your thoughts
-                      </h3>
-                      <p className="mt-1 text-sm text-gray-600">
-                        If you’ve used this product, share your thoughts with
-                        other customers
-                      </p>
-
-                      <a
-                        href="#"
-                        className="mt-6 inline-flex w-full  border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
-                      >
-                        Write a review
-                      </a>
-                    </div>
-                  </div>
-                </form>
-
-                <div className=" lg:col-span-3 ">
-                  <Map lat={58.3941248} lng={13.8534906} />
-                  <div className="max-w-2xl mx-auto py-8 lg:max-w-7xl">
-                    <div className="block lg:col-span-4 lg:hidden p-8 bg-white shadow rounded">
-                      <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-                        Student Reviews
-                      </h2>
-
-                      <div className="mt-3 flex items-center">
-                        <div>
-                          <div className="flex items-center">
-                            {[0, 1, 2, 3, 4].map((rating) => (
-                              <StarIcon
-                                key={rating}
-                                className={classNames(
-                                  reviews.average > rating
-                                    ? "text-yellow-400"
-                                    : "text-gray-300",
-                                  "flex-shrink-0 h-5 w-5"
-                                )}
-                                aria-hidden="true"
-                              />
-                            ))}
-                          </div>
-                          <p className="sr-only">
-                            {reviews.average} out of 5 stars
+                          <p className="ml-2 text-sm text-gray-900">
+                            Based on {reviews.totalCount} reviews
                           </p>
                         </div>
-                        <p className="ml-2 text-sm text-gray-900">
-                          Based on {reviews.totalCount} reviews
-                        </p>
-                      </div>
 
-                      <div className="mt-6">
-                        <h3 className="sr-only">Review data</h3>
+                        <div className="mt-6">
+                          <h3 className="sr-only">Review data</h3>
 
-                        <dl className="space-y-3">
-                          {reviews.counts.map((count) => (
-                            <div
-                              key={count.rating}
-                              className="flex items-center text-sm"
-                            >
-                              <dt className="flex-1 flex items-center">
-                                <p className="w-3 font-medium text-gray-900">
-                                  {count.rating}
-                                  <span className="sr-only"> star reviews</span>
-                                </p>
-                                <div
-                                  aria-hidden="true"
-                                  className="ml-1 flex-1 flex items-center"
-                                >
-                                  <StarIcon
-                                    className={classNames(
-                                      count.count > 0
-                                        ? "text-yellow-400"
-                                        : "text-gray-300",
-                                      "flex-shrink-0 h-5 w-5"
-                                    )}
-                                    aria-hidden="true"
-                                  />
-
-                                  <div className="ml-3 relative flex-1">
-                                    <div className="h-3 bg-gray-100 border border-gray-200 rounded-full" />
-                                    {count.count > 0 ? (
-                                      <div
-                                        className="absolute inset-y-0 bg-yellow-400 border border-yellow-400 rounded-full"
-                                        style={{
-                                          width: `calc(${count.count} / ${reviews.totalCount} * 100%)`,
-                                        }}
-                                      />
-                                    ) : null}
-                                  </div>
-                                </div>
-                              </dt>
-                              <dd className="ml-3 w-10 text-right tabular-nums text-sm text-gray-900">
-                                {Math.round(
-                                  (count.count / reviews.totalCount) * 100
-                                )}
-                                %
-                              </dd>
-                            </div>
-                          ))}
-                        </dl>
-                      </div>
-
-                      <div className="mt-10">
-                        <h3 className="text-lg font-medium text-gray-900">
-                          Share your thoughts
-                        </h3>
-                        <p className="mt-1 text-sm text-gray-600">
-                          If you’ve used this product, share your thoughts with
-                          other customers
-                        </p>
-
-                        <a
-                          href="#"
-                          className="mt-6 inline-flex w-full  border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
-                        >
-                          Write a review
-                        </a>
-                      </div>
-                    </div>
-                    <div className="mt-0 lg:col-start-6 lg:col-span-7">
-                      <h3 className="sr-only">Recent reviews</h3>
-
-                      <div className="flow-root">
-                        <div className="my-6">
-                          {reviews.featured.map((review) => (
-                            <div
-                              key={review.id}
-                              className="p-8 my-4 bg-white rounded shadow"
-                            >
-                              <div className="flex items-center">
-                                <img
-                                  src={review.avatarSrc}
-                                  alt={`${review.author}.`}
-                                  className="h-12 w-12 rounded-full"
-                                />
-                                <div className="ml-4">
-                                  <h4 className="text-sm font-bold text-gray-900">
-                                    {review.author}
-                                  </h4>
-                                  <div className="mt-1 flex items-center">
-                                    {[0, 1, 2, 3, 4].map((rating) => (
-                                      <StarIcon
-                                        key={rating}
-                                        className={classNames(
-                                          review.rating > rating
-                                            ? "text-yellow-400"
-                                            : "text-gray-300",
-                                          "h-5 w-5 flex-shrink-0"
-                                        )}
-                                        aria-hidden="true"
-                                      />
-                                    ))}
-                                  </div>
-                                  <p className="sr-only">
-                                    {review.rating} out of 5 stars
-                                  </p>
-                                </div>
-                              </div>
-
+                          <dl className="space-y-3">
+                            {reviews.counts.map((count) => (
                               <div
-                                className="mt-4 space-y-6 text-base italic text-gray-600"
-                                dangerouslySetInnerHTML={{
-                                  __html: review.content,
-                                }}
-                              />
-                              <div className="mt-6 flex justify-between space-x-8">
-                                <div className="flex space-x-6">
-                                  <span className="inline-flex items-center text-sm">
-                                    <button
-                                      type="button"
-                                      className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
-                                    >
-                                      <ThumbUpIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                      <span className="font-medium text-gray-900">
-                                        {review.likes}
-                                      </span>
-                                      <span className="sr-only">likes</span>
-                                    </button>
-                                  </span>
+                                key={count.rating}
+                                className="flex items-center text-sm"
+                              >
+                                <dt className="flex-1 flex items-center">
+                                  <p className="w-3 font-medium text-gray-900">
+                                    {count.rating}
+                                    <span className="sr-only">
+                                      {" "}
+                                      star reviews
+                                    </span>
+                                  </p>
+                                  <div
+                                    aria-hidden="true"
+                                    className="ml-1 flex-1 flex items-center"
+                                  >
+                                    <StarIcon
+                                      className={classNames(
+                                        count.count > 0
+                                          ? "text-yellow-400"
+                                          : "text-gray-300",
+                                        "flex-shrink-0 h-5 w-5"
+                                      )}
+                                      aria-hidden="true"
+                                    />
 
-                                  <span className="inline-flex items-center text-sm">
-                                    <button
-                                      type="button"
-                                      className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
-                                    >
-                                      <EyeIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                      <span className="font-medium text-gray-900">
-                                        {review.views}
-                                      </span>
-                                      <span className="sr-only">views</span>
-                                    </button>
-                                  </span>
-                                </div>
+                                    <div className="ml-3 relative flex-1">
+                                      <div className="h-3 bg-gray-100 border border-gray-200 rounded-full" />
+                                      {count.count > 0 ? (
+                                        <div
+                                          className="absolute inset-y-0 bg-yellow-400 border border-yellow-400 rounded-full"
+                                          style={{
+                                            width: `calc(${count.count} / ${reviews.totalCount} * 100%)`,
+                                          }}
+                                        />
+                                      ) : null}
+                                    </div>
+                                  </div>
+                                </dt>
+                                <dd className="ml-3 w-10 text-right tabular-nums text-sm text-gray-900">
+                                  {Math.round(
+                                    (count.count / reviews.totalCount) * 100
+                                  )}
+                                  %
+                                </dd>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </dl>
+                        </div>
+
+                        <div className="mt-10">
+                          <h3 className="text-lg font-medium text-gray-900">
+                            Share your thoughts
+                          </h3>
+                          <p className="mt-1 text-sm text-gray-600">
+                            If you’ve used this product, share your thoughts
+                            with other customers
+                          </p>
+
+                          <a
+                            href="#"
+                            className="mt-6 inline-flex w-full  border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
+                          >
+                            Write a review
+                          </a>
                         </div>
                       </div>
-                    </div>
+                    )}
+                    {currentTab === "reviews" && (
+                      <div className="mt-0 lg:col-start-6 lg:col-span-7">
+                        <h3 className="sr-only">Recent reviews</h3>
+
+                        <div className="flow-root">
+                          <div className="my-6">
+                            {reviews.featured.map((review) => (
+                              <div
+                                key={review.id}
+                                className="p-8 my-4 bg-white rounded shadow"
+                              >
+                                <div className="flex items-center">
+                                  <img
+                                    src={review.avatarSrc}
+                                    alt={`${review.author}.`}
+                                    className="h-12 w-12 rounded-full"
+                                  />
+                                  <div className="ml-4">
+                                    <h4 className="text-sm font-bold text-gray-900">
+                                      {review.author}
+                                    </h4>
+                                    <div className="mt-1 flex items-center">
+                                      {[0, 1, 2, 3, 4].map((rating) => (
+                                        <StarIcon
+                                          key={rating}
+                                          className={classNames(
+                                            review.rating > rating
+                                              ? "text-yellow-400"
+                                              : "text-gray-300",
+                                            "h-5 w-5 flex-shrink-0"
+                                          )}
+                                          aria-hidden="true"
+                                        />
+                                      ))}
+                                    </div>
+                                    <p className="sr-only">
+                                      {review.rating} out of 5 stars
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <div
+                                  className="mt-4 space-y-6 text-base italic text-gray-600"
+                                  dangerouslySetInnerHTML={{
+                                    __html: review.content,
+                                  }}
+                                />
+                                <div className="mt-6 flex justify-between space-x-8">
+                                  <div className="flex space-x-6">
+                                    <span className="inline-flex items-center text-sm">
+                                      <button
+                                        type="button"
+                                        className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
+                                      >
+                                        <ThumbUpIcon
+                                          className="h-5 w-5"
+                                          aria-hidden="true"
+                                        />
+                                        <span className="font-medium text-gray-900">
+                                          {review.likes}
+                                        </span>
+                                        <span className="sr-only">likes</span>
+                                      </button>
+                                    </span>
+
+                                    <span className="inline-flex items-center text-sm">
+                                      <button
+                                        type="button"
+                                        className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
+                                      >
+                                        <EyeIcon
+                                          className="h-5 w-5"
+                                          aria-hidden="true"
+                                        />
+                                        <span className="font-medium text-gray-900">
+                                          {review.views}
+                                        </span>
+                                        <span className="sr-only">views</span>
+                                      </button>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
