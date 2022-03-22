@@ -14,7 +14,7 @@ export const Hero = () => {
           you to find YOUR perfect housing.
         </p>
       </div>
-      <div className="w-[50%] m-auto py-8">
+      <div className="w-full lg:w-[50%] m-auto py-8">
         <Search />
       </div>
       <div>
