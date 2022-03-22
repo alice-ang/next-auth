@@ -1,4 +1,4 @@
-import { Layout, Map } from "../components"
+import { Avatar, Layout, Map, Modal } from "../components"
 import { StarIcon, EyeIcon, ThumbUpIcon } from "@heroicons/react/solid"
 import { classNames } from "../utils"
 
@@ -252,8 +252,8 @@ export default function SchoolPage() {
         </Dialog>
       </Transition.Root>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative z-10 flex items-baseline justify-between pt-4 pb-6 border-b border-gray-200">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-baseline justify-between pt-4 pb-6 ">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
             Högskolan i Skövde
           </h2>
@@ -279,8 +279,8 @@ export default function SchoolPage() {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
+                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xlring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1 z-10 relative bg-white shadow">
                     {sortOptions.map((option) => (
                       <Menu.Item key={option.name}>
                         {({ active }) => (
@@ -318,18 +318,14 @@ export default function SchoolPage() {
           </div>
         </div>
 
-        <section
-          aria-labelledby="products-heading"
-          className="pt-6 pb-24 sticky top-4"
-        >
-          <h2 id="products-heading" className="sr-only">
+        <section aria-labelledby="school-heading" className="pb-24">
+          <h2 id="school-heading" className="sr-only">
             Products
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8">
             {/* Filters */}
-
-            <form className="hidden lg:block sticky top-4">
+            <form className="hidden lg:block bg-white shadow rounded p-8">
               <h3 className="sr-only">Categories</h3>
               <ul
                 role="list"
@@ -416,7 +412,7 @@ export default function SchoolPage() {
                   <select
                     id="tabs"
                     name="tabs"
-                    className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md p-2 shadow"
+                    className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md p-2 shadow bg-white"
                     defaultValue={currentTab}
                     onChange={(e) =>
                       setCurrentTab(e.target.value.toLocaleLowerCase())
@@ -552,13 +548,17 @@ export default function SchoolPage() {
                         If you’ve used this product, share your thoughts with
                         other customers
                       </p>
-
-                      <a
-                        href="#"
-                        className="mt-6 inline-flex w-full  border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
+                      <button
+                        type="button"
+                        className="  mt-6 inline-flex w-full  border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full
+      transition
+      duration-150
+      ease-in-out"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
                       >
                         Write a review
-                      </a>
+                      </button>
                     </div>
                   </div>
                 )}
@@ -574,9 +574,9 @@ export default function SchoolPage() {
                             className="p-8 my-4 bg-white rounded shadow"
                           >
                             <div className="flex items-center">
-                              <img
-                                src={review.avatarSrc}
-                                alt={`${review.author}.`}
+                              <Avatar
+                                isVerified
+                                url={review.avatarSrc}
                                 className="h-12 w-12 rounded-full"
                               />
                               <div className="ml-4">
