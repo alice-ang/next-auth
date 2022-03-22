@@ -252,7 +252,7 @@ export default function SchoolPage() {
         </Dialog>
       </Transition.Root>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6">
+      <main className="max-w-7xl mx-auto px-4">
         <div className="flex items-baseline justify-between pt-4 pb-6 ">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
             Högskolan i Skövde
