@@ -19,6 +19,7 @@ p {
 
 a {
   font-weight: 500;
+  cursor: pointer;
 }
 
 hr {

@@ -20,10 +20,12 @@ export const Avatar: FC<AvatarProps> = ({ url, isVerified, className }) => {
         alt="avatar"
       />
       {isVerified && (
-        <CheckCircleIcon
-          className="absolute top-[-10%] left-[70%] block h-[50%] w-[50%] flex-shrink-0 bg-white rounded-full text-green-400"
-          aria-hidden="true"
-        />
+        <span title="verified student">
+          <CheckCircleIcon
+            className="absolute top-[-10%] left-[70%] block h-[50%] w-[50%] flex-shrink-0 bg-white rounded-full text-green-400"
+            aria-hidden="true"
+          />
+        </span>
       )}
     </span>
   )
