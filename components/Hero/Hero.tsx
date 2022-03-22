@@ -18,7 +18,7 @@ export const Hero = () => {
         <Search />
       </div>
       <div>
-        <img className="m-auto w-[50%]" src="/location_review.svg" />
+        <img className="m-auto w-[50%] lg:w-[35%]" src="/location_review.svg" />
       </div>
     </div>
   )
