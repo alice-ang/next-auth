@@ -37,7 +37,7 @@ const reviews = {
     },
     {
       id: 2,
-      rating: 5,
+      rating: 3,
       content: `
         <p>Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.</p>
       `,

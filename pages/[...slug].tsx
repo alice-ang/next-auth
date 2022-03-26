@@ -13,7 +13,7 @@ import {
 import { Rating, Range, Review } from "../components"
 
 const tabs = [
-  { id: "ratings", name: "Ratings", current: false },
+  { id: "rating", name: "Rating", current: false },
   { id: "reviews", name: "Reviews", current: true },
 ]
 
@@ -51,7 +51,7 @@ const reviews = {
           `,
       author: "Emily Selman",
       avatarSrc:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
       likes: "29",
       replies: "11",
       views: "2.7k",
@@ -64,7 +64,7 @@ const reviews = {
       content: `
             <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
           `,
-      author: "Emily Selman",
+      author: "Hector Gibbons",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
       likes: "29",
@@ -143,7 +143,7 @@ const filters = [
 
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("ratings")
+  const [currentTab, setCurrentTab] = useState("rating")
   return (
     <Layout>
       {/* Mobile filter dialog */}
@@ -567,7 +567,7 @@ export default function SchoolPage() {
                     <div className="flow-root">
                       <div className="my-6">
                         {reviews.featured.map((review) => (
-                          <Review review={review} key={review.id} />
+                          <Review review={review} key={review.id} showButton />
                         ))}
                       </div>
                     </div>
