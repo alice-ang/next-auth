@@ -1,5 +1,4 @@
 import { FC } from "react"
-import { MdWifi } from "react-icons/md"
 
 type RangeProps = {
   title?: string

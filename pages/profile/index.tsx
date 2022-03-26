@@ -1,9 +1,8 @@
 import { Fragment, useEffect, useState } from "react"
-import { Dialog, Menu, Transition } from "@headlessui/react"
+import { Dialog, Transition } from "@headlessui/react"
 import {
   ScaleIcon,
   XIcon,
-  BellIcon,
   CalendarIcon,
   ChartBarIcon,
   FolderIcon,
@@ -16,16 +15,14 @@ import {
 import {
   CashIcon,
   CheckCircleIcon,
-  ChevronDownIcon,
   ChevronRightIcon,
   OfficeBuildingIcon,
   SearchIcon,
 } from "@heroicons/react/solid"
 
-import { Avatar, Footer, Logo } from "../../components"
+import { Footer, Logo, Avatar, AvatarButton } from "../../components"
 import { classNames, User } from "../../utils"
 import { useSession } from "next-auth/react"
-import { AvatarButton } from "../../components/NavBar/AvatarButton"
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },

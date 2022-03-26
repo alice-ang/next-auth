@@ -1,9 +1,8 @@
-import { classNames } from "../../utils"
+import { classNames, User } from "../../../utils"
 import { Menu, Transition } from "@headlessui/react"
-import { Avatar, AvatarProps } from "../Avatar"
+import { Avatar, AvatarProps } from "../../base-components"
 import { FC, Fragment } from "react"
 import { ChevronDownIcon } from "@heroicons/react/solid"
-import { User } from "../../utils"
 import Link from "next/link"
 import { signOut } from "next-auth/react"
 
