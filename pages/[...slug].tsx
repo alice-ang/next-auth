@@ -567,7 +567,7 @@ export default function SchoolPage() {
                     <div className="flow-root">
                       <div className="my-6">
                         {reviews.featured.map((review) => (
-                          <Review review={review} />
+                          <Review review={review} key={review.id} />
                         ))}
                       </div>
                     </div>
