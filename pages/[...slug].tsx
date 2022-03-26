@@ -538,7 +538,7 @@ export default function SchoolPage() {
                         )
                       })}
                     </dl>
-                    <div className="mt-10">
+                    <div className="mt-10 ">
                       <h3 className="text-lg font-medium text-gray-900">
                         Share your thoughts
                       </h3>
@@ -548,7 +548,7 @@ export default function SchoolPage() {
                       </p>
                       <button
                         type="button"
-                        className="  mt-6 inline-flex w-full  border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full
+                        className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full
                         transition
                         duration-150
                         ease-in-out"
