@@ -1,7 +1,7 @@
-import { Avatar, Layout, Map, Modal } from "../components"
+import { Avatar, Layout, Map } from "../components"
 import { StarIcon, EyeIcon, ThumbUpIcon } from "@heroicons/react/solid"
 import { classNames } from "../utils"
-
+import { MdWifi } from "react-icons/md"
 import { Fragment, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
@@ -10,6 +10,8 @@ import {
   MinusSmIcon,
   PlusSmIcon,
 } from "@heroicons/react/solid"
+import { Rating, Range } from "../components"
+import { Search } from "../components/Search"
 
 const tabs = [
   { id: "ratings", name: "Ratings", current: false },
@@ -39,6 +41,8 @@ const reviews = {
       likes: "29",
       replies: "11",
       views: "2.7k",
+      date: "December 9 at 11:43 AM",
+      datetime: "2020-12-09T11:43:00",
     },
     {
       id: 2,
@@ -52,6 +56,8 @@ const reviews = {
       likes: "29",
       replies: "11",
       views: "2.7k",
+      date: "December 9 at 11:43 AM",
+      datetime: "2020-12-09T11:43:00",
     },
     {
       id: 3,
@@ -65,6 +71,8 @@ const reviews = {
       likes: "29",
       replies: "11",
       views: "2.7k",
+      date: "December 9 at 11:43 AM",
+      datetime: "2020-12-09T11:43:00",
     },
     {
       id: 4,
@@ -78,6 +86,8 @@ const reviews = {
       likes: "29",
       replies: "11",
       views: "2.7k",
+      date: "December 9 at 11:43 AM",
+      datetime: "2020-12-09T11:43:00",
     },
     {
       id: 5,
@@ -91,6 +101,8 @@ const reviews = {
       likes: "29",
       replies: "11",
       views: "2.7k",
+      date: "December 9 at 11:43 AM",
+      datetime: "2020-12-09T11:43:00",
     },
   ],
 }
@@ -230,7 +242,7 @@ export default function SchoolPage() {
                                   name={`${section.id}[]`}
                                   defaultValue={option.value}
                                   type={option.type}
-                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500 "
                                 />
                                 <label
                                   htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
@@ -402,7 +414,7 @@ export default function SchoolPage() {
 
             <div className=" lg:col-span-3 ">
               <Map lat={58.3941248} lng={13.8534906} />
-              <div className="max-w-2xl mx-auto py-8 lg:max-w-7xl">
+              <div className="max-w-2xl mx-auto mt-8 lg:max-w-7xl">
                 {/* TABS */}
                 <div className="sm:hidden">
                   <label htmlFor="tabs" className="sr-only">
@@ -458,7 +470,7 @@ export default function SchoolPage() {
                 </div>
 
                 {currentTab === "ratings" && (
-                  <div className="lg:col-span-4 p-8 bg-white shadow rounded my-4">
+                  <div className="lg:col-span-4 p-8 bg-white shadow rounded mt-4">
                     <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
                       Overall Ratings
                     </h2>
@@ -493,53 +505,40 @@ export default function SchoolPage() {
 
                       <dl className="space-y-3">
                         {reviews.counts.map((count) => (
-                          <div
+                          <Rating
+                            count={count.count}
+                            totalCount={reviews.totalCount}
+                            rating={count.rating}
                             key={count.rating}
-                            className="flex items-center text-sm"
                           >
-                            <dt className="flex-1 flex items-center">
-                              <p className="w-3 font-medium text-gray-900">
-                                {count.rating}
-                                <span className="sr-only"> star reviews</span>
-                              </p>
-                              <div
-                                aria-hidden="true"
-                                className="ml-1 flex-1 flex items-center"
-                              >
-                                <StarIcon
-                                  className={classNames(
-                                    count.count > 0
-                                      ? "text-yellow-400"
-                                      : "text-gray-300",
-                                    "flex-shrink-0 h-5 w-5"
-                                  )}
-                                  aria-hidden="true"
-                                />
-
-                                <div className="ml-3 relative flex-1">
-                                  <div className="h-3 bg-gray-100 border border-gray-200 rounded-full" />
-                                  {count.count > 0 ? (
-                                    <div
-                                      className="absolute inset-y-0 bg-yellow-400 border border-yellow-400 rounded-full"
-                                      style={{
-                                        width: `calc(${count.count} / ${reviews.totalCount} * 100%)`,
-                                      }}
-                                    />
-                                  ) : null}
-                                </div>
-                              </div>
-                            </dt>
-                            <dd className="ml-3 w-10 text-right tabular-nums text-sm text-gray-900">
-                              {Math.round(
-                                (count.count / reviews.totalCount) * 100
+                            <StarIcon
+                              className={classNames(
+                                count.count > 0
+                                  ? "text-yellow-400"
+                                  : "text-gray-300",
+                                "flex-shrink-0 h-5 w-5"
                               )}
-                              %
-                            </dd>
-                          </div>
+                              aria-hidden="true"
+                            />
+                          </Rating>
                         ))}
                       </dl>
+                      <Range />
                     </div>
-
+                    <dl className="space-y-3">
+                      {[5, 4, 3, 2, 1].map((i) => {
+                        return (
+                          <Rating
+                            count={i}
+                            totalCount={1000}
+                            title="Internet"
+                            key={i}
+                          >
+                            <MdWifi size={24} />
+                          </Rating>
+                        )
+                      })}
+                    </dl>
                     <div className="mt-10">
                       <h3 className="text-lg font-medium text-gray-900">
                         Share your thoughts
@@ -551,9 +550,9 @@ export default function SchoolPage() {
                       <button
                         type="button"
                         className="  mt-6 inline-flex w-full  border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full
-      transition
-      duration-150
-      ease-in-out"
+                        transition
+                        duration-150
+                        ease-in-out"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                       >
@@ -571,7 +570,7 @@ export default function SchoolPage() {
                         {reviews.featured.map((review) => (
                           <div
                             key={review.id}
-                            className="p-8 my-4 bg-white rounded shadow"
+                            className="p-8 mt-4 bg-white rounded shadow"
                           >
                             <div className="flex items-center">
                               <Avatar
@@ -601,6 +600,13 @@ export default function SchoolPage() {
                                   {review.rating} out of 5 stars
                                 </p>
                               </div>
+                              <span className="text-sm text-gray-500 float-right inline-block relative">
+                                <a className="hover:underline">
+                                  <time dateTime={review.datetime}>
+                                    {review.date}
+                                  </time>
+                                </a>
+                              </span>
                             </div>
 
                             <div
@@ -627,7 +633,7 @@ export default function SchoolPage() {
                                   </button>
                                 </span>
 
-                                <span className="inline-flex items-center text-sm">
+                                <span className="inline-flex items-center float-right text-sm">
                                   <button
                                     type="button"
                                     className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
