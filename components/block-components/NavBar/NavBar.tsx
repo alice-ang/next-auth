@@ -3,11 +3,10 @@ import { Fragment } from "react"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { signIn, signOut, useSession } from "next-auth/react"
-import { Logo } from "../Logo"
 import Link from "next/link"
-import { classNames } from "../../utils"
+import { classNames } from "../../../utils"
 import { AvatarButton } from "./AvatarButton"
-import { Avatar } from "../Avatar"
+import { Avatar, Logo } from "../../base-components"
 
 export const NavBar = () => {
   const { data: session } = useSession()

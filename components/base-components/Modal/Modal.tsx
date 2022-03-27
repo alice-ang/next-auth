@@ -4,6 +4,7 @@ import { CheckIcon } from "@heroicons/react/outline"
 
 type ModalProps = {
   isOpen: boolean
+  clicked: () => void
 }
 
 export const Modal: FC<ModalProps> = ({ isOpen }) => {

@@ -1,6 +1,6 @@
 import { CheckCircleIcon } from "@heroicons/react/solid"
 import { FC } from "react"
-import { classNames } from "../../utils"
+import { classNames } from "../../../utils"
 
 export type AvatarProps = {
   url: string

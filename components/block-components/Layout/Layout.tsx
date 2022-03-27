@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Footer } from "../Footer"
+import { Footer } from "../../base-components"
 import { NavBar } from "../NavBar"
 type Props = {
   children: React.ReactNode
