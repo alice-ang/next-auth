@@ -468,7 +468,7 @@ export default function SchoolPage() {
                   </nav>
                 </div>
 
-                {currentTab === "ratings" && (
+                {currentTab === "rating" && (
                   <div className="lg:col-span-4 p-8 bg-white shadow rounded mt-4">
                     <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
                       Overall Ratings
@@ -522,9 +522,9 @@ export default function SchoolPage() {
                           </Rating>
                         ))}
                       </dl>
-                      <Range />
+                      {/* <Range /> */}
                     </div>
-                    <dl className="space-y-3">
+                    {/* <dl className="space-y-3">
                       {[5, 4, 3, 2, 1].map((i) => {
                         return (
                           <Rating
@@ -537,7 +537,7 @@ export default function SchoolPage() {
                           </Rating>
                         )
                       })}
-                    </dl>
+                    </dl> */}
                     <div className="mt-10 ">
                       <h3 className="text-lg font-medium text-gray-900">
                         Share your thoughts
