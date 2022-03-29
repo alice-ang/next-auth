@@ -17,8 +17,7 @@ export const Map: FC<MapProps> = ({ lat, lng }) => {
     const mapboxMap = new mapboxgl.Map({
       container: node,
       // accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
-      accessToken:
-        "pk.eyJ1IjoiYWFsaWNlZWxpbiIsImEiOiJjbDB3djc2aXgxZHQ4M2lubTdvcm02ZXR4In0.QsCTqXv66yNjcaFfWu7w8Q",
+      accessToken: process.env.NEXT_PUBLIC_MAPBOX_API,
       style: "mapbox://styles/mapbox/streets-v11",
       center: [lng, lat],
       zoom: 14,

@@ -1,8 +1,7 @@
-import { Avatar, Layout, Map } from "../components"
-import { StarIcon, EyeIcon, ThumbUpIcon } from "@heroicons/react/solid"
+import { Layout, Map } from "../components"
+import { StarIcon } from "@heroicons/react/solid"
 import { classNames } from "../utils"
-import { MdWifi } from "react-icons/md"
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
@@ -10,7 +9,8 @@ import {
   MinusSmIcon,
   PlusSmIcon,
 } from "@heroicons/react/solid"
-import { Rating, Range, Review } from "../components"
+import { Rating, Review } from "../components"
+import { getSchoolByName, getAllSchools } from "../utils/functions"
 
 const tabs = [
   { id: "rating", name: "Rating", current: false },
@@ -144,6 +144,17 @@ const filters = [
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("rating")
+  const [school, setSchool] = useState("")
+
+  useEffect(() => {
+    const readFirebase = async () => {
+      const schools = await getAllSchools()
+      return schools
+    }
+
+    console.log(readFirebase)
+  }, [])
+
   return (
     <Layout>
       {/* Mobile filter dialog */}
@@ -266,7 +277,7 @@ export default function SchoolPage() {
       <main className="max-w-7xl mx-auto px-4">
         <div className="flex items-baseline justify-between pt-4 pb-6 ">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-            Högskolan i Skövde
+            {school}
           </h2>
 
           <div className="flex items-center">
