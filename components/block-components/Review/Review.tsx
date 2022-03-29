@@ -2,23 +2,9 @@ import { FC } from "react"
 import { StarIcon, EyeIcon, ThumbUpIcon } from "@heroicons/react/solid"
 import { Avatar, SecondaryButton } from "../../base-components"
 import { classNames } from "../../../utils"
+import type { ReviewType } from "../../../utils"
 
-type ReviewProps = {
-  showButton?: boolean
-  review: {
-    id: number
-    rating: number
-    content: string
-    author: string
-    avatarSrc: string
-    likes?: string
-    views?: string
-    date: string
-    datetime: string
-  }
-}
-
-export const Review: FC<ReviewProps> = ({ review, showButton }) => {
+export const Review: FC<ReviewType> = ({ review, showButton }) => {
   return (
     <div key={review.id} className="p-8 mt-4 bg-white rounded shadow">
       <div className="flex justify-between">

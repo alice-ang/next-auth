@@ -2,25 +2,18 @@ import { FaFacebook, FaGoogle } from "react-icons/fa"
 import { signIn, getProviders, getCsrfToken } from "next-auth/react"
 import type { NextApiRequest } from "next"
 import { Layout } from "../components"
-
-type Provider = {
-  id: string
-  name: string
-  type: string
-  signinUrl: string
-  callbackUrl: string
-}
+import type { ProviderType } from "../utils"
 
 type LoginProps = {
   providers: {
-    provider: Provider
+    provider: ProviderType
   }
 }
 
 export default function LoginPage({ providers }: LoginProps) {
   return (
     <Layout>
-      <div className="min-h-full flex">
+      <div className="min-h-full flex bg-white">
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
