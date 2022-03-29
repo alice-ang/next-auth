@@ -1,7 +1,4 @@
-import { DocumentData, QuerySnapshot } from "@google-cloud/firestore"
-import firebase from "firebase/app"
 import { collection, query, where, getDocs, doc } from "firebase/firestore"
-import { useState } from "react"
 import { db } from "../firebase/clientApp"
 
 export function classNames(...classes: string[]) {
