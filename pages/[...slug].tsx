@@ -146,9 +146,13 @@ export default function SchoolPage() {
   const [currentTab, setCurrentTab] = useState("rating")
   const [school, setSchool] = useState("")
 
-  useEffect(async () => {
-    const schools = await getAllSchools()
-    console.log(schools)
+  useEffect(() => {
+    const readFirebase = async () => {
+      const schools = await getAllSchools()
+      return schools
+    }
+
+    console.log(readFirebase)
   }, [])
 
   return (
