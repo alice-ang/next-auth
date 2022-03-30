@@ -1,20 +1,15 @@
-import { Layout, Review } from "../../components"
+import { Badge, Layout, Review } from "../../components"
 import { classNames } from "../../utils"
 import { Fragment } from "react"
 import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
 
 const product = {
-  name: "Application UI Icon Pack",
+  name: "Norra Trängallén 3",
   version: { name: "1.0", date: "June 5, 2021", datetime: "2021-06-05" },
   price: "$220",
   description:
-    "The Application UI Icon Pack comes with over 200 icons in 3 styles: outline, filled, and branded. This playful icon pack is tailored for complex application user interfaces with a friendly and legible look.",
-  highlights: [
-    "200+ SVG icons in 3 unique styles",
-    "Compatible with Figma, Sketch, and Adobe XD",
-    "Drawn on 24 x 24 pixel grid",
-  ],
+    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia incidunt corrupti sequi vitae recusandae nobis autem reiciendis ad excepturi blanditiis totam, doloribus id consectetur consequatur dolor temporibus accusamus perspiciatis perferendis?",
   imageSrc:
     "https://tailwindui.com/img/ecommerce-images/product-page-05-product-01.jpg",
   imageAlt:
@@ -110,7 +105,7 @@ export default function RewiewPage() {
             </div>
           </div>
 
-          {/* Product details */}
+          {/* Product details 🐕  */}
           <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
@@ -121,13 +116,15 @@ export default function RewiewPage() {
                 <h2 id="information-heading" className="sr-only">
                   Product information
                 </h2>
-                <p className="text-sm text-gray-500 mt-2">
-                  Version {product.version.name} (Updated{" "}
-                  <time dateTime={product.version.datetime}>
-                    {product.version.date}
-                  </time>
-                  )
-                </p>
+                <div className="flex my-4 flex-wrap">
+                  {[0, 1, 2, 3].map((i) => {
+                    return (
+                      <span className="pr-2 pb-3">
+                        <Badge key={i}>jhbhbhbub</Badge>
+                      </span>
+                    )
+                  })}
+                </div>
               </div>
 
               <div>
@@ -150,46 +147,7 @@ export default function RewiewPage() {
               </div>
             </div>
 
-            <p className="text-gray-500 mt-6">{product.description}</p>
-
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
-              <button
-                type="button"
-                className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
-              >
-                Pay {product.price}
-              </button>
-              <button
-                type="button"
-                className="w-full bg-indigo-50 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
-              >
-                Preview
-              </button>
-            </div>
-
-            <div className="border-t border-gray-200 mt-10 pt-10">
-              <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-              <div className="mt-4 prose prose-sm text-gray-500">
-                <ul role="list">
-                  {product.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="border-t border-gray-200 mt-10 pt-10">
-              <h3 className="text-sm font-medium text-gray-900">License</h3>
-              <p className="mt-4 text-sm text-gray-500">
-                {license.summary}{" "}
-                <a
-                  href={license.href}
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Read full license
-                </a>
-              </p>
-            </div>
+            <p className="text-gray-500">{product.description}</p>
 
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Share</h3>
@@ -268,7 +226,7 @@ export default function RewiewPage() {
                       )
                     }
                   >
-                    Customer Reviews
+                    Student Reviews
                   </Tab>
                   <Tab
                     className={({ selected }) =>
@@ -281,18 +239,6 @@ export default function RewiewPage() {
                     }
                   >
                     FAQ
-                  </Tab>
-                  <Tab
-                    className={({ selected }) =>
-                      classNames(
-                        selected
-                          ? "border-indigo-600 text-indigo-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
-                      )
-                    }
-                  >
-                    License
                   </Tab>
                 </Tab.List>
               </div>
