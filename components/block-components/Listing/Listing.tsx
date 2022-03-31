@@ -6,8 +6,8 @@ import { classNames, ListingType } from "../../../utils"
 
 export const Listing: FC<ListingType> = ({ listing }) => {
   return (
-    <div className="bg-white rounded shadow flex flex-col lg:flex-row">
-      <div className="block w-full lg:w-1/2 min-h-[200px] lg:min-h-full rounded bg-gray-300 "></div>
+    <div className="bg-white rounded shadow flex flex-col lg:flex-row mt-6">
+      <div className="block w-full lg:w-1/2 min-h-[200px] lg:min-h-full rounded bg-gray-300"></div>
       <div className="p-3 lg:p-8 w-full lg:w-1/2 ">
         <h3 className="text-2xl font-extrabold tracking-tight text-gray-900">
           {listing.street}

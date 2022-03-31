@@ -109,4 +109,16 @@ export const listings = [
     zipCode: 54146,
     city: "Skövde",
   },
+  {
+    id: 2,
+    street: "Kurortsvägen 16",
+    zipCode: 54137,
+    city: "Skövde",
+  },
+  {
+    id: 3,
+    street: "Regementsgatan 4",
+    zipCode: 54146,
+    city: "Skövde",
+  },
 ]

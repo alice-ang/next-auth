@@ -9,13 +9,13 @@ import {
   MinusSmIcon,
   PlusSmIcon,
 } from "@heroicons/react/solid"
-import { Rating, School } from "../components"
-import { getSchoolByName, getAllSchools } from "../utils/functions"
+import { Rating } from "../components"
+import { getAllSchools } from "../utils/functions"
 import { reviews, schools, listings } from "../utils"
 
 const tabs = [
+  { id: "listings", name: "Listings", current: true },
   { id: "rating", name: "Rating", current: false },
-  { id: "schools", name: "Schools", current: true },
 ]
 
 const sortOptions = [
@@ -55,7 +55,7 @@ const filters = [
 
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("rating")
+  const [currentTab, setCurrentTab] = useState("listings")
   const [school, setSchool] = useState("")
 
   useEffect(() => {
@@ -390,7 +390,24 @@ export default function SchoolPage() {
                     ))}
                   </nav>
                 </div>
+                {currentTab === "listings" && (
+                  <div className="mt-0 lg:col-start-6 lg:col-span-7">
+                    <h3 className="sr-only">Recent reviews</h3>
 
+                    <div className="flow-root">
+                      <div className="mt-6">
+                        {listings.map((lisitng) => (
+                          <Listing
+                            listing={lisitng}
+                            key={lisitng.id}
+                            school={schools[0]}
+                            reviews={reviews.featured}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
                 {currentTab === "rating" && (
                   <div className="lg:col-span-4 p-8 bg-white shadow rounded mt-6">
                     <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
@@ -480,24 +497,6 @@ export default function SchoolPage() {
                       >
                         Write a review
                       </button>
-                    </div>
-                  </div>
-                )}
-                {currentTab === "schools" && (
-                  <div className="mt-0 lg:col-start-6 lg:col-span-7">
-                    <h3 className="sr-only">Recent reviews</h3>
-
-                    <div className="flow-root">
-                      <div className="mt-6">
-                        {listings.map((lisitng) => (
-                          <Listing
-                            listing={lisitng}
-                            key={lisitng.id}
-                            school={schools[0]}
-                            reviews={reviews.featured}
-                          />
-                        ))}
-                      </div>
                     </div>
                   </div>
                 )}

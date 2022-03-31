@@ -68,13 +68,7 @@ export default function RewiewPage() {
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
           {/* Product image */}
           <div className="lg:row-end-1 lg:col-span-4">
-            <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
-              <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
-                className="object-center object-cover"
-              />
-            </div>
+            <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-300 overflow-hidden"></div>
           </div>
 
           {/* Product details 🐕  */}
@@ -92,7 +86,7 @@ export default function RewiewPage() {
                   {[0, 1, 2, 3].map((i) => {
                     return (
                       <span className="pr-2 pb-3">
-                        <Badge key={i}>jhbhbhbub</Badge>
+                        <Badge key={i}>badge</Badge>
                       </span>
                     )
                   })}
