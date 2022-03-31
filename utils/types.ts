@@ -4,6 +4,13 @@ export type User = {
   image?: string | null
 }
 
+export type SchoolType = {
+  id: number
+  name: string
+  numOfListings: number
+  numOfReviews: number
+}
+
 export type ReviewType = {
   showButton?: boolean
   review: {
@@ -19,6 +26,18 @@ export type ReviewType = {
   }
 }
 
+export type ListingType = {
+  school?: SchoolType
+  reviews?: ReviewType["review"][]
+  listing: {
+    id: number
+    street: string
+    zipCode: number
+    city: string
+    school?: SchoolType
+    reviews?: ReviewType[]
+  }
+}
 export type ProviderType = {
   id: string
   name: string
