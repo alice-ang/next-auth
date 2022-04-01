@@ -6,15 +6,10 @@ import { Tab } from "@headlessui/react"
 import { reviews } from "../../utils"
 
 const product = {
-  name: "Norra Trängallén 3",
+  name: "Högskolan i Skövde",
   version: { name: "1.0", date: "June 5, 2021", datetime: "2021-06-05" },
-  price: "$220",
   description:
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia incidunt corrupti sequi vitae recusandae nobis autem reiciendis ad excepturi blanditiis totam, doloribus id consectetur consequatur dolor temporibus accusamus perspiciatis perferendis?",
-  imageSrc:
-    "https://tailwindui.com/img/ecommerce-images/product-page-05-product-01.jpg",
-  imageAlt:
-    "Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles.",
 }
 
 const faqs = [
@@ -60,7 +55,7 @@ const license = {
   `,
 }
 
-export default function RewiewPage() {
+export default function FullSchoolPage() {
   return (
     <Layout>
       <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">

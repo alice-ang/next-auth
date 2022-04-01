@@ -35,7 +35,7 @@ export const Listing: FC<ListingType> = ({ listing }) => {
         <div className="my-4 ">
           {[0, 1, 2].map((i) => {
             return (
-              <span className="pr-2 pb-3">
+              <span className="pr-2 pb-3" key={i}>
                 <Badge key={i}>badge</Badge>
               </span>
             )
@@ -43,7 +43,9 @@ export const Listing: FC<ListingType> = ({ listing }) => {
         </div>
         <div className="pt-4 flex justify-end ">
           <span className="inline-flex items-center text-sm ">
-            <SecondaryButton buttonLink="/listing/2">Read more</SecondaryButton>
+            <SecondaryButton buttonLink={`/listing/${listing.id}`}>
+              Read more
+            </SecondaryButton>
             <span className="sr-only">read more</span>
           </span>
         </div>
