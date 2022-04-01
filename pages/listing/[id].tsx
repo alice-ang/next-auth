@@ -1,4 +1,4 @@
-import { Badge, Layout, Review } from "../../components"
+import { Badge, Layout, Rating, Review } from "../../components"
 import { classNames } from "../../utils"
 import { Fragment } from "react"
 import { StarIcon } from "@heroicons/react/solid"
@@ -112,8 +112,50 @@ export default function RewiewPage() {
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
               </div>
             </div>
+            <div className="mt-6">
+              <h3 className="sr-only">Review data</h3>
 
-            <p className="text-gray-500">{product.description}</p>
+              <dl className="space-y-3">
+                {reviews.counts.map((count) => (
+                  <Rating
+                    count={count.count}
+                    totalCount={reviews.totalCount}
+                    rating={count.rating}
+                    key={count.rating}
+                  >
+                    <StarIcon
+                      className={classNames(
+                        count.count > 0 ? "text-yellow-400" : "text-gray-300",
+                        "flex-shrink-0 h-5 w-5"
+                      )}
+                      aria-hidden="true"
+                    />
+                  </Rating>
+                ))}
+              </dl>
+            </div>
+            <div className="mt-10 ">
+              <h3 className="text-lg font-medium text-gray-900">
+                Share your thoughts
+              </h3>
+              <p className="mt-1 text-sm text-gray-600">
+                If you’ve used this product, share your thoughts with other
+                customers
+              </p>
+              <button
+                type="button"
+                className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full
+                        transition
+                        duration-150
+                        ease-in-out"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Write a review
+              </button>
+            </div>
+
+            {/* <p className="text-gray-500">{product.description}</p> */}
 
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Share</h3>
