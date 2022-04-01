@@ -33,10 +33,10 @@ export const Listing: FC<ListingType> = ({ listing }) => {
         {/* <h4 className="text-sm text-gray-500">{listing.zipCode}</h4>
         <h4 className="text-sm text-gray-500">{listing.city}</h4> */}
         <div className="my-4 ">
-          {[0, 1, 2].map((i) => {
+          {[0, 1, 2].map((num) => {
             return (
-              <span className="pr-2 pb-3" key={i}>
-                <Badge key={i}>badge</Badge>
+              <span className="pr-2 pb-3" key={num}>
+                <Badge>badge</Badge>
               </span>
             )
           })}

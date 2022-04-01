@@ -83,9 +83,9 @@ export default function RewiewPage() {
                   Product information
                 </h2>
                 <div className="flex my-4 flex-wrap">
-                  {[0, 1, 2, 3].map((i) => {
+                  {[0, 1, 2, 3].map((num) => {
                     return (
-                      <span className="pr-2 pb-3" key={i}>
+                      <span className="pr-2 pb-3" key={num}>
                         <Badge>badge</Badge>
                       </span>
                     )
