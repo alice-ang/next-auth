@@ -80,8 +80,8 @@ export default function FullSchoolPage() {
                 <div className="flex my-4 flex-wrap">
                   {[0, 1, 2, 3].map((i) => {
                     return (
-                      <span className="pr-2 pb-3">
-                        <Badge key={i}>badge</Badge>
+                      <span className="pr-2 pb-3" key={i}>
+                        <Badge>badge</Badge>
                       </span>
                     )
                   })}
