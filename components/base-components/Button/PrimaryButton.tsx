@@ -1,11 +1,8 @@
 import Link from "next/link"
 import { FC } from "react"
+import { ButtonType } from "../../../utils"
 
-export type ButtonProps = {
-  buttonLink: string | "#"
-}
-
-export const PrimaryButton: FC<ButtonProps> = ({ children, buttonLink }) => {
+export const PrimaryButton: FC<ButtonType> = ({ children, buttonLink }) => {
   return (
     <Link href={buttonLink}>
       <button

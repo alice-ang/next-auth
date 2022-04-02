@@ -4,6 +4,18 @@ export type User = {
   image?: string | null
 }
 
+export type ColorType = {
+  color?:
+    | "gray"
+    | "red"
+    | "yellow"
+    | "green"
+    | "blue"
+    | "indigo"
+    | "purple"
+    | "pink"
+}
+
 export type SchoolType = {
   id: number
   name: string
@@ -38,10 +50,14 @@ export type ListingType = {
     reviews?: ReviewType[]
   }
 }
+
 export type ProviderType = {
   id: string
   name: string
   type: string
   signinUrl: string
   callbackUrl: string
+}
+export type ButtonType = ColorType & {
+  buttonLink?: string
 }

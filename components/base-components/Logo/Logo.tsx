@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { FC } from "react"
 import { IoMdSchool } from "react-icons/io"
+import { Badge } from "../Badge"
 
 type LogoProps = {
   hasNoBreakpoint?: boolean

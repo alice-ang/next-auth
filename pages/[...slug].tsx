@@ -413,7 +413,7 @@ export default function SchoolPage() {
                     <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
                       Overall Ratings
                     </h2>
-                    <p className="ml-2 text-sm text-gray-900">
+                    <p className="text-sm text-gray-900">
                       Connected to Högskolan i Skövde
                     </p>
                     <div className="mt-3 flex items-center">
