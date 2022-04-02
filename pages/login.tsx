@@ -1,16 +1,43 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa"
-import { signIn, getProviders, getCsrfToken } from "next-auth/react"
-import type { NextApiRequest } from "next"
-import { Layout } from "../components"
-import type { ProviderType } from "../utils"
+import { Layout, SecondaryButton } from "../components"
+import { useAuth } from "../utils"
+import { useEffect, useRef, useState } from "react"
+import { useRouter } from "next/router"
 
-type LoginProps = {
-  providers: {
-    provider: ProviderType
+export default function LoginPage() {
+  const {
+    user,
+    signInWithFacebook,
+    loginWithEmailAndPassword,
+    signInWithGoogle,
+  } = useAuth()
+
+  console.log(user)
+  const formRef = useRef<HTMLFormElement | null>(null)
+  const router = useRouter()
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  })
+
+  useEffect(() => {
+    if (user) {
+      router.push("/search")
+    }
+  }, [user])
+
+  const handleSignup = async (e: any) => {
+    e.preventDefault()
+
+    try {
+      await loginWithEmailAndPassword(data.email, data.password)
+    } catch (err) {
+      console.log(err)
+    }
+    formRef.current?.reset()
+    console.log(formRef.current)
   }
-}
 
-export default function LoginPage({ providers }: LoginProps) {
   return (
     <Layout>
       <div className="min-h-full flex bg-white">
@@ -23,29 +50,13 @@ export default function LoginPage({ providers }: LoginProps) {
             </div>
             <div className="mt-8">
               <div>
-                <div className="mt-1 grid grid-cols-2 gap-3">
-                  {Object.values(providers).map((provider) => {
-                    return (
-                      <div key={provider.id}>
-                        <a
-                          onClick={(e) => {
-                            e.preventDefault()
-                            signIn(provider.id, {
-                              callbackUrl: `${window.location.origin}/search`,
-                            })
-                          }}
-                          className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                        >
-                          <span className="sr-only">{`Sign in with ${provider.name}`}</span>
-                          {provider.name == "Facebook" ? (
-                            <FaFacebook size={24} />
-                          ) : (
-                            <FaGoogle size={24} />
-                          )}
-                        </a>
-                      </div>
-                    )
-                  })}
+                <div className="flex justify-around">
+                  <SecondaryButton color="gray">
+                    <FaFacebook size={24} onClick={signInWithFacebook} />
+                  </SecondaryButton>
+                  <SecondaryButton color="gray">
+                    <FaGoogle size={24} onClick={signInWithGoogle} />
+                  </SecondaryButton>
                 </div>
 
                 <div className="mt-6 relative">
@@ -64,7 +75,11 @@ export default function LoginPage({ providers }: LoginProps) {
               </div>
 
               <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
+                <form
+                  className="space-y-6"
+                  onSubmit={handleSignup}
+                  ref={formRef}
+                >
                   <div>
                     <label
                       htmlFor="email"
@@ -80,6 +95,13 @@ export default function LoginPage({ providers }: LoginProps) {
                         autoComplete="email"
                         required
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        onChange={(e: any) =>
+                          setData({
+                            ...data,
+                            email: e.target.value,
+                          })
+                        }
+                        value={data.email}
                       />
                     </div>
                   </div>
@@ -99,6 +121,13 @@ export default function LoginPage({ providers }: LoginProps) {
                         autoComplete="current-password"
                         required
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        onChange={(e: any) =>
+                          setData({
+                            ...data,
+                            password: e.target.value,
+                          })
+                        }
+                        value={data.password}
                       />
                     </div>
                   </div>
@@ -152,13 +181,4 @@ export default function LoginPage({ providers }: LoginProps) {
       </div>
     </Layout>
   )
-}
-
-export async function getServerSideProps(req: NextApiRequest) {
-  return {
-    props: {
-      providers: await getProviders(),
-      csrfToken: await getCsrfToken(),
-    },
-  }
 }

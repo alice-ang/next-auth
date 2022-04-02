@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { HeartIcon, StarIcon } from "@heroicons/react/solid"
 
 import { Badge, SecondaryButton } from "../../base-components"
@@ -7,6 +7,7 @@ import Link from "next/link"
 
 export const Listing: FC<ListingType> = ({ listing }) => {
   const [clicked, setClicked] = useState(false)
+
   return (
     <div className="bg-white rounded shadow flex flex-col lg:flex-row mt-6 ">
       <div className="block w-full lg:w-1/2 min-h-[200px] lg:min-h-full rounded">

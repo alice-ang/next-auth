@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
+import { browserLocalPersistence, getAuth, setPersistence } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,8 +12,8 @@ const firebaseConfig = {
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app)
+export const auth = getAuth()

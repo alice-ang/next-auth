@@ -20,8 +20,8 @@ import {
   SearchIcon,
 } from "@heroicons/react/solid"
 
-import { Footer, Logo, Avatar, AvatarButton } from "../../components"
-import { classNames, User } from "../../utils"
+import { Footer, Logo, Avatar, AvatarButton } from "../components"
+import { classNames, useAuth, User } from "../utils"
 import { useSession } from "next-auth/react"
 
 const navigation = [
@@ -54,14 +54,7 @@ const transactions = [
 
 export default function ProfilePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { data: session, status } = useSession()
-  const [user, setUser] = useState<User>()
-
-  useEffect(() => {
-    if (session && session.user) {
-      setUser(session.user)
-    }
-  }, [session])
+  const { user, logOut } = useAuth()
 
   return (
     <div className="min-h-full">
@@ -220,7 +213,7 @@ export default function ProfilePage() {
               </form>
             </div>
           </div>
-          {user && <AvatarButton url={user.image ?? ""} name={user.name} />}
+          {user && <AvatarButton url={user.photo} name={user.displayName} />}
         </div>
         <main className="flex-1">
           {/* Page header */}
@@ -231,24 +224,24 @@ export default function ProfilePage() {
                   {/* Profile */}
                   {user && (
                     <div className="flex items-center">
-                      {user.image && (
+                      {user.photo && (
                         <Avatar
-                          url={user.image}
+                          url={user.photo}
                           className="hidden h-16 w-16 rounded-full sm:block"
                         />
                       )}
 
                       <div>
                         <div className="flex items-center">
-                          {user.image && (
+                          {user.photo && (
                             <Avatar
-                              url={user.image}
+                              url={user.photo}
                               className="h-16 w-16 rounded-full sm:hidden"
                             />
                           )}
 
                           <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
-                            Hello, {user.name}
+                            Hello, {user.displayName}
                             <span role="img" aria-label="waving hand">
                               👋
                             </span>
