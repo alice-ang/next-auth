@@ -1,4 +1,4 @@
-import { Layout, Map } from "../components"
+import { Layout, Listing, Map } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
 import { classNames } from "../utils"
 import { Fragment, useEffect, useState } from "react"
@@ -9,102 +9,14 @@ import {
   MinusSmIcon,
   PlusSmIcon,
 } from "@heroicons/react/solid"
-import { Rating, Review } from "../components"
-import { getSchoolByName, getAllSchools } from "../utils/functions"
+import { Rating } from "../components"
+import { getAllSchools } from "../utils/functions"
+import { reviews, schools, listings } from "../utils"
 
 const tabs = [
+  { id: "listings", name: "Listings", current: true },
   { id: "rating", name: "Rating", current: false },
-  { id: "reviews", name: "Reviews", current: true },
 ]
-
-const reviews = {
-  average: 4,
-  totalCount: 1624,
-  counts: [
-    { rating: 5, count: 1019 },
-    { rating: 4, count: 162 },
-    { rating: 3, count: 97 },
-    { rating: 2, count: 199 },
-    { rating: 1, count: 147 },
-  ],
-  featured: [
-    {
-      id: 1,
-      rating: 5,
-      content: `
-          <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-        `,
-      author: "Emily Selman",
-      avatarSrc:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
-      date: "December 9 at 11:43 AM",
-      datetime: "2020-12-09T11:43:00",
-    },
-    {
-      id: 2,
-      rating: 5,
-      content: `
-            <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-          `,
-      author: "Emily Selman",
-      avatarSrc:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
-      date: "December 9 at 11:43 AM",
-      datetime: "2020-12-09T11:43:00",
-    },
-    {
-      id: 3,
-      rating: 5,
-      content: `
-            <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-          `,
-      author: "Hector Gibbons",
-      avatarSrc:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
-      date: "December 9 at 11:43 AM",
-      datetime: "2020-12-09T11:43:00",
-    },
-    {
-      id: 4,
-      rating: 5,
-      content: `
-            <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-          `,
-      author: "Emily Selman",
-      avatarSrc:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
-      date: "December 9 at 11:43 AM",
-      datetime: "2020-12-09T11:43:00",
-    },
-    {
-      id: 5,
-      rating: 5,
-      content: `
-            <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-          `,
-      author: "Emily Selman",
-      avatarSrc:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
-      date: "December 9 at 11:43 AM",
-      datetime: "2020-12-09T11:43:00",
-    },
-  ],
-}
 
 const sortOptions = [
   { name: "Best Rating", href: "#", current: true },
@@ -143,7 +55,7 @@ const filters = [
 
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("rating")
+  const [currentTab, setCurrentTab] = useState("listings")
   const [school, setSchool] = useState("")
 
   useEffect(() => {
@@ -478,13 +390,32 @@ export default function SchoolPage() {
                     ))}
                   </nav>
                 </div>
+                {currentTab === "listings" && (
+                  <div className="mt-0 lg:col-start-6 lg:col-span-7">
+                    <h3 className="sr-only">Recent reviews</h3>
 
+                    <div className="flow-root">
+                      <div className="mt-6">
+                        {listings.map((lisitng) => (
+                          <Listing
+                            listing={lisitng}
+                            key={lisitng.id}
+                            school={schools[0]}
+                            reviews={reviews.featured}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
                 {currentTab === "rating" && (
-                  <div className="lg:col-span-4 p-8 bg-white shadow rounded mt-4">
+                  <div className="lg:col-span-4 p-8 bg-white shadow rounded mt-6">
                     <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
                       Overall Ratings
                     </h2>
-
+                    <p className="text-sm text-gray-900">
+                      Connected to Högskolan i Skövde
+                    </p>
                     <div className="mt-3 flex items-center">
                       <div>
                         <div className="flex items-center">
@@ -568,19 +499,6 @@ export default function SchoolPage() {
                       >
                         Write a review
                       </button>
-                    </div>
-                  </div>
-                )}
-                {currentTab === "reviews" && (
-                  <div className="mt-0 lg:col-start-6 lg:col-span-7">
-                    <h3 className="sr-only">Recent reviews</h3>
-
-                    <div className="flow-root">
-                      <div className="my-6">
-                        {reviews.featured.map((review) => (
-                          <Review review={review} key={review.id} showButton />
-                        ))}
-                      </div>
                     </div>
                   </div>
                 )}
