@@ -2,12 +2,12 @@
   "name": "next-auth-example",
   "version": "0.0.0",
   "private": true,
-  "description": "An example project for NextAuth.js",
+  "description": "Finding your student housing made easy",
   "repository": "https://github.com/nextauthjs/next-auth-example.git",
   "bugs": {
     "url": "https://github.com/nextauthjs/next-auth/issues"
   },
-  "homepage": "https://next-auth-example.vercel.app",
+  "homepage": "https://www.studenthem.nu",
   "main": "",
   "scripts": {
     "dev": "next",

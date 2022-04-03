@@ -56,7 +56,6 @@ const filters = [
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("listings")
-  const [school, setSchool] = useState("")
 
   useEffect(() => {
     const readFirebase = async () => {
@@ -189,7 +188,7 @@ export default function SchoolPage() {
       <main className="max-w-7xl mx-auto px-4">
         <div className="flex items-baseline justify-between pt-4 pb-6 ">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-            {school}
+            Högskolan i Skövde
           </h2>
 
           <div className="flex items-center">
@@ -304,10 +303,7 @@ export default function SchoolPage() {
                       <Disclosure.Panel className="pt-6">
                         <div className="space-y-4">
                           {section.options.map((option, optionIdx) => (
-                            <div
-                              key={option.value}
-                              className="flex items-center"
-                            >
+                            <div key={optionIdx} className="flex items-center">
                               <input
                                 id={`filter-${section.id}-${optionIdx}`}
                                 name={`${section.id}[]`}
