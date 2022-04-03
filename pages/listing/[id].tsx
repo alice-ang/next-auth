@@ -3,80 +3,43 @@ import { classNames } from "../../utils"
 import { Fragment } from "react"
 import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
-import { reviews } from "../../utils"
-
-const product = {
-  name: "Norra Trängallén 3",
-  version: { name: "1.0", date: "June 5, 2021", datetime: "2021-06-05" },
-  price: "$220",
-  description:
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia incidunt corrupti sequi vitae recusandae nobis autem reiciendis ad excepturi blanditiis totam, doloribus id consectetur consequatur dolor temporibus accusamus perspiciatis perferendis?",
-  imageSrc:
-    "https://tailwindui.com/img/ecommerce-images/product-page-05-product-01.jpg",
-  imageAlt:
-    "Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles.",
-}
+import { reviews, amenities } from "../../utils"
 
 const faqs = [
   {
-    question: "What format are these icons?",
+    question: "Lorem ipsum dolor?",
     answer:
-      "The icons are in SVG (Scalable Vector Graphic) format. They can be imported into your design tool of choice and used directly in code.",
+      "Nulla dictum, lectus nec lobortis tristique, quam sapien ultrices neque.",
   },
   {
-    question: "Can I use the icons at different sizes?",
+    question: "Lectus nec lobortis tristique?",
     answer:
-      "Yes. The icons are drawn on a 24 x 24 pixel grid, but the icons can be scaled to different sizes as needed. We don't recommend going smaller than 20 x 20 or larger than 64 x 64 to retain legibility and visual balance.",
+      "uis et placerat massa. Maecenas volutpat non est vitae ultrices. Sed convallis.",
   },
   // More FAQs...
 ]
-const license = {
-  href: "#",
-  summary:
-    "For personal and professional use. You cannot resell or redistribute these icons in their original or modified state.",
-  content: `
-    <h4>Overview</h4>
-    
-    <p>For personal and professional use. You cannot resell or redistribute these icons in their original or modified state.</p>
-    
-    <ul role="list">
-    <li>You\'re allowed to use the icons in unlimited projects.</li>
-    <li>Attribution is not required to use the icons.</li>
-    </ul>
-    
-    <h4>What you can do with it</h4>
-    
-    <ul role="list">
-    <li>Use them freely in your personal and professional work.</li>
-    <li>Make them your own. Change the colors to suit your project or brand.</li>
-    </ul>
-    
-    <h4>What you can\'t do with it</h4>
-    
-    <ul role="list">
-    <li>Don\'t be greedy. Selling or distributing these icons in their original or modified state is prohibited.</li>
-    <li>Don\'t be evil. These icons cannot be used on websites or applications that promote illegal or immoral beliefs or activities.</li>
-    </ul>
-  `,
-}
 
-export default function RewiewPage() {
+export default function ListingPage() {
   return (
     <Layout>
-      <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         {/* Product */}
-        <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
+        <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
           {/* Product image */}
-          <div className="lg:row-end-1 lg:col-span-4">
-            <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-300 overflow-hidden"></div>
+          <div className="lg:row-end-1 lg:col-span-4 bg-white">
+            <img
+              className=" rounded-lg p-20"
+              src="/apartment.svg"
+              alt="listing picture"
+            />
           </div>
 
           {/* Product details 🐕  */}
-          <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+          <div className="p-8 max-w-2xl mx-auto mt-12 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-                  {product.name}
+                  Norra Trängallén 3
                 </h1>
 
                 <h2 id="information-heading" className="sr-only">
@@ -86,7 +49,7 @@ export default function RewiewPage() {
                   {[0, 1, 2, 3].map((num) => {
                     return (
                       <span className="pr-2 pb-3" key={num}>
-                        <Badge>badge</Badge>
+                        <Badge color="gray">badge</Badge>
                       </span>
                     )
                   })}
@@ -121,7 +84,7 @@ export default function RewiewPage() {
                     count={count.count}
                     totalCount={reviews.totalCount}
                     rating={count.rating}
-                    key={count.rating}
+                    key={count.count}
                   >
                     <StarIcon
                       className={classNames(
@@ -134,13 +97,13 @@ export default function RewiewPage() {
                 ))}
               </dl>
             </div>
-            <div className="mt-10 ">
+            <div className="mt-10">
               <h3 className="text-lg font-medium text-gray-900">
                 Share your thoughts
               </h3>
               <p className="mt-1 text-sm text-gray-600">
-                If you’ve used this product, share your thoughts with other
-                customers
+                If you’ve lived here, please share your thoughts with other
+                students
               </p>
               <button
                 type="button"
@@ -154,8 +117,24 @@ export default function RewiewPage() {
                 Write a review
               </button>
             </div>
-
-            {/* <p className="text-gray-500">{product.description}</p> */}
+            <div className="border-t border-gray-200 mt-10 pt-10">
+              <h4 className="text-center text-xl font-extrabold tracking-tight text-gray-700 sm:text-3xl">
+                Amenities
+              </h4>
+              <dl className="mt-4 space-y-4">
+                {amenities.map((item) => {
+                  return (
+                    <Rating
+                      count={item.count}
+                      totalCount={item.totalCount}
+                      title={item.type}
+                      key={item.type}
+                      color="indigo"
+                    />
+                  )
+                })}
+              </dl>
+            </div>
 
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Share</h3>
@@ -223,7 +202,7 @@ export default function RewiewPage() {
           <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
             <Tab.Group as="div">
               <div className="border-b border-gray-200">
-                <Tab.List className="-mb-px flex space-x-8">
+                <Tab.List className="mb-10 flex space-x-8">
                   <Tab
                     className={({ selected }) =>
                       classNames(
@@ -235,6 +214,9 @@ export default function RewiewPage() {
                     }
                   >
                     Student Reviews
+                    <span className="pl-3">
+                      <Badge>{reviews.featured.length}</Badge>
+                    </span>
                   </Tab>
                   <Tab
                     className={({ selected }) =>
@@ -251,11 +233,11 @@ export default function RewiewPage() {
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
-                <Tab.Panel className="-mb-10">
-                  <h3 className="sr-only">Customer Reviews</h3>
+                <Tab.Panel className="mb-10">
+                  <h3 className="sr-only">Student Reviews</h3>
 
-                  {reviews.featured.map((review, reviewIdx) => (
-                    <Review review={review} key={reviewIdx} />
+                  {reviews.featured.map((review, i) => (
+                    <Review review={review} key={i} />
                   ))}
                 </Tab.Panel>
 
@@ -272,15 +254,6 @@ export default function RewiewPage() {
                       </dd>
                     </Fragment>
                   ))}
-                </Tab.Panel>
-
-                <Tab.Panel className="pt-10">
-                  <h3 className="sr-only">License</h3>
-
-                  <div
-                    className="prose prose-sm max-w-none text-gray-500"
-                    dangerouslySetInnerHTML={{ __html: license.content }}
-                  />
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>

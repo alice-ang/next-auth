@@ -1,6 +1,11 @@
 import { FC } from "react"
+import { classNames, ColorType } from "../../../utils"
+import { WifiIcon } from "@heroicons/react/solid"
+import { FaToiletPaper } from "react-icons/fa"
+import { MdKitchen } from "react-icons/md"
+import { GiWashingMachine } from "react-icons/gi"
 
-type RatingProps = {
+type RatingProps = ColorType & {
   count: number
   totalCount: number
   title?: string
@@ -10,10 +15,25 @@ type RatingProps = {
 export const Rating: FC<RatingProps> = ({
   count,
   totalCount,
-  children,
   title,
   rating,
+  color,
 }) => {
+  const getIcon = (type?: string) => {
+    switch (type) {
+      case "kitchen":
+        return <MdKitchen className="h-6 w-6" />
+      case "bathroom":
+        return <FaToiletPaper className="h-6 w-6" />
+      case "internet":
+        return <WifiIcon className="h-6 w-6" />
+      case "washroom":
+        return <GiWashingMachine className="h-6 w-6" />
+      default:
+        break
+    }
+  }
+
   return (
     <div className="text-center text-l">
       <p>{title}</p>
@@ -24,12 +44,17 @@ export const Rating: FC<RatingProps> = ({
             <span className="sr-only"> star reviews</span>
           </p>
           <div aria-hidden="true" className="ml-1 flex-1 flex items-center">
-            {children}
+            {title && getIcon(title)}
             <div className="ml-3 relative flex-1">
               <div className="h-3 bg-gray-100 border border-gray-200 rounded-full" />
               {count > 0 ? (
                 <div
-                  className="absolute inset-y-0 bg-yellow-400 border border-yellow-400 rounded-full"
+                  className={classNames(
+                    color
+                      ? `bg-indigo-400 border-indigo-400`
+                      : "bg-yellow-400 border border-yellow-400",
+                    "absolute inset-y-0 rounded-full"
+                  )}
                   style={{
                     width: `calc(${count} / ${totalCount} * 100%)`,
                   }}
