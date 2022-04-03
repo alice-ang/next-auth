@@ -6,7 +6,6 @@ import Link from "next/link"
 import { classNames, useAuth } from "../../../utils"
 import { AvatarButton } from "./AvatarButton"
 import { Avatar, Logo } from "../../base-components"
-import { signOut } from "firebase/auth"
 
 export const NavBar = () => {
   const { user, logOut } = useAuth()

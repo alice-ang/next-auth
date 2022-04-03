@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { FC } from "react"
 import { IoMdSchool } from "react-icons/io"
-import { Badge } from "../Badge"
 
 type LogoProps = {
   hasNoBreakpoint?: boolean
@@ -10,7 +9,7 @@ type LogoProps = {
 
 export const Logo: FC<LogoProps> = ({ hasNoBreakpoint, className }) => {
   return (
-    <Link href="/">
+    <Link href="/" passHref>
       <div className={className}>
         <div className="flex items-center">
           <IoMdSchool

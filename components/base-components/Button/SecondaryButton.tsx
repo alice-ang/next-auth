@@ -10,7 +10,7 @@ export const SecondaryButton: FC<ButtonType> = ({
   return (
     <>
       {buttonLink ? (
-        <Link href={buttonLink ?? "#"}>
+        <Link href={buttonLink} passHref>
           <button
             type="button"
             className={classNames(

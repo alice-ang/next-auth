@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { HeartIcon, StarIcon } from "@heroicons/react/solid"
 
 import { Badge, SecondaryButton } from "../../base-components"
@@ -17,7 +17,7 @@ export const Listing: FC<ListingType> = ({ listing }) => {
         />
       </div>
       <div className="p-3 lg:p-8 w-full lg:w-1/2 cursor-pointer">
-        <Link href={`/listing/${listing.id}`}>
+        <Link href={`/listing/${listing.id}`} passHref>
           <div>
             <h3 className="text-2xl font-extrabold tracking-tight text-gray-900">
               {listing.street}

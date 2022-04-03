@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import {
   ScaleIcon,
@@ -21,8 +21,7 @@ import {
 } from "@heroicons/react/solid"
 
 import { Footer, Logo, Avatar, AvatarButton } from "../components"
-import { classNames, useAuth, User } from "../utils"
-import { useSession } from "next-auth/react"
+import { classNames, useAuth } from "../utils"
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -54,7 +53,7 @@ const transactions = [
 
 export default function ProfilePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { user, logOut } = useAuth()
+  const { user } = useAuth()
 
   return (
     <div className="min-h-full">
@@ -109,9 +108,9 @@ export default function ProfilePage() {
                 <nav className="px-2 space-y-1">
                   <Logo hasNoBreakpoint />
 
-                  {navigation.map((item) => (
+                  {navigation.map((item, i) => (
                     <a
-                      key={item.name}
+                      key={i}
                       href={item.href}
                       className={classNames(
                         item.current

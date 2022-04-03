@@ -47,6 +47,7 @@ export const AuthContextProvider = ({
       .then(() => {
         console.log("sign out")
         setUser(null)
+        router.push("/login")
       })
       .catch((err) => console.log(err))
   }

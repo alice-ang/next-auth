@@ -1,7 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import { useAuth } from "../../../utils/context/AuthContext"
-import { ExclamationIcon } from "@heroicons/react/solid"
 
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuth()
