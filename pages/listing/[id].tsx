@@ -123,7 +123,6 @@ export default function ListingPage() {
               </h4>
               <dl className="mt-4 space-y-4">
                 {amenities.map((item) => {
-                  console.log(item)
                   return (
                     <Rating
                       count={item.count}
@@ -136,8 +135,6 @@ export default function ListingPage() {
                 })}
               </dl>
             </div>
-
-            {/* <p className="text-gray-500">{product.description}</p> */}
 
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Share</h3>
@@ -239,8 +236,8 @@ export default function ListingPage() {
                 <Tab.Panel className="mb-10">
                   <h3 className="sr-only">Student Reviews</h3>
 
-                  {reviews.featured.map((review, reviewIdx) => (
-                    <Review review={review} key={reviewIdx} />
+                  {reviews.featured.map((review, i) => (
+                    <Review review={review} key={i} />
                   ))}
                 </Tab.Panel>
 

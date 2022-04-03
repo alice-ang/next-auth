@@ -26,7 +26,7 @@ export const reviews = {
     },
     {
       id: 2,
-      rating: 5,
+      rating: 4,
       content: `
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
             `,
@@ -41,7 +41,7 @@ export const reviews = {
     },
     {
       id: 3,
-      rating: 5,
+      rating: 1,
       content: `
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
     `,
@@ -56,7 +56,7 @@ export const reviews = {
     },
     {
       id: 4,
-      rating: 5,
+      rating: 1,
       content: `
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
     `,
@@ -71,7 +71,7 @@ export const reviews = {
     },
     {
       id: 5,
-      rating: 5,
+      rating: 2,
       content: `
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
     `,

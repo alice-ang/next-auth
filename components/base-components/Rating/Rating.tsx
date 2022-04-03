@@ -19,8 +19,6 @@ export const Rating: FC<RatingProps> = ({
   rating,
   color,
 }) => {
-  console.log(color)
-
   const getIcon = (type?: string) => {
     switch (type) {
       case "kitchen":
@@ -46,14 +44,14 @@ export const Rating: FC<RatingProps> = ({
             <span className="sr-only"> star reviews</span>
           </p>
           <div aria-hidden="true" className="ml-1 flex-1 flex items-center">
-            {getIcon(title)}
+            {title && getIcon(title)}
             <div className="ml-3 relative flex-1">
               <div className="h-3 bg-gray-100 border border-gray-200 rounded-full" />
               {count > 0 ? (
                 <div
                   className={classNames(
                     color
-                      ? `bg-${color}-400 border-${color}-400`
+                      ? `bg-indigo-400 border-indigo-400`
                       : "bg-yellow-400 border border-yellow-400",
                     "absolute inset-y-0 rounded-full"
                   )}
