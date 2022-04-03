@@ -3,26 +3,6 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [13.854414224624634, 58.396061621490716],
-            [13.853352069854736, 58.39501021944437],
-            [13.853040933609009, 58.393913804234224],
-            [13.852665424346924, 58.392598060973704],
-            [13.854714632034302, 58.39242937238931],
-            [13.857107162475586, 58.39448731798177],
-            [13.855143785476685, 58.39515078303105],
-            [13.855658769607544, 58.39583672529349],
-            [13.854414224624634, 58.396061621490716]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
       "properties": {
         "id": 1,
         "street": "Norra Trängallén 3",
@@ -179,6 +159,54 @@
       "geometry": {
         "type": "Point",
         "coordinates": [13.854253, 58.389854]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "street": "Gransikagatan 7C",
+        "zipCode": 54139,
+        "city": "Skövde",
+        "tags": ["1 room", "41 m²"],
+        "numOfReviews": 3,
+        "avgRating": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.8480438, 58.3952776]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12,
+        "street": "Rotegatan 8",
+        "zipCode": 54140,
+        "city": "Skövde",
+        "tags": ["1 room", "39 m²"],
+        "numOfReviews": 2,
+        "avgRating": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.848994, 58.393668]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "street": "Kurortsvägen 12",
+        "zipCode": 54137,
+        "city": "Skövde",
+        "tags": ["1 room", "31 m²"],
+        "numOfReviews": 19,
+        "avgRating": 4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.854536, 58.390296]
       }
     }
   ]

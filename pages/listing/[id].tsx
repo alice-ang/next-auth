@@ -7,14 +7,14 @@ import { reviews, amenities } from "../../utils"
 
 const faqs = [
   {
-    question: "What format are these icons?",
+    question: "Lorem ipsum dolor?",
     answer:
-      "The icons are in SVG (Scalable Vector Graphic) format. They can be imported into your design tool of choice and used directly in code.",
+      "Nulla dictum, lectus nec lobortis tristique, quam sapien ultrices neque.",
   },
   {
-    question: "Can I use the icons at different sizes?",
+    question: "Lectus nec lobortis tristique?",
     answer:
-      "Yes. The icons are drawn on a 24 x 24 pixel grid, but the icons can be scaled to different sizes as needed. We don't recommend going smaller than 20 x 20 or larger than 64 x 64 to retain legibility and visual balance.",
+      "uis et placerat massa. Maecenas volutpat non est vitae ultrices. Sed convallis.",
   },
   // More FAQs...
 ]
@@ -26,7 +26,7 @@ export default function ListingPage() {
         {/* Product */}
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
           {/* Product image */}
-          <div className="lg:row-end-1 lg:col-span-4 ">
+          <div className="lg:row-end-1 lg:col-span-4 bg-white">
             <img className=" rounded-lg p-20" src="/apartment.svg" />
           </div>
 
@@ -200,7 +200,7 @@ export default function ListingPage() {
           <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
             <Tab.Group as="div">
               <div className="border-b border-gray-200">
-                <Tab.List className="-mb-px flex space-x-8">
+                <Tab.List className="mb-10 flex space-x-8">
                   <Tab
                     className={({ selected }) =>
                       classNames(

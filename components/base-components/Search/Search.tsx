@@ -1,6 +1,8 @@
 import { AcademicCapIcon } from "@heroicons/react/solid"
+import { useRouter } from "next/router"
 
 export const Search = () => {
+  const router = useRouter()
   return (
     <div>
       <div className="mt-1 flex rounded-full shadow">
@@ -17,6 +19,8 @@ export const Search = () => {
             id="school"
             className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-full px-10 py-3 lg:py-5 sm:text-sm border-gray-300"
             placeholder="Search school or city"
+            autoComplete="off"
+            onClick={() => router.push("/search")}
           />
         </div>
         <button
