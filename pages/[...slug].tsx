@@ -1,7 +1,7 @@
 import { Layout, Listing, Map } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
 import { classNames } from "../utils"
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
@@ -10,7 +10,6 @@ import {
   PlusSmIcon,
 } from "@heroicons/react/solid"
 import { Rating } from "../components"
-import { getAllSchools } from "../utils/functions"
 import { reviews, schools, listings } from "../utils"
 
 const tabs = [
@@ -55,16 +54,8 @@ const filters = [
 
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const [currentTab, setCurrentTab] = useState("listings")
-
-  useEffect(() => {
-    const readFirebase = async () => {
-      const schools = await getAllSchools()
-      return schools
-    }
-
-    console.log(readFirebase)
-  }, [])
 
   return (
     <Layout>
@@ -486,12 +477,8 @@ export default function SchoolPage() {
                       </p>
                       <button
                         type="button"
-                        className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full
-                        transition
-                        duration-150
-                        ease-in-out"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
+                        onClick={() => setShowModal(true)}
+                        className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
                       >
                         Write a review
                       </button>

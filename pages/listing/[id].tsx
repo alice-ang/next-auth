@@ -60,7 +60,7 @@ const license = {
   `,
 }
 
-export default function RewiewPage() {
+export default function ListingPage() {
   return (
     <Layout>
       <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -86,7 +86,7 @@ export default function RewiewPage() {
                   {[0, 1, 2, 3].map((num) => {
                     return (
                       <span className="pr-2 pb-3" key={num}>
-                        <Badge>badge</Badge>
+                        <Badge color="gray">badge</Badge>
                       </span>
                     )
                   })}
