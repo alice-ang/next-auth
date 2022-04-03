@@ -15,7 +15,7 @@ export const Search = () => {
             type="text"
             name="school"
             id="school"
-            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-full px-10 py-5 sm:text-sm border-gray-300"
+            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-full px-10 py-3 lg:py-5 sm:text-sm border-gray-300"
             placeholder="Search school or city"
           />
         </div>
