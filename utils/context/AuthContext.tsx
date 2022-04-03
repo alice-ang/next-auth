@@ -42,9 +42,13 @@ export const AuthContextProvider = ({
     })
   }, [])
 
-  const logOut = async () => {
-    setUser(null)
-    await signOut(auth)
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("sign out")
+        setUser(null)
+      })
+      .catch((err) => console.log(err))
   }
 
   // AUTH PROVIDERS 🔒

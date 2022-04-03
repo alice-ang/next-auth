@@ -6,6 +6,7 @@ import Link from "next/link"
 import { classNames, useAuth } from "../../../utils"
 import { AvatarButton } from "./AvatarButton"
 import { Avatar, Logo } from "../../base-components"
+import { signOut } from "firebase/auth"
 
 export const NavBar = () => {
   const { user, logOut } = useAuth()
@@ -116,7 +117,6 @@ export const NavBar = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
               <Disclosure.Button
                 as="a"
                 href="/search"
@@ -164,7 +164,10 @@ export const NavBar = () => {
                 >
                   Profile
                 </Disclosure.Button>
-                <Disclosure.Button className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                <Disclosure.Button
+                  onClick={logOut}
+                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                >
                   Sign out
                 </Disclosure.Button>
               </div>

@@ -12,7 +12,6 @@ export default function LoginPage() {
     signInWithGoogle,
   } = useAuth()
 
-  console.log(user)
   const formRef = useRef<HTMLFormElement | null>(null)
   const router = useRouter()
   const [data, setData] = useState({
