@@ -136,23 +136,25 @@ export const NavBar = () => {
 
             <div className="pt-4 pb-3 border-t border-gray-200">
               <div className="flex items-center px-4">
-                <>
-                  <div className="flex-shrink-0">
-                    <Avatar
-                      className="h-10 w-10 rounded-full"
-                      url={user.photo ?? ""}
-                    />
-                  </div>
+                {user && (
+                  <>
+                    <div className="flex-shrink-0">
+                      <Avatar
+                        className="h-10 w-10 rounded-full"
+                        url={user.photo}
+                      />
+                    </div>
 
-                  <div className="ml-3">
-                    <div className="text-base font-medium text-gray-800">
-                      {user.displayName}
+                    <div className="ml-3">
+                      <div className="text-base font-medium text-gray-800">
+                        {user.displayName}
+                      </div>
+                      <div className="text-sm font-medium text-gray-500">
+                        {user.email}
+                      </div>
                     </div>
-                    <div className="text-sm font-medium text-gray-500">
-                      {user.email}
-                    </div>
-                  </div>
-                </>
+                  </>
+                )}
               </div>
               <div className="mt-3 space-y-1">
                 <Disclosure.Button

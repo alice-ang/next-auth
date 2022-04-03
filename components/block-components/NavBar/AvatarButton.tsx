@@ -1,14 +1,15 @@
-import { classNames, User } from "../../../utils"
+import { classNames, useAuth, User } from "../../../utils"
 import { Menu, Transition } from "@headlessui/react"
 import { Avatar, AvatarProps } from "../../base-components"
 import { FC, Fragment } from "react"
 import { ChevronDownIcon } from "@heroicons/react/solid"
 import Link from "next/link"
-import { signOut } from "next-auth/react"
 
 type AvatarButtonProps = AvatarProps & User
 
 export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
+  const { logOut } = useAuth()
+
   return (
     <div className="mx-4 flex items-center md:mx-6">
       <button
@@ -58,20 +59,17 @@ export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
 
             <Menu.Item>
               {({ active }) => (
-                <Link href={`/api/auth/signout`} passHref>
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault()
-                      signOut()
-                    }}
-                    className={classNames(
-                      active ? "bg-gray-100" : "",
-                      "block px-4 py-2 text-sm text-gray-700"
-                    )}
-                  >
-                    Logout
-                  </a>
-                </Link>
+                <a
+                  onClick={(e) => {
+                    logOut
+                  }}
+                  className={classNames(
+                    active ? "bg-gray-100" : "",
+                    "block px-4 py-2 text-sm text-gray-700"
+                  )}
+                >
+                  Logout
+                </a>
               )}
             </Menu.Item>
           </Menu.Items>
