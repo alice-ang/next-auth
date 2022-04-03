@@ -212,6 +212,9 @@ export default function ListingPage() {
                     }
                   >
                     Student Reviews
+                    <span className="pl-3">
+                      <Badge>{reviews.featured.length}</Badge>
+                    </span>
                   </Tab>
                   <Tab
                     className={({ selected }) =>
