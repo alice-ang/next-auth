@@ -24,7 +24,7 @@ export default function LoginPage() {
     if (user) {
       router.push("/search")
     }
-  }, [user])
+  }, [user, router])
 
   const handleSignup = async (e: any) => {
     e.preventDefault()

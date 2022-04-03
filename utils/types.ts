@@ -48,6 +48,9 @@ export type ListingType = {
     city: string
     school?: SchoolType
     reviews?: ReviewType[]
+    tags: string[]
+    numOfListings: number
+    avgRating: number
   }
 }
 

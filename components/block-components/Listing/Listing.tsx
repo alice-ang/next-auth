@@ -29,23 +29,27 @@ export const Listing: FC<ListingType> = ({ listing }) => {
                     <StarIcon
                       key={rating}
                       className={classNames(
-                        3 > rating ? "text-yellow-400" : "text-gray-300",
+                        listing.avgRating > rating
+                          ? "text-yellow-400"
+                          : "text-gray-300",
                         "flex-shrink-0 h-5 w-5"
                       )}
                       aria-hidden="true"
                     />
                   ))}
                 </div>
-                <p className="sr-only">3 out of 5 stars</p>
+                <p className="sr-only">{listing.avgRating} out of 5 stars</p>
               </div>
-              <p className="ml-2 text-sm text-gray-900">Based on 382 reviews</p>
+              <p className="ml-2 text-sm text-gray-900">
+                Based on {listing.numOfListings} reviews
+              </p>
             </div>
 
             <div className="my-4 ">
-              {[0, 1, 2].map((num) => {
+              {listing.tags.map((tag, i) => {
                 return (
-                  <span className="pr-2 pb-3" key={num}>
-                    <Badge>badge</Badge>
+                  <span className="pr-2 pb-3" key={i}>
+                    <Badge>{tag}</Badge>
                   </span>
                 )
               })}
