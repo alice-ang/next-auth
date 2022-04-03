@@ -21,6 +21,8 @@ export type SchoolType = {
   name: string
   numOfListings: number
   numOfReviews: number
+  lat: number
+  lng: number
 }
 
 export type ReviewType = {

@@ -93,12 +93,16 @@ export const schools = [
     name: "Högskolan i Skövde",
     numOfListings: 87,
     numOfReviews: 2487,
+    lat: 58.3941248,
+    lng: 13.8534906,
   },
   {
     id: 2,
     name: "Linköpings Universitet",
     numOfListings: 230,
     numOfReviews: 2487,
+    lat: 58.3978364,
+    lng: 15.5760072,
   },
 ]
 

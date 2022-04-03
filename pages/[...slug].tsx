@@ -1,4 +1,4 @@
-import { Layout, Listing, Map } from "../components"
+import { Layout, Listing, MapView } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
 import { classNames } from "../utils"
 import { Fragment, useState } from "react"
@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/solid"
 import { Rating } from "../components"
 import { reviews, schools, listings } from "../utils"
+import { Marker } from "mapbox-gl"
 
 const tabs = [
   { id: "listings", name: "Listings", current: true },
@@ -322,7 +323,7 @@ export default function SchoolPage() {
             </form>
 
             <div className=" lg:col-span-3 ">
-              <Map lat={58.3941248} lng={13.8534906} />
+              <MapView lat={58.3941248} lng={13.8534906} />
               <div className="max-w-2xl mx-auto mt-8 lg:max-w-7xl">
                 {/* TABS */}
                 <div className="sm:hidden">
