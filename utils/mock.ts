@@ -13,7 +13,7 @@ export const reviews = {
       id: 1,
       rating: 5,
       content: `
-            <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
+            <p>Nulla dictum, lectus nec lobortis tristique, quam sapien ultrices neque, quis fermentum ipsum nisl mollis lectus. Duis et placerat massa. Maecenas volutpat non est vitae ultrices. Sed convallis, tellus vitae congue gravida, nisl diam tincidunt est, vel ultrices diam risus non erat. Praesent ultrices lectus lorem, ac iaculis eros dignissim vel. Morbi feugiat purus dui, sed finibus nisi iaculis non. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
           `,
       author: "Emily Selman",
       avatarSrc:
@@ -28,9 +28,9 @@ export const reviews = {
       id: 2,
       rating: 5,
       content: `
-              <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
             `,
-      author: "Emily Selman",
+      author: "Hector Gibbons",
       avatarSrc:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
       likes: "29",
@@ -43,9 +43,9 @@ export const reviews = {
       id: 3,
       rating: 5,
       content: `
-              <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-            `,
-      author: "Hector Gibbons",
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
+    `,
+      author: "Lorem Ipsum",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
       likes: "29",
@@ -58,8 +58,8 @@ export const reviews = {
       id: 4,
       rating: 5,
       content: `
-              <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-            `,
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
+    `,
       author: "Emily Selman",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
@@ -73,8 +73,8 @@ export const reviews = {
       id: 5,
       rating: 5,
       content: `
-              <p>This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-            `,
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel libero ut risus efficitur cursus ut ac velit. Nunc scelerisque dapibus mi, at viverra mauris feugiat nec. Quisque eleifend arcu a quam pulvinar, eu venenatis sapien pharetra. Praesent malesuada sollicitudin diam, id dapibus felis semper in.</p>
+    `,
       author: "Emily Selman",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
@@ -106,6 +106,29 @@ export const schools = [
   },
 ]
 
+export const amenities = [
+  {
+    type: "kitchen",
+    count: 70,
+    totalCount: 100,
+  },
+  {
+    type: "bathroom",
+    count: 80,
+    totalCount: 100,
+  },
+  {
+    type: "washroom",
+    count: 37,
+    totalCount: 100,
+  },
+  {
+    type: "internet",
+    count: 54,
+    totalCount: 100,
+  },
+]
+
 export const listings = [
   {
     id: 1,
@@ -113,8 +136,10 @@ export const listings = [
     zipCode: 54146,
     city: "Skövde",
     tags: ["1 room", "29 m²"],
-    numOfListings: 23,
+    numOfReviews: 23,
     avgRating: 3,
+    lat: 58.3977876,
+    lng: 13.8561282,
   },
   {
     id: 2,
@@ -122,8 +147,10 @@ export const listings = [
     zipCode: 54137,
     city: "Skövde",
     tags: ["2 rooms", "53 m²"],
-    numOfListings: 13,
+    numOfReviews: 13,
     avgRating: 3,
+    lat: 58.3908667,
+    lng: 13.8516649,
   },
   {
     id: 3,
@@ -131,16 +158,86 @@ export const listings = [
     zipCode: 54146,
     city: "Skövde",
     tags: ["1 room", "24 m²"],
-    numOfListings: 31,
-    avgRating: 4,
+    numOfReviews: 31,
+    avgRating: 42,
+    lat: 58.3953623,
+    lng: 13.8546916,
   },
   {
-    id: 1,
+    id: 4,
+    street: "Norra Trängallén 6",
+    zipCode: 54146,
+    city: "Skövde",
+    tags: ["1 room", "21 m²"],
+    numOfReviews: 17,
+    avgRating: 4,
+    lat: 58.397796,
+    lng: 13.8538929,
+  },
+  {
+    id: 5,
+    street: "Södra Trängallén 3B",
+    zipCode: 54146,
+    city: "Skövde",
+    tags: ["1 room", "17 m²"],
+    numOfReviews: 7,
+    avgRating: 5,
+    lat: 58.396411,
+    lng: 13.855372,
+  },
+  {
+    id: 6,
+    street: "Torggatan 26",
+    zipCode: 54130,
+    city: "Skövde",
+    tags: ["2 room", "51 m²"],
+    numOfReviews: 28,
+    avgRating: 4,
+    lat: 58.391073,
+    lng: 13.842215,
+  },
+  {
+    id: 7,
     street: "Norra Trängallén 6",
     zipCode: 54146,
     city: "Skövde",
     tags: ["1 room", "17 m²"],
-    numOfListings: 17,
-    avgRating: 4,
+    numOfReviews: 4,
+    avgRating: 3,
+    lat: 58.397796,
+    lng: 13.8538929,
+  },
+  {
+    id: 8,
+    street: "Norra Trängallén 4B",
+    zipCode: 54146,
+    city: "Skövde",
+    tags: ["2 room", "43 m²"],
+    numOfReviews: 4,
+    avgRating: 3,
+    lat: 58.397633,
+    lng: 13.857001,
+  },
+  {
+    id: 9,
+    street: "Kurortsvägen 18",
+    zipCode: 54137,
+    city: "Skövde",
+    tags: ["2 room", "45 m²"],
+    numOfReviews: 4,
+    avgRating: 3,
+    lat: 58.391455,
+    lng: 13.855537,
+  },
+  {
+    id: 10,
+    street: "Kurortsvägen 18",
+    zipCode: 54137,
+    city: "Skövde",
+    tags: ["1 room", "30 m²"],
+    numOfReviews: 8,
+    avgRating: 3,
+    lat: 58.389854,
+    lng: 13.854253,
   },
 ]

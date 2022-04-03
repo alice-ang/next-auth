@@ -452,29 +452,15 @@ export default function SchoolPage() {
                           </Rating>
                         ))}
                       </dl>
-                      {/* <Range /> */}
                     </div>
-                    {/* <dl className="space-y-3">
-                      {[5, 4, 3, 2, 1].map((i) => {
-                        return (
-                          <Rating
-                            count={i}
-                            totalCount={1000}
-                            title="Internet"
-                            key={i}
-                          >
-                            <MdWifi size={24} />
-                          </Rating>
-                        )
-                      })}
-                    </dl> */}
+
                     <div className="mt-10 ">
                       <h3 className="text-lg font-medium text-gray-900">
                         Share your thoughts
                       </h3>
                       <p className="mt-1 text-sm text-gray-600">
-                        If you’ve used this product, share your thoughts with
-                        other customers
+                        If you’ve lived here, please share your thoughts with
+                        other students
                       </p>
                       <button
                         type="button"

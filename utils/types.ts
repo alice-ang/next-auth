@@ -1,9 +1,3 @@
-export type User = {
-  name?: string | null
-  email?: string | null
-  image?: string | null
-}
-
 export type ColorType = {
   color?:
     | "gray"
@@ -51,7 +45,7 @@ export type ListingType = {
     school?: SchoolType
     reviews?: ReviewType[]
     tags: string[]
-    numOfListings: number
+    numOfReviews: number
     avgRating: number
   }
 }

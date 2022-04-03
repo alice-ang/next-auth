@@ -42,7 +42,7 @@ export const Listing: FC<ListingType> = ({ listing }) => {
                   <p className="sr-only">{listing.avgRating} out of 5 stars</p>
                 </div>
                 <p className="ml-2 text-sm text-gray-900">
-                  Based on {listing.numOfListings} reviews
+                  Based on {listing.numOfReviews} reviews
                 </p>
               </div>
 
