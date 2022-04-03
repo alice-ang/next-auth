@@ -1,6 +1,5 @@
 import { FC, useRef } from "react"
 import Map, {
-  Marker,
   GeolocateControl,
   FullscreenControl,
   Source,

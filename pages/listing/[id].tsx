@@ -27,7 +27,11 @@ export default function ListingPage() {
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
           {/* Product image */}
           <div className="lg:row-end-1 lg:col-span-4 bg-white">
-            <img className=" rounded-lg p-20" src="/apartment.svg" />
+            <img
+              className=" rounded-lg p-20"
+              src="/apartment.svg"
+              alt="listing picture"
+            />
           </div>
 
           {/* Product details 🐕  */}
@@ -80,7 +84,7 @@ export default function ListingPage() {
                     count={count.count}
                     totalCount={reviews.totalCount}
                     rating={count.rating}
-                    key={count.rating}
+                    key={count.count}
                   >
                     <StarIcon
                       className={classNames(
@@ -118,13 +122,14 @@ export default function ListingPage() {
                 Amenities
               </h4>
               <dl className="mt-4 space-y-4">
-                {amenities.map((item, i) => {
+                {amenities.map((item) => {
+                  console.log(item)
                   return (
                     <Rating
                       count={item.count}
                       totalCount={item.totalCount}
                       title={item.type}
-                      key={i}
+                      key={item.type}
                       color="indigo"
                     />
                   )
@@ -231,8 +236,8 @@ export default function ListingPage() {
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
-                <Tab.Panel className="-mb-10">
-                  <h3 className="sr-only">Customer Reviews</h3>
+                <Tab.Panel className="mb-10">
+                  <h3 className="sr-only">Student Reviews</h3>
 
                   {reviews.featured.map((review, reviewIdx) => (
                     <Review review={review} key={reviewIdx} />

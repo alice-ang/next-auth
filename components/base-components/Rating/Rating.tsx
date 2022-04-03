@@ -19,6 +19,8 @@ export const Rating: FC<RatingProps> = ({
   rating,
   color,
 }) => {
+  console.log(color)
+
   const getIcon = (type?: string) => {
     switch (type) {
       case "kitchen":

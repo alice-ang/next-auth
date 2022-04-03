@@ -11,7 +11,6 @@ import {
 } from "@heroicons/react/solid"
 import { Rating } from "../components"
 import { reviews, schools, listings } from "../utils"
-import { Marker } from "mapbox-gl"
 
 const tabs = [
   { id: "listings", name: "Listings", current: true },
@@ -55,7 +54,6 @@ const filters = [
 
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [showModal, setShowModal] = useState(false)
   const [currentTab, setCurrentTab] = useState("listings")
 
   return (
@@ -464,7 +462,6 @@ export default function SchoolPage() {
                       </p>
                       <button
                         type="button"
-                        onClick={() => setShowModal(true)}
                         className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
                       >
                         Write a review
