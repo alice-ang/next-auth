@@ -7,6 +7,25 @@ import { classNames, useAuth } from "../../../utils"
 import { AvatarButton } from "./AvatarButton"
 import { Avatar, Logo } from "../../base-components"
 
+const navigation = [
+  {
+    page: "Search",
+    value: "search",
+  },
+  {
+    page: "Blog",
+    value: null,
+  },
+  {
+    page: "Forum",
+    value: null,
+  },
+  {
+    page: "Student discounts",
+    value: null,
+  },
+]
+
 export const NavBar = () => {
   const { user, logOut } = useAuth()
 
@@ -21,16 +40,19 @@ export const NavBar = () => {
                   <Logo hasNoBreakpoint />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <Link href="/search" passHref>
-                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
-                      Search
-                    </a>
-                  </Link>
-                  <Link href="/#" passHref>
-                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
-                      Forum
-                    </a>
-                  </Link>
+                  {navigation.map((item) => {
+                    return (
+                      <Link
+                        href={item.value ? `${item.value}` : "#"}
+                        passHref
+                        key={item.value}
+                      >
+                        <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                          {item.page}
+                        </a>
+                      </Link>
+                    )
+                  })}
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
@@ -121,21 +143,27 @@ export const NavBar = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              <Disclosure.Button
-                as="a"
-                href="/search"
-                className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-              >
-                Search
-              </Disclosure.Button>
-
-              <Disclosure.Button
-                as="a"
-                href={`/login`}
-                className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-              >
-                Sign in
-              </Disclosure.Button>
+              {navigation.map((item) => {
+                return (
+                  <Disclosure.Button
+                    as="a"
+                    href={item.value ? `/${item.value}` : "#"}
+                    className="  block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                    key={item.page}
+                  >
+                    {item.page}
+                  </Disclosure.Button>
+                )
+              })}
+              {!user && (
+                <Disclosure.Button
+                  as="a"
+                  href={`/login`}
+                  className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                >
+                  Sign in
+                </Disclosure.Button>
+              )}
             </div>
 
             <div className="pt-4 pb-3 border-t border-gray-200">

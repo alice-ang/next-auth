@@ -3,6 +3,7 @@ import Map, {
   GeolocateControl,
   FullscreenControl,
   Source,
+  Popup,
   Layer,
 } from "react-map-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
@@ -23,6 +24,8 @@ type MapProps = {
 
 export const MapView: FC<MapProps> = ({ lat, lng }) => {
   const mapRef = useRef<MapRef>(null)
+  const [showPopup, setShowPopup] = useState(true)
+
   const [settings, setsettings] = useState({
     dragPan: true,
     dragRotate: false,
@@ -69,7 +72,16 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
         </Marker> */}
         <GeolocateControl />
         <FullscreenControl position="top-left" />
-
+        {showPopup && (
+          <Popup
+            longitude={lng}
+            latitude={lat}
+            anchor="bottom"
+            onClose={() => setShowPopup(false)}
+          >
+            <span className="text-l font-extrabold">Högskolan i Skövde</span>
+          </Popup>
+        )}
         <Source
           id="listings"
           type="geojson"
