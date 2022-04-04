@@ -1,4 +1,4 @@
-import { FC, useRef } from "react"
+import { FC, useRef, useState } from "react"
 import Map, {
   GeolocateControl,
   FullscreenControl,
@@ -23,7 +23,15 @@ type MapProps = {
 
 export const MapView: FC<MapProps> = ({ lat, lng }) => {
   const mapRef = useRef<MapRef>(null)
-
+  const [settings, setsettings] = useState({
+    dragPan: true,
+    dragRotate: false,
+    scrollZoom: false,
+    touchZoom: true,
+    touchRotate: false,
+    keyboard: false,
+    doubleClickZoom: true,
+  })
   const onClick = (event: any) => {
     const feature = event.features[0]
     const clusterId = feature.properties.cluster_id
@@ -45,6 +53,7 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
   return (
     <div className="h-[350px] lg:h-[500px] w-full">
       <Map
+        {...settings}
         ref={mapRef}
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API}
         initialViewState={{
