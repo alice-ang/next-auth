@@ -15,7 +15,14 @@ const cards = [
   { name: "Posts", icon: QuestionMarkCircleIcon, amount: "0" },
   // More items...
 ]
-const people = [
+const activities = [
+  {
+    title: "Like",
+    department: "Kurortsvägen 16",
+    role: "Member",
+    status: "",
+    icon: HeartIcon,
+  },
   {
     title: "Review",
     department: "Norra Trängallén 3",
@@ -177,22 +184,22 @@ export default function ProfilePage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {people.map((person, i) => (
+                    {activities.map((activity, i) => (
                       <tr key={i}>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-indigo-500">
                           <div className="flex items-center">
                             <div className=" flex-shrink-0">
-                              <person.icon
+                              <activity.icon
                                 className="h-6 w-6 text-gray-400"
                                 aria-hidden="true"
                               />
                             </div>
                             <div className="ml-4">
                               <div className="text-gray-900">
-                                {person.title}
+                                {activity.title}
                               </div>
                               <div className="text-gray-500">
-                                {person.department}
+                                {activity.department}
                               </div>
                             </div>
                           </div>
@@ -200,17 +207,17 @@ export default function ProfilePage() {
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           <span
                             className={classNames(
-                              person.status == "approved"
+                              activity.status == "approved"
                                 ? "bg-green-100 text-green-800"
                                 : "bg-yellow-100 text-yellow-800",
                               "inline-flex rounded-full px-2 text-xs font-semibold leading-5"
                             )}
                           >
-                            {person.status}
+                            {activity.status}
                           </span>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {person.role}
+                          {activity.role}
                         </td>
                       </tr>
                     ))}
