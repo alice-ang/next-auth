@@ -3,6 +3,7 @@ import {
   OfficeBuildingIcon,
   HeartIcon,
   PencilIcon,
+  QuestionMarkCircleIcon,
 } from "@heroicons/react/solid"
 
 import { Avatar, Layout } from "../components"
@@ -11,6 +12,7 @@ import { classNames, useAuth } from "../utils"
 const cards = [
   { name: "Favourites", icon: HeartIcon, amount: "5" },
   { name: "Reviews", icon: PencilIcon, amount: "2" },
+  { name: "Posts", icon: QuestionMarkCircleIcon, amount: "0" },
   // More items...
 ]
 const people = [
@@ -67,7 +69,7 @@ export default function ProfilePage() {
 
                   <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
                     Hello, {user.displayName}
-                    <span role="img" aria-label="waving hand">
+                    <span role="img" aria-label="waving hand" className="pl-2">
                       👋
                     </span>
                   </h1>
@@ -101,7 +103,7 @@ export default function ProfilePage() {
           <h2 className="text-lg leading-6 font-medium text-gray-900">
             Overview
           </h2>
-          <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 ">
+          <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-3 ">
             {/* Card */}
             {cards.map((card) => (
               <div
@@ -130,9 +132,9 @@ export default function ProfilePage() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 px-5 py-3">
+                <div className="bg-indigo-50 px-5 py-3">
                   <div className="text-sm">
-                    <a className="font-medium text-cyan-700 hover:text-cyan-900">
+                    <a className="font-medium text-indigo-700 hover:text-indigo-900">
                       View all
                     </a>
                   </div>
@@ -151,24 +153,24 @@ export default function ProfilePage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col mt-2 mb-8">
               <div className="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-300">
-                  <thead className="bg-gray-50">
+                <table className="min-w-full">
+                  <thead className="bg-indigo-50">
                     <tr>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-indigo-900"
                       >
                         Activity
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-indigo-900"
                       >
                         Status
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-indigo-900"
                       >
                         Role
                       </th>
@@ -177,7 +179,7 @@ export default function ProfilePage() {
                   <tbody className="divide-y divide-gray-200 bg-white">
                     {people.map((person, i) => (
                       <tr key={i}>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-indigo-500">
                           <div className="flex items-center">
                             <div className=" flex-shrink-0">
                               <person.icon
