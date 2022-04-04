@@ -17,7 +17,7 @@ export const Search = () => {
             type="text"
             name="school"
             id="school"
-            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-full px-10 py-3 lg:py-5 sm:text-sm border-gray-300"
+            className="focus:ring-indigo-300 focus:border-indigo-300 block w-full rounded-none rounded-l-full px-10 py-3 lg:py-5 sm:text-sm border-gray-300"
             placeholder="Search school or city"
             autoComplete="off"
           />
@@ -25,7 +25,7 @@ export const Search = () => {
         <button
           onClick={() => router.push("/search")}
           type="button"
-          className="ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-full text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+          className="ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-full text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-300 focus:border-indigo-300"
         >
           <span>Search</span>
         </button>
