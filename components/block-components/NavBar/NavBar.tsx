@@ -22,8 +22,13 @@ export const NavBar = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <Link href="/search" passHref>
-                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
                       Search
+                    </a>
+                  </Link>
+                  <Link href="/#" passHref>
+                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                      Forum
                     </a>
                   </Link>
                 </div>

@@ -241,7 +241,7 @@ export default function SchoolPage() {
           </div>
         </div>
 
-        <section aria-labelledby="school-heading" className="pb-24">
+        <section aria-labelledby="school-heading" className="pb-12">
           <h2 id="school-heading" className="sr-only">
             Products
           </h2>

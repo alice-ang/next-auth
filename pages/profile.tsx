@@ -1,32 +1,41 @@
 import {
-  CashIcon,
   CheckCircleIcon,
-  ChevronRightIcon,
   OfficeBuildingIcon,
   HeartIcon,
   PencilIcon,
 } from "@heroicons/react/solid"
 
 import { Avatar, Layout } from "../components"
-import { useAuth } from "../utils"
+import { classNames, useAuth } from "../utils"
 
 const cards = [
   { name: "Favourites", icon: HeartIcon, amount: "5" },
   { name: "Reviews", icon: PencilIcon, amount: "2" },
   // More items...
 ]
-const transactions = [
+const people = [
   {
-    id: 1,
-    name: "Payment to Molly Sanders",
-    href: "#",
-    amount: "$20,000",
-    currency: "USD",
-    status: "success",
-    date: "July 11, 2020",
-    datetime: "2020-07-11",
+    title: "Review",
+    department: "Norra Trängallén 3",
+    role: "Member",
+    status: "approved",
+    icon: PencilIcon,
   },
-  // More transactions...
+  {
+    title: "Review",
+    department: "Norra Trängallén 6B",
+    role: "Member",
+    status: "pending",
+    icon: PencilIcon,
+  },
+  {
+    title: "Like",
+    department: "Gransikagatan 7C",
+    role: "Member",
+    status: "",
+    icon: HeartIcon,
+  },
+  // More people...
 ]
 
 export default function ProfilePage() {
@@ -123,10 +132,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="bg-gray-50 px-5 py-3">
                   <div className="text-sm">
-                    <a
-                      href={card.href}
-                      className="font-medium text-cyan-700 hover:text-cyan-900"
-                    >
+                    <a className="font-medium text-cyan-700 hover:text-cyan-900">
                       View all
                     </a>
                   </div>
@@ -140,117 +146,69 @@ export default function ProfilePage() {
           Recent activity
         </h2>
 
-        {/* Activity list (smallest breakpoint only) */}
-        <div className="shadow sm:hidden">
-          <ul
-            role="list"
-            className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden"
-          >
-            {transactions.map((transaction) => (
-              <li key={transaction.id}>
-                <a
-                  href={transaction.href}
-                  className="block px-4 py-4 bg-white hover:bg-gray-50"
-                >
-                  <span className="flex items-center space-x-4">
-                    <span className="flex-1 flex space-x-2 truncate">
-                      <CashIcon
-                        className="flex-shrink-0 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      <span className="flex flex-col text-gray-500 text-sm truncate">
-                        <span className="truncate">{transaction.name}</span>
-                        <span>
-                          <span className="text-gray-900 font-medium">
-                            {transaction.amount}
-                          </span>{" "}
-                          {transaction.currency}
-                        </span>
-                        <time dateTime={transaction.datetime}>
-                          {transaction.date}
-                        </time>
-                      </span>
-                    </span>
-                    <ChevronRightIcon
-                      className="flex-shrink-0 h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <nav
-            className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"
-            aria-label="Pagination"
-          >
-            <div className="flex-1 flex justify-between">
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-              >
-                Previous
-              </a>
-              <a
-                href="#"
-                className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-              >
-                Next
-              </a>
-            </div>
-          </nav>
-        </div>
-
         {/* Activity table (small breakpoint and up) */}
-        <div className="hidden sm:block">
+        <div className="block">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col mt-2 mb-8">
               <div className="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead>
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Transaction
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
+                        Activity
                       </th>
-                      <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Type
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
+                        Status
                       </th>
-                      <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Date
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
+                        Role
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {transactions.map((transaction) => (
-                      <tr key={transaction.id} className="bg-white">
-                        <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                          <div className="flex">
-                            <a
-                              href={transaction.href}
-                              className="group inline-flex space-x-2 truncate text-sm"
-                            >
-                              <CashIcon
-                                className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    {people.map((person, i) => (
+                      <tr key={i}>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <div className="flex items-center">
+                            <div className=" flex-shrink-0">
+                              <person.icon
+                                className="h-6 w-6 text-gray-400"
                                 aria-hidden="true"
                               />
-                              <p className="text-gray-500 truncate group-hover:text-gray-900">
-                                {transaction.name}
-                              </p>
-                            </a>
+                            </div>
+                            <div className="ml-4">
+                              <div className="text-gray-900">
+                                {person.title}
+                              </div>
+                              <div className="text-gray-500">
+                                {person.department}
+                              </div>
+                            </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                          <span className="text-gray-900 font-medium">
-                            {transaction.amount}{" "}
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <span
+                            className={classNames(
+                              person.status == "approved"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-yellow-100 text-yellow-800",
+                              "inline-flex rounded-full px-2 text-xs font-semibold leading-5"
+                            )}
+                          >
+                            {person.status}
                           </span>
-                          {transaction.currency}
                         </td>
-
-                        <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                          <time dateTime={transaction.datetime}>
-                            {transaction.date}
-                          </time>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {person.role}
                         </td>
                       </tr>
                     ))}
