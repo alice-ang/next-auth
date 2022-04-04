@@ -243,7 +243,7 @@ export default function SchoolPage() {
 
         <section aria-labelledby="school-heading" className="pb-12">
           <h2 id="school-heading" className="sr-only">
-            Products
+            Schools
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8">
