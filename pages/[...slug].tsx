@@ -341,26 +341,7 @@ function SchoolPage({ props }: any) {
               />
               <div className="max-w-2xl mx-auto mt-8 lg:max-w-7xl">
                 {/* TABS */}
-                <div className="sm:hidden">
-                  <label htmlFor="tabs" className="sr-only">
-                    Select a tab
-                  </label>
-                  {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
-                  <select
-                    id="tabs"
-                    name="tabs"
-                    className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md p-2 shadow bg-white"
-                    defaultValue={currentTab}
-                    onChange={(e) =>
-                      setCurrentTab(e.target.value.toLocaleLowerCase())
-                    }
-                  >
-                    {tabs.map((tab) => (
-                      <option key={tab.name}>{tab.name}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className="hidden sm:block">
+                <div className="">
                   <nav
                     className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
                     aria-label="Tabs"
