@@ -9,7 +9,7 @@ import {
   MinusSmIcon,
   PlusSmIcon,
 } from "@heroicons/react/solid"
-import { Rating, Range } from "../components"
+import { Rating } from "../components"
 import { reviews, listings } from "../utils"
 import { NextPageContext } from "next"
 
@@ -59,7 +59,6 @@ function SchoolPage({ props }: any) {
   const [school, setSchool] = useState<SchoolType | null>(null)
   const [open, setOpen] = useState(false)
 
-  const kitchenRef = useRef<any>(null)
   useEffect(() => {
     const getData = async () => {
       await getSchoolByName(props.school).then((res) => setSchool(res))

@@ -12,6 +12,11 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const cancelButtonRef = useRef(null)
 
   const kitchenRef = useRef<HTMLInputElement>(null)
+  const bathroomRef = useRef<HTMLInputElement>(null)
+  const washroomRef = useRef<HTMLInputElement>(null)
+  const internetRef = useRef<HTMLInputElement>(null)
+
+  const feedbackRef = useRef<HTMLTextAreaElement>(null)
 
   const handleCancelClick = () => {
     closeModal(false)
@@ -71,22 +76,23 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                   </Dialog.Title>
                   <div className="mt-2">
                     <Range title="kitchen" ref={kitchenRef} />
-                    <Range title="bathroom" />
-                    <Range title="washroom" />
-                    <Range title="internet" />
+                    <Range title="bathroom" ref={bathroomRef} />
+                    <Range title="washroom" ref={washroomRef} />
+                    <Range title="internet" ref={internetRef} />
                     <div className="mt-3">
                       <label
                         htmlFor="review"
                         className="text-left block text-m font-medium text-gray-700"
                       >
-                        Add your comment
+                        Add your feedback
                       </label>
                       <div className="mt-2">
                         <textarea
+                          ref={feedbackRef}
                           rows={4}
                           name="review"
                           id="review"
-                          placeholder="Add your feedback..."
+                          placeholder="I lived here during..."
                           className=" p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm  border border-gray-300 rounded-md"
                           defaultValue={""}
                         />
@@ -100,12 +106,22 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
                   onClick={async () => {
-                    console.log(kitchenRef.current?.value)
-
-                    // await addReview({
-                    //   rating: 2,
-                    //   feedback: "hejhejhej",
-                    // }).then(() => handleCancelClick)
+                    if (
+                      kitchenRef.current &&
+                      bathroomRef.current &&
+                      washroomRef.current &&
+                      internetRef.current &&
+                      feedbackRef.current
+                    ) {
+                      await addReview({
+                        kitchen: kitchenRef.current.value,
+                        bathroom: bathroomRef.current.value,
+                        washroom: washroomRef.current.value,
+                        internet: internetRef.current.value,
+                        feedback: feedbackRef.current.value,
+                      }).then(() => handleCancelClick)
+                    }
+                    handleCancelClick
                   }}
                 >
                   Post

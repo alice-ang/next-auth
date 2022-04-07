@@ -49,11 +49,17 @@ export const getSchoolByName = async (name: string) => {
 }
 
 export const addReview = async (review: {
-  rating: number
+  kitchen: string
+  bathroom: string
+  washroom: string
+  internet: string
   feedback: string
 }) => {
   const docRef = await addDoc(collection(db, "reviews"), {
-    rating: review.rating,
+    kitchen: review.kitchen,
+    bathroom: review.bathroom,
+    washroom: review.washroom,
+    internet: review.internet,
     feedback: review.feedback,
   })
   console.log("Document written with ID: ", docRef.id)

@@ -1,6 +1,6 @@
-import { Badge, Layout, Rating, Review } from "../../components"
+import { Badge, Layout, Modal, Rating, Review } from "../../components"
 import { classNames } from "../../utils"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
 import { reviews, amenities } from "../../utils"
@@ -32,6 +32,7 @@ const faqs = [
 ]
 
 export default function ListingPage() {
+  const [open, setOpen] = useState(false)
   return (
     <Layout>
       <div className="mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -157,8 +158,7 @@ export default function ListingPage() {
                         transition
                         duration-150
                         ease-in-out"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                onClick={() => setOpen(true)}
               >
                 Write a review
               </button>
@@ -287,6 +287,7 @@ export default function ListingPage() {
           </div>
         </div>
       </div>
+      {open && <Modal closeModal={setOpen} />}
     </Layout>
   )
 }
