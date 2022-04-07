@@ -3,10 +3,8 @@ import {
   query,
   where,
   getDocs,
-  doc,
   DocumentData,
 } from "firebase/firestore"
-import { disconnect } from "process"
 import { db } from "../firebase/clientApp"
 
 export function classNames(...classes: string[]) {
