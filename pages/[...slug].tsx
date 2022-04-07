@@ -1,6 +1,11 @@
 import { Layout, Listing, MapView } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
-import { classNames, getAllSchools, SchoolType } from "../utils"
+import {
+  classNames,
+  getAllSchools,
+  getSchoolByName,
+  SchoolType,
+} from "../utils"
 import { Fragment, SetStateAction, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
@@ -58,14 +63,14 @@ const filters = [
 function SchoolPage({ props }: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("listings")
-  const [schools, setSchools] = useState<SchoolType | null>(null)
+  const [school, setSchool] = useState<SchoolType | null>(null)
 
   useEffect(() => {
     const getData = async () => {
-      await getAllSchools().then((res) => console.log(res))
+      await getSchoolByName(props.school).then((res) => setSchool(res))
     }
     getData()
-  }, [])
+  }, [props])
 
   return (
     <Layout>
@@ -188,9 +193,9 @@ function SchoolPage({ props }: any) {
 
       <main className="max-w-7xl mx-auto px-4">
         <div className="flex items-baseline justify-between pt-4 pb-6 ">
-          {schools && (
+          {school && (
             <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-              {schools.name}
+              {school.name}
             </h2>
           )}
 
@@ -334,7 +339,7 @@ function SchoolPage({ props }: any) {
             </form>
 
             <div className=" lg:col-span-3 ">
-              {schools && <MapView lat={schools.lat} lng={schools.lng} />}
+              {school && <MapView lat={school.lat} lng={school.lng} />}
               <div className="max-w-2xl mx-auto mt-8 lg:max-w-7xl">
                 {/* TABS */}
                 <div className="sm:hidden">

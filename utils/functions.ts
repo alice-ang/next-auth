@@ -30,17 +30,20 @@ export const getAllSchools = async () => {
 }
 
 export const getSchoolByName = async (name: string) => {
+  const data = <DocumentData>[]
+
   const q = query(collection(db, "schools"), where("name", "==", name))
 
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
-    return {
+    data.push({
       id: doc.id,
       name: doc.data().name,
       lat: doc.data().lat,
       lng: doc.data().lng,
       numOfListings: 10,
       numOfReviews: 10,
-    }
+    })
   })
+  return data[0]
 }
