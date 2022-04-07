@@ -5,9 +5,7 @@ import { FC, Fragment } from "react"
 import { ChevronDownIcon } from "@heroicons/react/solid"
 import Link from "next/link"
 
-type AvatarButtonProps = AvatarProps & User
-
-export const AvatarButton: FC<AvatarButtonProps> = ({ url, displayName }) => {
+export const AvatarButton: FC<AvatarProps> = ({ url, displayName }) => {
   const { logOut } = useAuth()
 
   return (

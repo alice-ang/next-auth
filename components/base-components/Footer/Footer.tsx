@@ -70,7 +70,7 @@ export const Footer = () => {
         <div className="mt-8 flex justify-center space-x-6">
           {navigation.social.map((item) => (
             <a
-              key={item.name}
+              key={item.name.toLocaleLowerCase()}
               href={item.href}
               className="text-gray-400 hover:text-gray-500"
             >

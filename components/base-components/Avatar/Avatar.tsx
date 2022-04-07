@@ -6,6 +6,7 @@ export type AvatarProps = {
   url: string
   isVerified?: boolean
   className?: string
+  displayName?: string
 }
 
 export const Avatar: FC<AvatarProps> = ({ url, isVerified, className }) => {

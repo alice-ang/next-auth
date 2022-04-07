@@ -40,12 +40,12 @@ export const NavBar = () => {
                   <Logo hasNoBreakpoint />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation.map((item) => {
+                  {navigation.map((item, i) => {
                     return (
                       <Link
                         href={item.value ? `${item.value}` : "#"}
                         passHref
-                        key={item.value}
+                        key={`key${i}`}
                       >
                         <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
                           {item.page}
@@ -60,7 +60,10 @@ export const NavBar = () => {
                 <Menu as="div" className="ml-3 relative">
                   <div>
                     {user ? (
-                      <AvatarButton url={user.photo} name={user.displayName} />
+                      <AvatarButton
+                        url={user.photo}
+                        displayName={user.displayName}
+                      />
                     ) : (
                       <Link href={`/login`} passHref>
                         <button

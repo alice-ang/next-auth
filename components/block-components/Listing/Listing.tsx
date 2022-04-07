@@ -49,7 +49,7 @@ export const Listing: FC<ListingType> = ({ listing }) => {
               <div className="my-4 ">
                 {listing.tags.map((tag, i) => {
                   return (
-                    <span className="pr-2 pb-3" key={i}>
+                    <span className="pr-2 pb-3" key={`key${i}`}>
                       <Badge>{tag}</Badge>
                     </span>
                   )
