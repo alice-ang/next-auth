@@ -1,6 +1,6 @@
 import { Layout, Listing, MapView } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
-import { classNames, SchoolType } from "../utils"
+import { classNames, getAllSchools, SchoolType } from "../utils"
 import { Fragment, SetStateAction, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
@@ -10,16 +10,9 @@ import {
   PlusSmIcon,
 } from "@heroicons/react/solid"
 import { Rating } from "../components"
-import { reviews, schools, listings } from "../utils"
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore"
+import { reviews, listings } from "../utils"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import { db } from "../firebase/clientApp"
-import { useRouter } from "next/router"
 import { NextPageContext } from "next"
 
 const tabs = [
@@ -69,26 +62,10 @@ function SchoolPage({ props }: any) {
 
   useEffect(() => {
     const getData = async () => {
-      const q = query(
-        collection(db, "schools"),
-        where("name", "==", props.school)
-      )
-
-      const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-        setSchools({
-          id: doc.id,
-          name: doc.data().name,
-          lat: doc.data().lat,
-          lng: doc.data().lng,
-          numOfListings: 10,
-          numOfReviews: 10,
-        })
-      })
+      await getAllSchools().then((res) => console.log(res))
     }
     getData()
-    console.log(schools)
-  }, [props])
+  }, [])
 
   return (
     <Layout>

@@ -1,4 +1,11 @@
-import { collection, query, where, getDocs, doc } from "firebase/firestore"
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  DocumentData,
+} from "firebase/firestore"
 import { disconnect } from "process"
 import { db } from "../firebase/clientApp"
 
@@ -8,12 +15,18 @@ export function classNames(...classes: string[]) {
 
 export const getAllSchools = async () => {
   const querySnapshot = await getDocs(query(collection(db, "schools")))
-
+  const data = <DocumentData>[]
   querySnapshot.forEach((doc) => {
-    return {
-      ...doc.data(),
-    }
+    data.push({
+      id: doc.id,
+      name: doc.data().name,
+      lat: doc.data().lat,
+      lng: doc.data().lng,
+      numOfListings: 10,
+      numOfReviews: 10,
+    })
   })
+  return data
 }
 
 export const getSchoolByName = async (name: string) => {
