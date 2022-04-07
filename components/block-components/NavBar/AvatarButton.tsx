@@ -7,7 +7,7 @@ import Link from "next/link"
 
 type AvatarButtonProps = AvatarProps & User
 
-export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
+export const AvatarButton: FC<AvatarButtonProps> = ({ url, displayName }) => {
   const { logOut } = useAuth()
 
   return (
@@ -24,7 +24,7 @@ export const AvatarButton: FC<AvatarButtonProps> = ({ url, name }) => {
 
             <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
               <span className="sr-only">Open user menu for </span>
-              {name && name}
+              {displayName && displayName}
             </span>
             <ChevronDownIcon
               className="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block"

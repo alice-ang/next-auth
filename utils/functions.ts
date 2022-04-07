@@ -4,7 +4,9 @@ import {
   where,
   getDocs,
   DocumentData,
+  addDoc,
 } from "firebase/firestore"
+
 import { db } from "../firebase/clientApp"
 
 export function classNames(...classes: string[]) {
@@ -46,6 +48,13 @@ export const getSchoolByName = async (name: string) => {
   return data[0]
 }
 
-export const addUser = async () => {
-  let user = {}
+export const addReview = async (review: {
+  rating: number
+  feedback: string
+}) => {
+  const docRef = await addDoc(collection(db, "reviews"), {
+    rating: review.rating,
+    feedback: review.feedback,
+  })
+  console.log("Document written with ID: ", docRef.id)
 }

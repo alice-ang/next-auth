@@ -1,15 +1,18 @@
-import { FC } from "react"
+import { FC, useRef, useState } from "react"
 
 type RangeProps = {
   title?: string
+  value?: number
 }
 
-export const Range: FC<RangeProps> = ({ title, children }) => {
+export const Range: FC<RangeProps> = ({ title, children, value }) => {
+  const [rangeValue, setRangeValue] = useState(null)
+
   return (
-    <div className="flex items-center">
+    <div className="flex items-center mt-3">
       {children}
       <div className="w-full items-center px-4">
-        <p className="text-center text-l">{title}</p>
+        <p className="text-center text-l font-semibold">{title}</p>
         <input
           type="range"
           min="1"
@@ -18,6 +21,7 @@ export const Range: FC<RangeProps> = ({ title, children }) => {
           list="steplist"
           className="w-full rounded-full"
           name="rangeList"
+          onChange={(e) => console.log(e.target.value)}
         />
         <output name="rangeList"></output>
         <datalist id="steplist" className="flex justify-between">

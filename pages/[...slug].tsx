@@ -1,7 +1,7 @@
-import { Layout, Listing, MapView } from "../components"
+import { Layout, Listing, MapView, Modal } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
 import { classNames, getSchoolByName, SchoolType } from "../utils"
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useEffect, useRef, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
@@ -9,7 +9,7 @@ import {
   MinusSmIcon,
   PlusSmIcon,
 } from "@heroicons/react/solid"
-import { Rating } from "../components"
+import { Rating, Range } from "../components"
 import { reviews, listings } from "../utils"
 import { NextPageContext } from "next"
 
@@ -55,9 +55,11 @@ const filters = [
 
 function SchoolPage({ props }: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("housing")
+  const [currentTab, setCurrentTab] = useState("rating")
   const [school, setSchool] = useState<SchoolType | null>(null)
+  const [open, setOpen] = useState(false)
 
+  const kitchenRef = useRef<any>(null)
   useEffect(() => {
     const getData = async () => {
       await getSchoolByName(props.school).then((res) => setSchool(res))
@@ -479,6 +481,7 @@ function SchoolPage({ props }: any) {
                       <button
                         type="button"
                         className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
+                        onClick={() => setOpen(true)}
                       >
                         Write a review
                       </button>
@@ -490,6 +493,7 @@ function SchoolPage({ props }: any) {
           </div>
         </section>
       </main>
+      {open && <Modal closeModal={setOpen} />}
     </Layout>
   )
 }
