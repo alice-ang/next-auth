@@ -72,7 +72,7 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
         </Marker> */}
         <GeolocateControl />
         <FullscreenControl position="top-left" />
-        {showPopup && (
+        {/* {showPopup && (
           <Popup
             longitude={lng}
             latitude={lat}
@@ -81,7 +81,7 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
           >
             <span className="text-l font-extrabold">Högskolan i Skövde</span>
           </Popup>
-        )}
+        )} */}
         <Source
           id="listings"
           type="geojson"

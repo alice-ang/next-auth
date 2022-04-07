@@ -1,7 +1,7 @@
 import { Layout, Listing, MapView } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
-import { classNames } from "../utils"
-import { Fragment, useState } from "react"
+import { classNames, SchoolType } from "../utils"
+import { Fragment, SetStateAction, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
@@ -11,6 +11,8 @@ import {
 } from "@heroicons/react/solid"
 import { Rating } from "../components"
 import { reviews, schools, listings } from "../utils"
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore"
+import { db } from "../firebase/clientApp"
 
 const tabs = [
   { id: "listings", name: "Listings", current: true },
@@ -55,6 +57,29 @@ const filters = [
 export default function SchoolPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("listings")
+  const [schools, setSchools] = useState<SchoolType | null>(null)
+
+  useEffect(() => {
+    const getData = async () => {
+      const q = query(collection(db, "schools"))
+      const querySnapshot = await getDocs(q)
+
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        setSchools({
+          id: doc.id,
+          name: doc.data().name,
+          lat: doc.data().lat,
+          lng: doc.data().lng,
+          numOfListings: 10,
+          numOfReviews: 10,
+        })
+        // setSchools(doc.data()))
+      })
+    }
+    getData()
+    console.log(schools)
+  }, [])
 
   return (
     <Layout>
@@ -177,9 +202,11 @@ export default function SchoolPage() {
 
       <main className="max-w-7xl mx-auto px-4">
         <div className="flex items-baseline justify-between pt-4 pb-6 ">
-          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-            Högskolan i Skövde
-          </h2>
+          {schools && (
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
+              {schools.name}
+            </h2>
+          )}
 
           <div className="flex items-center">
             <Menu as="div" className="relative inline-block text-left">
@@ -321,7 +348,7 @@ export default function SchoolPage() {
             </form>
 
             <div className=" lg:col-span-3 ">
-              <MapView lat={58.3941248} lng={13.8534906} />
+              {schools && <MapView lat={schools.lat} lng={schools.lat} />}
               <div className="max-w-2xl mx-auto mt-8 lg:max-w-7xl">
                 {/* TABS */}
                 <div className="sm:hidden">
@@ -386,7 +413,7 @@ export default function SchoolPage() {
                           <Listing
                             listing={lisitng}
                             key={lisitng.id}
-                            school={schools[0]}
+                            school={null}
                             reviews={reviews.featured}
                           />
                         ))}

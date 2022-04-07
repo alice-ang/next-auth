@@ -17,7 +17,7 @@ export type ColorType = {
 }
 
 export type SchoolType = {
-  id: number
+  id: string
   name: string
   numOfListings: number
   numOfReviews: number
@@ -41,7 +41,7 @@ export type ReviewType = {
 }
 
 export type ListingType = {
-  school?: SchoolType
+  school?: SchoolType | null
   reviews?: ReviewType["review"][]
   listing: {
     id: number
