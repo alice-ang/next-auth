@@ -11,6 +11,8 @@ type ModalProps = {
 export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const cancelButtonRef = useRef(null)
 
+  const kitchenRef = useRef<HTMLInputElement>(null)
+
   const handleCancelClick = () => {
     closeModal(false)
   }
@@ -68,7 +70,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                     Write a review
                   </Dialog.Title>
                   <div className="mt-2">
-                    <Range title="kitchen" />
+                    <Range title="kitchen" ref={kitchenRef} />
                     <Range title="bathroom" />
                     <Range title="washroom" />
                     <Range title="internet" />
@@ -98,10 +100,12 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
                   onClick={async () => {
-                    await addReview({
-                      rating: 2,
-                      feedback: "hejhejhej",
-                    }).then(() => handleCancelClick)
+                    console.log(kitchenRef.current?.value)
+
+                    // await addReview({
+                    //   rating: 2,
+                    //   feedback: "hejhejhej",
+                    // }).then(() => handleCancelClick)
                   }}
                 >
                   Post
