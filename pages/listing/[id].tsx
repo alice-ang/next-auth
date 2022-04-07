@@ -5,6 +5,18 @@ import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
 import { reviews, amenities } from "../../utils"
 
+const policies = [
+  {
+    name: "International delivery",
+    icon: StarIcon,
+    description: "Get your order in 2 years",
+  },
+  {
+    name: "Loyalty rewards",
+    icon: StarIcon,
+    description: "Don't look at other tees",
+  },
+]
 const faqs = [
   {
     question: "Lorem ipsum dolor?",
@@ -35,7 +47,7 @@ export default function ListingPage() {
           </div>
 
           {/* Product details 🐕  */}
-          <div className="p-8 max-w-2xl mx-auto mt-12 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+          <div className="bg-white  p-8 max-w-2xl mx-auto mt-6 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
@@ -43,16 +55,16 @@ export default function ListingPage() {
                 </h1>
 
                 <h2 id="information-heading" className="sr-only">
-                  Product information
+                  Listing information
                 </h2>
                 <div className="flex my-4 flex-wrap">
-                  {[0, 1, 2, 3].map((num) => {
-                    return (
-                      <span className="pr-2 pb-3" key={num}>
-                        <Badge color="gray">badge</Badge>
-                      </span>
-                    )
-                  })}
+                  <span className="pr-2 pb-3">
+                    <Badge>primary lease</Badge>
+                  </span>
+
+                  <span className="pr-2 pb-3">
+                    <Badge color="gray">doorm</Badge>
+                  </span>
                 </div>
               </div>
 
@@ -97,6 +109,40 @@ export default function ListingPage() {
                 ))}
               </dl>
             </div>
+            {/*DESCRIPTION*/}
+            <div className="mt-6">
+              <h2 className="text-sm font-semibold text-gray-900">
+                Description
+              </h2>
+
+              <div
+                className="mt-4 prose prose-sm text-gray-500"
+                dangerouslySetInnerHTML={{
+                  __html: ` 
+                <p>The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.</p>
+                <p>Looking to stock your closet? The Basic tee also comes in a 3-pack or 5-pack at a bundle discount.</p>
+              `,
+                }}
+              />
+            </div>
+            <div className="border-t border-gray-200 mt-10 pt-10">
+              <h4 className="text-center text-xl font-extrabold tracking-tight text-gray-700 sm:text-3xl">
+                Amenities
+              </h4>
+              <dl className="mt-4 space-y-4">
+                {amenities.map((item) => {
+                  return (
+                    <Rating
+                      count={item.count}
+                      totalCount={item.totalCount}
+                      title={item.type}
+                      key={item.type}
+                      color="indigo"
+                    />
+                  )
+                })}
+              </dl>
+            </div>
             <div className="mt-10">
               <h3 className="text-lg font-medium text-gray-900">
                 Share your thoughts
@@ -117,25 +163,6 @@ export default function ListingPage() {
                 Write a review
               </button>
             </div>
-            <div className="border-t border-gray-200 mt-10 pt-10">
-              <h4 className="text-center text-xl font-extrabold tracking-tight text-gray-700 sm:text-3xl">
-                Amenities
-              </h4>
-              <dl className="mt-4 space-y-4">
-                {amenities.map((item) => {
-                  return (
-                    <Rating
-                      count={item.count}
-                      totalCount={item.totalCount}
-                      title={item.type}
-                      key={item.type}
-                      color="indigo"
-                    />
-                  )
-                })}
-              </dl>
-            </div>
-
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Share</h3>
               <ul role="list" className="flex items-center space-x-6 mt-4">

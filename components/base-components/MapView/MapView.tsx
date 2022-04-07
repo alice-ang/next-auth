@@ -5,6 +5,7 @@ import Map, {
   Source,
   Popup,
   Layer,
+  NavigationControl,
 } from "react-map-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
 import type { MapRef } from "react-map-gl"
@@ -72,6 +73,7 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
         </Marker> */}
         <GeolocateControl />
         <FullscreenControl position="top-left" />
+        <NavigationControl />
         {/* {showPopup && (
           <Popup
             longitude={lng}
