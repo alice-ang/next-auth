@@ -45,7 +45,6 @@ export const AuthContextProvider = ({
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        console.log("sign out")
         setUser(null)
         router.push("/login")
       })
@@ -72,9 +71,7 @@ export const AuthContextProvider = ({
   const signInWithFacebook = () => {
     const facebookProvider = new FacebookAuthProvider()
     signInWithPopup(auth, facebookProvider)
-      .then((response) => {
-        console.log(response.user)
-      })
+      .then((response) => {})
       .catch((err) => console.log(err))
   }
 

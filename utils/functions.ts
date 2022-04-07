@@ -45,3 +45,7 @@ export const getSchoolByName = async (name: string) => {
   })
   return data[0]
 }
+
+export const addUser = async () => {
+  let user = {}
+}

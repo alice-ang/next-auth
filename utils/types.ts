@@ -1,7 +1,8 @@
 export type User = {
-  name?: string | null
-  email?: string | null
-  photo?: string | null
+  id: string
+  email: string
+  displayName: string
+  photo: string
 }
 
 export type ColorType = {

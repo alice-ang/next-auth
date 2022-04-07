@@ -1,12 +1,7 @@
 import { Layout, Listing, MapView } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
-import {
-  classNames,
-  getAllSchools,
-  getSchoolByName,
-  SchoolType,
-} from "../utils"
-import { Fragment, SetStateAction, useEffect, useState } from "react"
+import { classNames, getSchoolByName, SchoolType } from "../utils"
+import { Fragment, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
@@ -16,12 +11,10 @@ import {
 } from "@heroicons/react/solid"
 import { Rating } from "../components"
 import { reviews, listings } from "../utils"
-import { collection, getDocs, query, where } from "firebase/firestore"
-import { db } from "../firebase/clientApp"
 import { NextPageContext } from "next"
 
 const tabs = [
-  { id: "listings", name: "Listings", current: true },
+  { id: "housing", name: "Housing", current: true },
   { id: "rating", name: "Rating", current: false },
 ]
 
@@ -62,14 +55,16 @@ const filters = [
 
 function SchoolPage({ props }: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("listings")
+  const [currentTab, setCurrentTab] = useState("housing")
   const [school, setSchool] = useState<SchoolType | null>(null)
 
   useEffect(() => {
     const getData = async () => {
       await getSchoolByName(props.school).then((res) => setSchool(res))
     }
-    getData()
+    if (props.school) {
+      getData()
+    }
   }, [props])
 
   return (
@@ -339,7 +334,10 @@ function SchoolPage({ props }: any) {
             </form>
 
             <div className=" lg:col-span-3 ">
-              {school && <MapView lat={school.lat} lng={school.lng} />}
+              <MapView
+                lat={school ? school.lat : 58.3941248}
+                lng={school ? school.lng : 13.8534906}
+              />
               <div className="max-w-2xl mx-auto mt-8 lg:max-w-7xl">
                 {/* TABS */}
                 <div className="sm:hidden">
@@ -394,7 +392,7 @@ function SchoolPage({ props }: any) {
                     ))}
                   </nav>
                 </div>
-                {currentTab === "listings" && (
+                {currentTab === "housing" && (
                   <div className="mt-0 lg:col-start-6 lg:col-span-7">
                     <h3 className="sr-only">Recent reviews</h3>
 
