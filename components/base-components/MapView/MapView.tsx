@@ -3,7 +3,6 @@ import Map, {
   GeolocateControl,
   FullscreenControl,
   Source,
-  Popup,
   Layer,
   NavigationControl,
 } from "react-map-gl"
@@ -74,16 +73,7 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
         <GeolocateControl />
         <FullscreenControl position="top-left" />
         <NavigationControl />
-        {/* {showPopup && (
-          <Popup
-            longitude={lng}
-            latitude={lat}
-            anchor="bottom"
-            onClose={() => setShowPopup(false)}
-          >
-            <span className="text-l font-extrabold">Högskolan i Skövde</span>
-          </Popup>
-        )} */}
+
         <Source
           id="listings"
           type="geojson"
