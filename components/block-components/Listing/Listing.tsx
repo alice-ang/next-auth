@@ -28,7 +28,7 @@ export const Listing: FC<ListingType> = ({ listing }) => {
                   <div className="flex items-center">
                     {[0, 1, 2, 3, 4].map((rating) => (
                       <StarIcon
-                        key={rating}
+                        key={`rating${rating}`}
                         className={classNames(
                           listing.avgRating > rating
                             ? "text-yellow-400"

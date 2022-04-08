@@ -45,7 +45,7 @@ export const NavBar = () => {
                       <Link
                         href={item.value ? `${item.value}` : "#"}
                         passHref
-                        key={`key${i}`}
+                        key={`item${i}`}
                       >
                         <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
                           {item.page}

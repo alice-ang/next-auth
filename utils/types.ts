@@ -35,7 +35,6 @@ export type ReviewType = {
     author: string
     avatarSrc: string
     likes?: string
-    views?: string
     date: string
     datetime: string
   }
