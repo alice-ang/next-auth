@@ -18,9 +18,7 @@ export const reviews = {
       author: "Emily Selman",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
+      likes: "11",
       date: "December 9 at 11:43 AM",
       datetime: "2020-12-09T11:43:00",
     },
@@ -33,9 +31,7 @@ export const reviews = {
       author: "Hector Gibbons",
       avatarSrc:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
+      likes: "1",
       date: "December 9 at 11:43 AM",
       datetime: "2020-12-09T11:43:00",
     },
@@ -48,9 +44,7 @@ export const reviews = {
       author: "Lorem Ipsum",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
+      likes: "5",
       date: "December 9 at 11:43 AM",
       datetime: "2020-12-09T11:43:00",
     },
@@ -63,9 +57,7 @@ export const reviews = {
       author: "Emily Selman",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
+      likes: "2",
       date: "December 9 at 11:43 AM",
       datetime: "2020-12-09T11:43:00",
     },
@@ -78,9 +70,8 @@ export const reviews = {
       author: "Emily Selman",
       avatarSrc:
         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-      likes: "29",
-      replies: "11",
-      views: "2.7k",
+      likes: "9",
+
       date: "December 9 at 11:43 AM",
       datetime: "2020-12-09T11:43:00",
     },

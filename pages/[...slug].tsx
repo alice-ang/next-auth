@@ -1,7 +1,7 @@
-import { Layout, Listing, MapView } from "../components"
+import { Layout, Listing, MapView, Modal } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
-import { classNames } from "../utils"
-import { Fragment, useState } from "react"
+import { classNames, getSchoolByName, SchoolType } from "../utils"
+import { Fragment, useEffect, useRef, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
@@ -10,10 +10,11 @@ import {
   PlusSmIcon,
 } from "@heroicons/react/solid"
 import { Rating } from "../components"
-import { reviews, schools, listings } from "../utils"
+import { reviews, listings } from "../utils"
+import { NextPageContext } from "next"
 
 const tabs = [
-  { id: "listings", name: "Listings", current: true },
+  { id: "housing", name: "Housing", current: true },
   { id: "rating", name: "Rating", current: false },
 ]
 
@@ -52,9 +53,20 @@ const filters = [
   },
 ]
 
-export default function SchoolPage() {
+function SchoolPage({ props }: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("listings")
+  const [currentTab, setCurrentTab] = useState("rating")
+  const [school, setSchool] = useState<SchoolType | null>(null)
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const getData = async () => {
+      await getSchoolByName(props.school).then((res) => setSchool(res))
+    }
+    if (props.school) {
+      getData()
+    }
+  }, [props])
 
   return (
     <Layout>
@@ -177,9 +189,11 @@ export default function SchoolPage() {
 
       <main className="max-w-7xl mx-auto px-4">
         <div className="flex items-baseline justify-between pt-4 pb-6 ">
-          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-            Högskolan i Skövde
-          </h2>
+          {school && (
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
+              {school.name}
+            </h2>
+          )}
 
           <div className="flex items-center">
             <Menu as="div" className="relative inline-block text-left">
@@ -264,7 +278,7 @@ export default function SchoolPage() {
               {filters.map((section) => (
                 <Disclosure
                   as="div"
-                  key={section.id}
+                  key={`key${section.id}`}
                   className="border-b border-gray-200 py-6"
                 >
                   {({ open }) => (
@@ -321,29 +335,13 @@ export default function SchoolPage() {
             </form>
 
             <div className=" lg:col-span-3 ">
-              <MapView lat={58.3941248} lng={13.8534906} />
+              <MapView
+                lat={school ? school.lat : 58.3941248}
+                lng={school ? school.lng : 13.8534906}
+              />
               <div className="max-w-2xl mx-auto mt-8 lg:max-w-7xl">
                 {/* TABS */}
-                <div className="sm:hidden">
-                  <label htmlFor="tabs" className="sr-only">
-                    Select a tab
-                  </label>
-                  {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
-                  <select
-                    id="tabs"
-                    name="tabs"
-                    className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md p-2 shadow bg-white"
-                    defaultValue={currentTab}
-                    onChange={(e) =>
-                      setCurrentTab(e.target.value.toLocaleLowerCase())
-                    }
-                  >
-                    {tabs.map((tab) => (
-                      <option key={tab.name}>{tab.name}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className="hidden sm:block">
+                <div className="">
                   <nav
                     className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
                     aria-label="Tabs"
@@ -376,7 +374,7 @@ export default function SchoolPage() {
                     ))}
                   </nav>
                 </div>
-                {currentTab === "listings" && (
+                {currentTab === "housing" && (
                   <div className="mt-0 lg:col-start-6 lg:col-span-7">
                     <h3 className="sr-only">Recent reviews</h3>
 
@@ -386,7 +384,7 @@ export default function SchoolPage() {
                           <Listing
                             listing={lisitng}
                             key={lisitng.id}
-                            school={schools[0]}
+                            school={null}
                             reviews={reviews.featured}
                           />
                         ))}
@@ -463,6 +461,7 @@ export default function SchoolPage() {
                       <button
                         type="button"
                         className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
+                        onClick={() => setOpen(true)}
                       >
                         Write a review
                       </button>
@@ -474,6 +473,15 @@ export default function SchoolPage() {
           </div>
         </section>
       </main>
+      {open && <Modal closeModal={setOpen} />}
     </Layout>
   )
 }
+
+SchoolPage.getInitialProps = async (ctx: NextPageContext) => {
+  const data = ctx.query
+
+  return { props: data }
+}
+
+export default SchoolPage

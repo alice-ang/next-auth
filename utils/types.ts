@@ -1,7 +1,8 @@
 export type User = {
-  name?: string | null
-  email?: string | null
-  photo?: string | null
+  id: string
+  email: string
+  displayName: string
+  photo: string
 }
 
 export type ColorType = {
@@ -17,7 +18,7 @@ export type ColorType = {
 }
 
 export type SchoolType = {
-  id: number
+  id: string
   name: string
   numOfListings: number
   numOfReviews: number
@@ -34,14 +35,13 @@ export type ReviewType = {
     author: string
     avatarSrc: string
     likes?: string
-    views?: string
     date: string
     datetime: string
   }
 }
 
 export type ListingType = {
-  school?: SchoolType
+  school?: SchoolType | null
   reviews?: ReviewType["review"][]
   listing: {
     id: number

@@ -5,6 +5,7 @@ import Map, {
   Source,
   Popup,
   Layer,
+  NavigationControl,
 } from "react-map-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
 import type { MapRef } from "react-map-gl"
@@ -72,7 +73,8 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
         </Marker> */}
         <GeolocateControl />
         <FullscreenControl position="top-left" />
-        {showPopup && (
+        <NavigationControl />
+        {/* {showPopup && (
           <Popup
             longitude={lng}
             latitude={lat}
@@ -81,7 +83,7 @@ export const MapView: FC<MapProps> = ({ lat, lng }) => {
           >
             <span className="text-l font-extrabold">Högskolan i Skövde</span>
           </Popup>
-        )}
+        )} */}
         <Source
           id="listings"
           type="geojson"

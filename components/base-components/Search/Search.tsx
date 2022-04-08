@@ -1,8 +1,11 @@
 import { AcademicCapIcon } from "@heroicons/react/solid"
 import { useRouter } from "next/router"
+import { useRef } from "react"
 
 export const Search = () => {
+  const serachRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+
   return (
     <div>
       <div className="mt-1 flex rounded-full shadow">
@@ -14,6 +17,7 @@ export const Search = () => {
             />
           </div>
           <input
+            ref={serachRef}
             type="text"
             name="school"
             id="school"
@@ -23,7 +27,12 @@ export const Search = () => {
           />
         </div>
         <button
-          onClick={() => router.push("/search")}
+          onClick={() =>
+            router.push({
+              pathname: "/search",
+              query: { school: serachRef.current?.value },
+            })
+          }
           type="button"
           className="ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-full text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-300 focus:border-indigo-300"
         >

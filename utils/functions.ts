@@ -1,4 +1,12 @@
-import { collection, query, where, getDocs, doc } from "firebase/firestore"
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  DocumentData,
+  addDoc,
+} from "firebase/firestore"
+
 import { db } from "../firebase/clientApp"
 
 export function classNames(...classes: string[]) {
@@ -6,20 +14,53 @@ export function classNames(...classes: string[]) {
 }
 
 export const getAllSchools = async () => {
-  const querySnapshot = await getDocs(collection(db, "schools"))
+  const querySnapshot = await getDocs(query(collection(db, "schools")))
+  const data = <DocumentData>[]
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    return doc.data()
+    data.push({
+      id: doc.id,
+      name: doc.data().name,
+      lat: doc.data().lat,
+      lng: doc.data().lng,
+      numOfListings: 10,
+      numOfReviews: 10,
+    })
   })
-  return querySnapshot
+  return data
 }
 
 export const getSchoolByName = async (name: string) => {
+  const data = <DocumentData>[]
+
   const q = query(collection(db, "schools"), where("name", "==", name))
 
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    return doc.data()
+    data.push({
+      id: doc.id,
+      name: doc.data().name,
+      lat: doc.data().lat,
+      lng: doc.data().lng,
+      numOfListings: 10,
+      numOfReviews: 10,
+    })
   })
+  return data[0]
+}
+
+export const addReview = async (review: {
+  kitchen: string
+  bathroom: string
+  washroom: string
+  internet: string
+  feedback: string
+}) => {
+  const docRef = await addDoc(collection(db, "reviews"), {
+    kitchen: review.kitchen,
+    bathroom: review.bathroom,
+    washroom: review.washroom,
+    internet: review.internet,
+    feedback: review.feedback,
+  })
+  console.log("Document written with ID: ", docRef.id)
 }

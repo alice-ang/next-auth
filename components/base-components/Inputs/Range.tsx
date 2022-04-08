@@ -1,16 +1,16 @@
-import { FC } from "react"
+import React, { forwardRef } from "react"
 
-type RangeProps = {
-  title?: string
+type Props = {
+  title: string
 }
 
-export const Range: FC<RangeProps> = ({ title, children }) => {
+const Range = forwardRef<HTMLInputElement, Props>(({ title }, ref) => {
   return (
-    <div className="flex items-center">
-      {children}
+    <div className="flex items-center mt-3">
       <div className="w-full items-center px-4">
-        <p className="text-center text-l">{title}</p>
+        <p className="text-center text-l font-semibold">{title}</p>
         <input
+          ref={ref}
           type="range"
           min="1"
           max="5"
@@ -30,4 +30,8 @@ export const Range: FC<RangeProps> = ({ title, children }) => {
       </div>
     </div>
   )
-}
+})
+
+Range.displayName = "Range"
+
+export default Range

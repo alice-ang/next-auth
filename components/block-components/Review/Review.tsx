@@ -63,20 +63,6 @@ export const Review: FC<ReviewType> = ({ review, showButton }) => {
               </button>
             </span>
           ) : null}
-          {review.views ? (
-            <span className="inline-flex items-center text-sm">
-              <button
-                type="button"
-                className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
-              >
-                <EyeIcon className="h-5 w-5" aria-hidden="true" />
-                <span className="font-medium text-gray-900">
-                  {review.views}
-                </span>
-                <span className="sr-only">views</span>
-              </button>
-            </span>
-          ) : null}
         </div>
         {showButton && (
           <span className="inline-flex items-center text-sm">
