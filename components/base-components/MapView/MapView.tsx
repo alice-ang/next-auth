@@ -1,93 +1,49 @@
-import { FC, useRef, useState } from "react"
-import Map, {
-  GeolocateControl,
-  FullscreenControl,
-  Source,
-  Layer,
-  NavigationControl,
-} from "react-map-gl"
+import React, { FC, useEffect, useRef, useState } from "react"
+import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
-import type { MapRef } from "react-map-gl"
-import type { GeoJSONSource } from "react-map-gl"
-
-import {
-  clusterLayer,
-  clusterCountLayer,
-  unclusteredPointLayer,
-  polygonLayer,
-} from "./layers"
 
 type MapProps = {
   lat: number
   lng: number
+  initialOptions?: Omit<mapboxgl.MapboxOptions, "container">
+  onMapLoaded?(map: mapboxgl.Map): void
+  onMapRemoved?(): void
 }
 
-export const MapView: FC<MapProps> = ({ lat, lng }) => {
-  const mapRef = useRef<MapRef>(null)
-  const [showPopup, setShowPopup] = useState(true)
+export const MapView: FC<MapProps> = ({
+  initialOptions = {},
+  onMapLoaded,
+  lat,
+  lng,
+}) => {
+  // this is where the map instance will be stored after initialization
+  const [map, setMap] = useState<mapboxgl.Map>()
 
-  const [settings, setsettings] = useState({
-    dragPan: true,
-    dragRotate: false,
-    scrollZoom: false,
-    touchZoom: true,
-    touchRotate: false,
-    keyboard: false,
-    doubleClickZoom: true,
-  })
-  const onClick = (event: any) => {
-    const feature = event.features[0]
-    const clusterId = feature.properties.cluster_id
+  const mapNode = useRef(null)
 
-    const mapboxSource = mapRef.current?.getSource("listings") as GeoJSONSource
-    mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
-      if (err) {
-        return
-      }
+  useEffect(() => {
+    const node = mapNode.current
+    if (typeof window === "undefined" || node === null) return
 
-      mapRef.current?.easeTo({
-        center: feature.geometry.coordinates,
-        zoom,
-        duration: 500,
-      })
+    // otherwise, create a map instance
+    const mapboxMap = new mapboxgl.Map({
+      container: node,
+      accessToken: process.env.NEXT_PUBLIC_MAPBOX_API,
+      style: "mapbox://styles/mapbox/streets-v9",
+      center: [lng, lat],
+      zoom: 14,
     })
-  }
 
-  return (
-    <div className="h-[350px] lg:h-[500px] w-full">
-      <Map
-        {...settings}
-        ref={mapRef}
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API}
-        initialViewState={{
-          longitude: lng,
-          latitude: lat,
-          zoom: 14,
-        }}
-        style={{ width: "100%", height: "100%" }}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-      >
-        {/* <Marker longitude={lng} latitude={lat} anchor="bottom">
-          <img src="/location_review.svg" className="h-10 w-10" />
-        </Marker> */}
-        <GeolocateControl />
-        <FullscreenControl position="top-left" />
-        <NavigationControl />
+    // save the map object to React.useState
+    setMap(mapboxMap)
 
-        <Source
-          id="listings"
-          type="geojson"
-          data="./listings.geojson"
-          cluster={true}
-          clusterMaxZoom={14}
-          clusterRadius={50}
-        >
-          <Layer {...polygonLayer} />
-          <Layer {...clusterLayer} />
-          <Layer {...clusterCountLayer} />
-          <Layer {...unclusteredPointLayer} />
-        </Source>
-      </Map>
-    </div>
-  )
+    if (onMapLoaded) mapboxMap.once("load", onMapLoaded)
+
+    return () => {
+      mapboxMap.remove()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return <div ref={mapNode} className="h-[350px] lg:h-[500px] w-full" />
 }
