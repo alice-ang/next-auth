@@ -2,7 +2,8 @@ import React, { FC, useEffect, useRef, useState } from "react"
 import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
 import { MapLoader } from "./MapLoader"
-
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css"
 type MapProps = {
   lat: number
   lng: number
@@ -35,9 +36,16 @@ export const MapView: FC<MapProps> = ({
       zoom: 14,
     })
 
+    // mapboxMap.addControl(new mapboxgl.NavigationControl(), "top-right")
+
     // save the map object to React.useState
     setMap(mapboxMap)
-
+    mapboxMap.addControl(
+      new MapboxGeocoder({
+        accessToken: process.env.NEXT_PUBLIC_MAPBOX_API,
+        mapboxgl: mapboxgl,
+      })
+    )
     if (onMapLoaded) {
       mapboxMap.once("load", onMapLoaded)
     }
@@ -48,5 +56,5 @@ export const MapView: FC<MapProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <div ref={mapNode} className="h-[350px] lg:h-[500px] w-full" />
+  return <div ref={mapNode} className="h-[350px] lg:h-[500px] w-full"></div>
 }
