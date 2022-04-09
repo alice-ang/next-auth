@@ -4,6 +4,7 @@ import { PencilIcon, EmojiSadIcon } from "@heroicons/react/solid"
 import { Range } from "../Inputs"
 import { addReview, useAuth } from "../../../utils"
 import { useRouter } from "next/router"
+import { MapView } from "../MapView"
 
 type ModalProps = {
   closeModal: any
@@ -79,6 +80,14 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       >
                         Write a review
                       </Dialog.Title>
+                      <div className="mt-2">
+                        Enter an address
+                        <MapView
+                          lat={58.3941248}
+                          lng={13.8534906}
+                          showGeocoder
+                        />
+                      </div>
                       <div className="mt-2">
                         <Range title="kitchen" ref={kitchenRef} />
                         <Range title="bathroom" ref={bathroomRef} />
@@ -192,7 +201,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           washroom: washroomRef.current.value,
                           internet: internetRef.current.value,
                           feedback: feedbackRef.current.value,
-                        }).then(() => handleCancelClick)
+                        }).then(() => console.log("dibe"))
                       } else {
                         handleCancelClick
                       }

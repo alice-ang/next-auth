@@ -380,10 +380,10 @@ function SchoolPage({ props }: any) {
 
                     <div className="flow-root">
                       <div className="mt-6">
-                        {listings.map((lisitng) => (
+                        {listings.map((lisitng, i) => (
                           <Listing
                             listing={lisitng}
-                            key={lisitng.id}
+                            key={`listing${i}`}
                             school={null}
                             reviews={reviews.featured}
                           />
@@ -403,9 +403,9 @@ function SchoolPage({ props }: any) {
                     <div className="mt-3 flex items-center">
                       <div>
                         <div className="flex items-center">
-                          {[0, 1, 2, 3, 4].map((rating) => (
+                          {[0, 1, 2, 3, 4].map((rating, i) => (
                             <StarIcon
-                              key={rating}
+                              key={`star${i}`}
                               className={classNames(
                                 reviews.average > rating
                                   ? "text-yellow-400"
@@ -429,12 +429,12 @@ function SchoolPage({ props }: any) {
                       <h3 className="sr-only">Review data</h3>
 
                       <dl className="space-y-3">
-                        {reviews.counts.map((count) => (
+                        {reviews.counts.map((count, i) => (
                           <Rating
                             count={count.count}
                             totalCount={reviews.totalCount}
                             rating={count.rating}
-                            key={count.rating}
+                            key={`count.rating${i}`}
                           >
                             <StarIcon
                               className={classNames(
@@ -460,7 +460,7 @@ function SchoolPage({ props }: any) {
                       </p>
                       <button
                         type="button"
-                        className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
+                        className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 "
                         onClick={() => setOpen(true)}
                       >
                         Write a review

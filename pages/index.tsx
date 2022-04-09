@@ -1,5 +1,5 @@
-import { Hero, Layout } from "../components"
-import { SpeakerphoneIcon, XIcon } from "@heroicons/react/outline"
+import { BlogSection, FAQ, Hero, Layout } from "../components"
+import { XIcon } from "@heroicons/react/outline"
 import { useState } from "react"
 
 export default function IndexPage() {
@@ -39,6 +39,8 @@ export default function IndexPage() {
       )}
 
       <Hero />
+      <BlogSection />
+      <FAQ />
     </Layout>
   )
 }

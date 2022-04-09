@@ -7,8 +7,6 @@ import { XIcon } from "@heroicons/react/solid"
 export const Notification = ({ isShown }: { isShown: boolean }) => {
   const [show, setShow] = useState(isShown)
 
-  console.log("NOTIFUCATION")
-
   return (
     <div
       aria-live="assertive"

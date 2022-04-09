@@ -74,7 +74,7 @@ export default function ListingPage() {
                 <div className="flex items-center">
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
-                      key={rating}
+                      key={`rating${rating}`}
                       className={classNames(
                         reviews.average > rating
                           ? "text-yellow-400"
@@ -92,12 +92,12 @@ export default function ListingPage() {
               <h3 className="sr-only">Review data</h3>
 
               <dl className="space-y-3">
-                {reviews.counts.map((count) => (
+                {reviews.counts.map((count, i) => (
                   <Rating
                     count={count.count}
                     totalCount={reviews.totalCount}
                     rating={count.rating}
-                    key={count.count}
+                    key={`count${i}`}
                   >
                     <StarIcon
                       className={classNames(
@@ -154,10 +154,7 @@ export default function ListingPage() {
               </p>
               <button
                 type="button"
-                className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full
-                        transition
-                        duration-150
-                        ease-in-out"
+                className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 "
                 onClick={() => setOpen(true)}
               >
                 Write a review
@@ -264,7 +261,7 @@ export default function ListingPage() {
                   <h3 className="sr-only">Student Reviews</h3>
 
                   {reviews.featured.map((review, i) => (
-                    <Review review={review} key={i} />
+                    <Review review={review} key={`featured${i}`} />
                   ))}
                 </Tab.Panel>
 

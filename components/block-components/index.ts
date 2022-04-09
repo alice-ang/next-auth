@@ -1,4 +1,6 @@
+export * from "./BlogSection"
 export * from "./Hero"
+export * from "./FAQ"
 export * from "./Layout"
 export * from "./NavBar"
 export * from "./Review"

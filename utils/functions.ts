@@ -61,6 +61,6 @@ export const addReview = async (review: {
     washroom: review.washroom,
     internet: review.internet,
     feedback: review.feedback,
+    status: "pending",
   })
-  console.log("Document written with ID: ", docRef.id)
 }

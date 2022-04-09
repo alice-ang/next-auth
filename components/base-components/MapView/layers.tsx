@@ -1,6 +1,4 @@
-import type { LayerProps } from "react-map-gl"
-
-export const clusterLayer: LayerProps = {
+export const clusterLayer = {
   id: "clusters",
   type: "circle",
   source: "listings",
@@ -19,7 +17,7 @@ export const clusterLayer: LayerProps = {
   },
 }
 
-export const clusterCountLayer: LayerProps = {
+export const clusterCountLayer = {
   id: "cluster-count",
   type: "symbol",
   source: "listings",
@@ -34,7 +32,7 @@ export const clusterCountLayer: LayerProps = {
   },
 }
 
-export const unclusteredPointLayer: LayerProps = {
+export const unclusteredPointLayer = {
   id: "unclustered-point",
   type: "circle",
   source: "listings",
@@ -44,15 +42,5 @@ export const unclusteredPointLayer: LayerProps = {
     "circle-radius": 10,
     "circle-stroke-width": 1,
     "circle-stroke-color": "#fff",
-  },
-}
-
-export const polygonLayer: LayerProps = {
-  id: "school-polygon",
-  type: "fill",
-  source: "listings",
-  paint: {
-    "fill-color": "#0080ff", // blue color fill
-    "fill-opacity": 0.5,
   },
 }

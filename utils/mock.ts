@@ -232,3 +232,11 @@ export const listings = [
     lng: 13.854253,
   },
 ]
+
+export const steps = [
+  { name: "Step 1", status: "complete" },
+  { name: "Step 2", status: "complete" },
+  { name: "Step 3", status: "current" },
+  { name: "Step 4", status: "upcoming" },
+  { name: "Step 5", status: "upcoming" },
+]

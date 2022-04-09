@@ -1,4 +1,3 @@
-import { SessionProvider } from "next-auth/react"
 import type { AppProps } from "next/app"
 import "./styles.css"
 import "tailwindcss/tailwind.css"
@@ -8,19 +7,17 @@ import { ProtectedRoute } from "../components"
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
-  const authRequired = ["profile", "admin"]
+  const authRequired = ["profile"]
 
   return (
-    <SessionProvider session={pageProps.session} refetchInterval={0}>
-      <AuthContextProvider>
-        {authRequired.includes(router.pathname) ? (
-          <ProtectedRoute>
-            <Component {...pageProps} />
-          </ProtectedRoute>
-        ) : (
+    <AuthContextProvider>
+      {authRequired.includes(router.pathname) ? (
+        <ProtectedRoute>
           <Component {...pageProps} />
-        )}
-      </AuthContextProvider>
-    </SessionProvider>
+        </ProtectedRoute>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </AuthContextProvider>
   )
 }
