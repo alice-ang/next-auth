@@ -1,12 +1,13 @@
 import React, { FC, useEffect, useRef, useState } from "react"
 import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
-import { MapLoader } from "./MapLoader"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css"
+
 type MapProps = {
   lat: number
   lng: number
+  showGeocoder?: boolean
   initialOptions?: Omit<mapboxgl.MapboxOptions, "container">
   onMapLoaded?(map: mapboxgl.Map): void
   onMapRemoved?(): void
@@ -17,6 +18,7 @@ export const MapView: FC<MapProps> = ({
   onMapLoaded,
   lat,
   lng,
+  showGeocoder,
 }) => {
   // this is where the map instance will be stored after initialization
   const [map, setMap] = useState<mapboxgl.Map>()
@@ -36,16 +38,28 @@ export const MapView: FC<MapProps> = ({
       zoom: 14,
     })
 
-    // mapboxMap.addControl(new mapboxgl.NavigationControl(), "top-right")
+    const geocoder = new MapboxGeocoder({
+      accessToken: process.env.NEXT_PUBLIC_MAPBOX_API ?? "",
+    })
 
-    // save the map object to React.useState
+    geocoder.on("result", function (e) {
+      const popup = new mapboxgl.Popup({ offset: 25 }).setText(
+        `${e.result.place_name}`
+      )
+      geocoder.clear()
+      const marker = new mapboxgl.Marker({ draggable: true, color: "#6B63FC" })
+        .setLngLat(e.result.center)
+        .setPopup(popup)
+        .addTo(mapboxMap)
+    })
+
+    mapboxMap.addControl(new mapboxgl.NavigationControl(), "bottom-right")
+    if (showGeocoder) {
+      mapboxMap.addControl(geocoder)
+    }
+
     setMap(mapboxMap)
-    mapboxMap.addControl(
-      new MapboxGeocoder({
-        accessToken: process.env.NEXT_PUBLIC_MAPBOX_API,
-        mapboxgl: mapboxgl,
-      })
-    )
+
     if (onMapLoaded) {
       mapboxMap.once("load", onMapLoaded)
     }
