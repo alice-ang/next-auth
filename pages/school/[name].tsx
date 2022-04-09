@@ -80,7 +80,7 @@ export default function FullSchoolPage() {
                 <div className="flex my-4 flex-wrap">
                   {[0, 1, 2, 3].map((i) => {
                     return (
-                      <span className="pr-2 pb-3" key={i}>
+                      <span className="pr-2 pb-3" key={`badge${i}`}>
                         <Badge>badge</Badge>
                       </span>
                     )
@@ -91,9 +91,9 @@ export default function FullSchoolPage() {
               <div>
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
-                  {[0, 1, 2, 3, 4].map((rating) => (
+                  {[0, 1, 2, 3, 4].map((rating, i) => (
                     <StarIcon
-                      key={rating}
+                      key={`star${i}`}
                       className={classNames(
                         reviews.average > rating
                           ? "text-yellow-400"

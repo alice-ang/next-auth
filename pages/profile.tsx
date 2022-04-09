@@ -185,7 +185,7 @@ export default function ProfilePage() {
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
                     {activities.map((activity, i) => (
-                      <tr key={i}>
+                      <tr key={`activity${i}`}>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-indigo-500">
                           <div className="flex items-center">
                             <div className=" flex-shrink-0">
