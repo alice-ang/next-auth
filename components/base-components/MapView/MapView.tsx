@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css"
+import { Marker } from "react-map-gl"
 
 type MapProps = {
   lat: number
@@ -22,7 +23,7 @@ export const MapView: FC<MapProps> = ({
 }) => {
   // this is where the map instance will be stored after initialization
   const [map, setMap] = useState<mapboxgl.Map>()
-
+  const [currentMarker, setCurrentMarker] = useState<mapboxgl.Marker>()
   const mapNode = useRef(null)
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export const MapView: FC<MapProps> = ({
 
     const geocoder = new MapboxGeocoder({
       accessToken: process.env.NEXT_PUBLIC_MAPBOX_API ?? "",
+      marker: false,
     })
 
     geocoder.on("result", function (e) {
@@ -47,10 +49,26 @@ export const MapView: FC<MapProps> = ({
         `${e.result.place_name}`
       )
       geocoder.clear()
-      const marker = new mapboxgl.Marker({ draggable: true, color: "#6B63FC" })
-        .setLngLat(e.result.center)
-        .setPopup(popup)
-        .addTo(mapboxMap)
+
+      setCurrentMarker(
+        new mapboxgl.Marker({
+          draggable: true,
+          color: "#6B63FC",
+        })
+      )
+      if (currentMarker) {
+        currentMarker
+          .setLngLat(e.result.center)
+          .setPopup(popup)
+          .addTo(mapboxMap)
+      }
+
+      setCurrentMarker(
+        new mapboxgl.Marker({
+          draggable: true,
+          color: "#6B63FC",
+        })
+      )
     })
 
     mapboxMap.addControl(new mapboxgl.NavigationControl(), "bottom-right")

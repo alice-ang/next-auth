@@ -460,7 +460,7 @@ function SchoolPage({ props }: any) {
                       </p>
                       <button
                         type="button"
-                        className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
+                        className="mt-6 inline-flex w-full border border-gray-300 rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-50 "
                         onClick={() => setOpen(true)}
                       >
                         Write a review
