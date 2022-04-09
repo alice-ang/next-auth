@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from "react"
 import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
+import { MapLoader } from "./MapLoader"
 
 type MapProps = {
   lat: number
@@ -37,7 +38,9 @@ export const MapView: FC<MapProps> = ({
     // save the map object to React.useState
     setMap(mapboxMap)
 
-    if (onMapLoaded) mapboxMap.once("load", onMapLoaded)
+    if (onMapLoaded) {
+      mapboxMap.once("load", onMapLoaded)
+    }
 
     return () => {
       mapboxMap.remove()

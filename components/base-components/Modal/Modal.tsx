@@ -192,7 +192,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           washroom: washroomRef.current.value,
                           internet: internetRef.current.value,
                           feedback: feedbackRef.current.value,
-                        }).then(() => handleCancelClick)
+                        }).then(() => console.log("dibe"))
                       } else {
                         handleCancelClick
                       }

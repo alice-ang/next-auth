@@ -37,6 +37,7 @@ export type ReviewType = {
     likes?: string
     date: string
     datetime: string
+    status: "pending" | "approved" | "declined"
   }
 }
 
