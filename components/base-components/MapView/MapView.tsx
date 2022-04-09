@@ -50,7 +50,6 @@ export const MapView: FC<MapProps> = ({
 
       setCurrentMarker(
         new mapboxgl.Marker({
-          draggable: true,
           color: "#6B63FC",
         })
       )
