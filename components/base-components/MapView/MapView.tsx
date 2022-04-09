@@ -3,7 +3,6 @@ import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css"
-import { Marker } from "react-map-gl"
 
 type MapProps = {
   lat: number
@@ -15,7 +14,6 @@ type MapProps = {
 }
 
 export const MapView: FC<MapProps> = ({
-  initialOptions = {},
   onMapLoaded,
   lat,
   lng,
@@ -62,13 +60,6 @@ export const MapView: FC<MapProps> = ({
           .setPopup(popup)
           .addTo(mapboxMap)
       }
-
-      setCurrentMarker(
-        new mapboxgl.Marker({
-          draggable: true,
-          color: "#6B63FC",
-        })
-      )
     })
 
     mapboxMap.addControl(new mapboxgl.NavigationControl(), "bottom-right")
