@@ -7,7 +7,7 @@ import { ProtectedRoute } from "../components"
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
-  const authRequired = ["profile", "admin"]
+  const authRequired = ["profile"]
 
   return (
     <AuthContextProvider>

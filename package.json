@@ -34,7 +34,6 @@
     "@types/mapbox": "^1.6.42",
     "@types/mapbox__mapbox-gl-geocoder": "^4.7.2",
     "@types/react-map-gl": "^6.1.2",
-    "deck.gl": "^8.7.5",
     "firebase": "^9.6.10",
     "firebase-tools": "^10.6.0",
     "framer-motion": "^6",

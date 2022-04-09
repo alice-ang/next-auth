@@ -34,7 +34,6 @@ export default function LoginPage() {
       console.log(err)
     }
     formRef.current?.reset()
-    console.log(formRef.current)
   }
 
   return (
