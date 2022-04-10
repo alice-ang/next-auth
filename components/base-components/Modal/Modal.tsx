@@ -1,4 +1,4 @@
-import { FC, Fragment, useRef } from "react"
+import { FC, Fragment, useCallback, useRef, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { PencilIcon, EmojiSadIcon } from "@heroicons/react/solid"
 import { Range } from "../Inputs"
@@ -13,6 +13,8 @@ type ModalProps = {
 export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const { user } = useAuth()
   const router = useRouter()
+  const [address, setAddress] = useState<string>("")
+
   const cancelButtonRef = useRef(null)
 
   const kitchenRef = useRef<HTMLInputElement>(null)
@@ -25,7 +27,10 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const handleCancelClick = () => {
     closeModal(false)
   }
-
+  const callback = useCallback((address) => {
+    console.log(typeof address)
+    setAddress(address)
+  }, [])
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog
@@ -86,6 +91,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           lat={58.3941248}
                           lng={13.8534906}
                           showGeocoder
+                          addressCallback={callback}
                         />
                       </div>
                       <div className="mt-2">
@@ -193,7 +199,8 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         bathroomRef.current &&
                         washroomRef.current &&
                         internetRef.current &&
-                        feedbackRef.current
+                        feedbackRef.current &&
+                        address
                       ) {
                         await addReview({
                           kitchen: kitchenRef.current.value,
@@ -201,9 +208,10 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           washroom: washroomRef.current.value,
                           internet: internetRef.current.value,
                           feedback: feedbackRef.current.value,
-                        }).then(() => console.log("dibe"))
+                          address: address,
+                        }).then(() => handleCancelClick())
                       } else {
-                        handleCancelClick
+                        handleCancelClick()
                       }
                     }}
                   >

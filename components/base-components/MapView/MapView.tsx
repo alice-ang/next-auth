@@ -11,10 +11,12 @@ type MapProps = {
   initialOptions?: Omit<mapboxgl.MapboxOptions, "container">
   onMapLoaded?(map: mapboxgl.Map): void
   onMapRemoved?(): void
+  addressCallback?: any
 }
 
 export const MapView: FC<MapProps> = ({
   onMapLoaded,
+  addressCallback,
   lat,
   lng,
   showGeocoder,
@@ -48,6 +50,7 @@ export const MapView: FC<MapProps> = ({
       )
       geocoder.clear()
 
+      addressCallback(e.result.place_name)
       setCurrentMarker(
         new mapboxgl.Marker({
           color: "#6B63FC",

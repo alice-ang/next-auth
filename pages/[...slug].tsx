@@ -1,7 +1,7 @@
 import { Layout, Listing, MapView, Modal } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
 import { classNames, getSchoolByName, SchoolType } from "../utils"
-import { Fragment, useEffect, useRef, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
