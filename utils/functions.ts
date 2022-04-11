@@ -55,6 +55,7 @@ export const addReview = async (review: {
   internet: string
   feedback: string
   address: string
+  coordinates: []
 }) => {
   const docRef = await addDoc(collection(db, "reviews"), {
     kitchen: review.kitchen,
@@ -63,6 +64,7 @@ export const addReview = async (review: {
     internet: review.internet,
     feedback: review.feedback,
     address: review.address,
+    coordinates: review.coordinates,
     status: "pending",
   })
 }

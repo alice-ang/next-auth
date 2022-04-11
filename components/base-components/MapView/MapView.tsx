@@ -11,12 +11,12 @@ type MapProps = {
   initialOptions?: Omit<mapboxgl.MapboxOptions, "container">
   onMapLoaded?(map: mapboxgl.Map): void
   onMapRemoved?(): void
-  addressCallback?: any
+  infoCallback?: any
 }
 
 export const MapView: FC<MapProps> = ({
   onMapLoaded,
-  addressCallback,
+  infoCallback,
   lat,
   lng,
   showGeocoder,
@@ -30,7 +30,6 @@ export const MapView: FC<MapProps> = ({
     const node = mapNode.current
     if (typeof window === "undefined" || node === null) return
 
-    // otherwise, create a map instance
     const mapboxMap = new mapboxgl.Map({
       container: node,
       accessToken: process.env.NEXT_PUBLIC_MAPBOX_API,
@@ -50,7 +49,10 @@ export const MapView: FC<MapProps> = ({
       )
       geocoder.clear()
 
-      addressCallback(e.result.place_name)
+      infoCallback({
+        address: e.result.place_name,
+        coordinates: e.result.center.reverse(),
+      })
 
       if (!currentMarker) {
         setCurrentMarker(

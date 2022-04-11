@@ -13,7 +13,10 @@ type ModalProps = {
 export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const { user } = useAuth()
   const router = useRouter()
-  const [address, setAddress] = useState<string>("")
+  const [mapInfo, setMapInfo] = useState<{
+    address: string
+    coordinates: []
+  }>()
   const cancelButtonRef = useRef(null)
 
   const kitchenRef = useRef<HTMLInputElement>(null)
@@ -26,8 +29,8 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const handleCancelClick = () => {
     closeModal(false)
   }
-  const callback = useCallback((address) => {
-    setAddress(address)
+  const callback = useCallback((info) => {
+    setMapInfo(info)
   }, [])
 
   return (
@@ -88,7 +91,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           lat={58.3941248}
                           lng={13.8534906}
                           showGeocoder
-                          addressCallback={callback}
+                          infoCallback={callback}
                         />
                       </div>
                       <div className="mt-2">
@@ -197,7 +200,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         washroomRef.current &&
                         internetRef.current &&
                         feedbackRef.current &&
-                        address
+                        mapInfo
                       ) {
                         await addReview({
                           kitchen: kitchenRef.current.value,
@@ -205,7 +208,8 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           washroom: washroomRef.current.value,
                           internet: internetRef.current.value,
                           feedback: feedbackRef.current.value,
-                          address: address,
+                          address: mapInfo.address,
+                          coordinates: mapInfo.coordinates,
                         }).then(() => handleCancelClick())
                       } else {
                         handleCancelClick()
