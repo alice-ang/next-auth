@@ -3,7 +3,7 @@ import { FC } from "react"
 import { classNames } from "../../../utils"
 
 type Step = {
-  status: "complete" | "current" | "upcoming"
+  status: string
   name: string
 }
 type Props = {

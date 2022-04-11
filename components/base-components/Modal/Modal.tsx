@@ -14,7 +14,6 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const { user } = useAuth()
   const router = useRouter()
   const [address, setAddress] = useState<string>("")
-
   const cancelButtonRef = useRef(null)
 
   const kitchenRef = useRef<HTMLInputElement>(null)
@@ -28,9 +27,9 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
     closeModal(false)
   }
   const callback = useCallback((address) => {
-    console.log(typeof address)
     setAddress(address)
   }, [])
+
   return (
     <Transition.Root show={true} as={Fragment}>
       <Dialog
@@ -51,8 +50,6 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-
-          {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className="hidden sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
@@ -85,7 +82,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       >
                         Write a review
                       </Dialog.Title>
-                      <div className="mt-2">
+                      <div className="mt-2  text-l font-semibold">
                         Enter an address
                         <MapView
                           lat={58.3941248}

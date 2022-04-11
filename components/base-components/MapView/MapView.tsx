@@ -51,11 +51,13 @@ export const MapView: FC<MapProps> = ({
       geocoder.clear()
 
       addressCallback(e.result.place_name)
+
       setCurrentMarker(
         new mapboxgl.Marker({
           color: "#6B63FC",
         })
       )
+
       if (currentMarker) {
         currentMarker
           .setLngLat(e.result.center)
@@ -72,67 +74,69 @@ export const MapView: FC<MapProps> = ({
     setMap(mapboxMap)
 
     mapboxMap.on("load", () => {
-      mapboxMap.addSource("listings", {
-        type: "geojson",
-        data: "./listings.geojson",
-        cluster: true,
-        clusterMaxZoom: 14, // Max zoom to cluster points on
-        clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
-      })
+      if (!showGeocoder) {
+        mapboxMap.addSource("listings", {
+          type: "geojson",
+          data: "./listings.geojson",
+          cluster: true,
+          clusterMaxZoom: 14, // Max zoom to cluster points on
+          clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+        })
 
-      mapboxMap.addLayer({
-        id: "clusters",
-        type: "circle",
-        source: "listings",
-        filter: ["has", "point_count"],
-        paint: {
-          "circle-color": [
-            "step",
-            ["get", "point_count"],
-            "#6c63ff",
-            100,
-            "#f1f075",
-            750,
-            "#f28cb1",
-          ],
-          "circle-radius": [
-            "step",
-            ["get", "point_count"],
-            20,
-            100,
-            30,
-            750,
-            40,
-          ],
-        },
-      })
+        mapboxMap.addLayer({
+          id: "clusters",
+          type: "circle",
+          source: "listings",
+          filter: ["has", "point_count"],
+          paint: {
+            "circle-color": [
+              "step",
+              ["get", "point_count"],
+              "#6c63ff",
+              100,
+              "#f1f075",
+              750,
+              "#f28cb1",
+            ],
+            "circle-radius": [
+              "step",
+              ["get", "point_count"],
+              20,
+              100,
+              30,
+              750,
+              40,
+            ],
+          },
+        })
 
-      mapboxMap.addLayer({
-        id: "cluster-count",
-        type: "symbol",
-        source: "listings",
-        filter: ["has", "point_count"],
-        layout: {
-          "text-field": "{point_count_abbreviated}",
-          "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-          "text-size": 15,
-        },
-        paint: {
-          "text-color": "#ffffff",
-        },
-      })
-      mapboxMap.addLayer({
-        id: "unclustered-point",
-        type: "circle",
-        source: "listings",
-        filter: ["!", ["has", "point_count"]],
-        paint: {
-          "circle-color": "#6c63ff",
-          "circle-radius": 10,
-          "circle-stroke-width": 1,
-          "circle-stroke-color": "#fff",
-        },
-      })
+        mapboxMap.addLayer({
+          id: "cluster-count",
+          type: "symbol",
+          source: "listings",
+          filter: ["has", "point_count"],
+          layout: {
+            "text-field": "{point_count_abbreviated}",
+            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+            "text-size": 15,
+          },
+          paint: {
+            "text-color": "#ffffff",
+          },
+        })
+        mapboxMap.addLayer({
+          id: "unclustered-point",
+          type: "circle",
+          source: "listings",
+          filter: ["!", ["has", "point_count"]],
+          paint: {
+            "circle-color": "#6c63ff",
+            "circle-radius": 10,
+            "circle-stroke-width": 1,
+            "circle-stroke-color": "#fff",
+          },
+        })
+      }
     })
 
     if (onMapLoaded) {
