@@ -17,9 +17,9 @@ export const Review: FC<ReviewType> = ({ review, showButton }) => {
           <div className="ml-4">
             <h4 className="text-sm font-bold text-gray-900">{review.author}</h4>
             <div className="mt-1 flex items-center">
-              {[0, 1, 2, 3, 4].map((rating) => (
+              {[0, 1, 2, 3, 4].map((rating, i) => (
                 <StarIcon
-                  key={review.rating}
+                  key={`review${i}`}
                   className={classNames(
                     review.rating > rating
                       ? "text-yellow-400"

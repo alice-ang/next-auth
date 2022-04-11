@@ -54,20 +54,10 @@ export const MapView: FC<MapProps> = ({
         coordinates: e.result.center.reverse(),
       })
 
-      if (!currentMarker) {
-        setCurrentMarker(
-          new mapboxgl.Marker({
-            color: "#6B63FC",
-          })
-        )
-      }
-
-      if (currentMarker) {
-        currentMarker
-          .setLngLat(e.result.center)
-          .setPopup(popup)
-          .addTo(mapboxMap)
-      }
+      const marker = new mapboxgl.Marker({
+        color: "#6B63FC",
+      })
+      marker.setLngLat(e.result.center).setPopup(popup).addTo(mapboxMap)
     })
 
     mapboxMap.addControl(new mapboxgl.NavigationControl(), "bottom-right")

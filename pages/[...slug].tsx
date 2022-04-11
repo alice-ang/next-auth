@@ -127,7 +127,7 @@ function SchoolPage({ props }: any) {
                 {filters.map((section) => (
                   <Disclosure
                     as="div"
-                    key={section.id}
+                    key={`section.id${section.id}`}
                     className="border-t border-gray-200 px-4 py-6"
                   >
                     {({ open }) => (
