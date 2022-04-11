@@ -82,7 +82,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       >
                         Write a review
                       </Dialog.Title>
-                      <div className="mt-2  text-l font-semibold">
+                      <div className="mt-2 text-l font-semibold">
                         Enter an address
                         <MapView
                           lat={58.3941248}

@@ -52,11 +52,13 @@ export const MapView: FC<MapProps> = ({
 
       addressCallback(e.result.place_name)
 
-      setCurrentMarker(
-        new mapboxgl.Marker({
-          color: "#6B63FC",
-        })
-      )
+      if (!currentMarker) {
+        setCurrentMarker(
+          new mapboxgl.Marker({
+            color: "#6B63FC",
+          })
+        )
+      }
 
       if (currentMarker) {
         currentMarker
@@ -149,5 +151,13 @@ export const MapView: FC<MapProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <div ref={mapNode} className="h-[350px] lg:h-[500px] w-full"></div>
+  return (
+    <>
+      {showGeocoder ? (
+        <div ref={mapNode} className="h-[200px] w-full"></div>
+      ) : (
+        <div ref={mapNode} className="h-[350px] lg:h-[500px] w-full"></div>
+      )}
+    </>
+  )
 }
