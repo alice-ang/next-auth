@@ -107,7 +107,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                             htmlFor="review"
                             className="text-left block text-m font-medium text-gray-700"
                           >
-                            Add your feedback
+                            How was your experience?
                           </label>
                           <div className="mt-2">
                             <textarea
