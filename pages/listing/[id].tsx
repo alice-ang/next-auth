@@ -5,18 +5,6 @@ import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
 import { reviews, amenities } from "../../utils"
 
-const policies = [
-  {
-    name: "International delivery",
-    icon: StarIcon,
-    description: "Get your order in 2 years",
-  },
-  {
-    name: "Loyalty rewards",
-    icon: StarIcon,
-    description: "Don't look at other tees",
-  },
-]
 const faqs = [
   {
     question: "Lorem ipsum dolor?",
@@ -111,7 +99,7 @@ export default function ListingPage() {
               </dl>
             </div>
             {/*DESCRIPTION*/}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h2 className="text-sm font-semibold text-gray-900">
                 Description
               </h2>
@@ -120,12 +108,11 @@ export default function ListingPage() {
                 className="mt-4 prose prose-sm text-gray-500"
                 dangerouslySetInnerHTML={{
                   __html: ` 
-                <p>The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.</p>
-                <p>Looking to stock your closet? The Basic tee also comes in a 3-pack or 5-pack at a bundle discount.</p>
+                <p>Nulla dictum, lectus nec lobortis tristique, quam sapien ultrices neque, quis fermentum ipsum nisl mollis lectus. Duis et placerat massa. Maecenas volutpat non est vitae ultrices. Sed convallis, tellus vitae congue gravida, nisl diam tincidunt est, vel ultrices diam risus non erat. Praesent ultrices lectus lorem, ac iaculis eros dignissim vel. Morbi feugiat purus dui, sed finibus nisi iaculis non. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
               `,
                 }}
               />
-            </div>
+            </div> */}
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h4 className="text-center text-xl font-extrabold tracking-tight text-gray-700 sm:text-3xl">
                 Amenities

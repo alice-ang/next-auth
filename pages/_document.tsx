@@ -5,7 +5,7 @@ export default function Document() {
     <Html>
       <Head>
         <link
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css"
+          href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css"
           rel="stylesheet"
         />
       </Head>

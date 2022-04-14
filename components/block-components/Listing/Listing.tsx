@@ -76,6 +76,11 @@ export const Listing: FC<ListingType> = ({ listing }) => {
           </div>
         </div>
       </div>
+      {/* {clicked && (
+        <Alert
+          closeAlert={setClicked}
+        >{`Added ${listing.street} to favourites`}</Alert>
+      )} */}
     </>
   )
 }

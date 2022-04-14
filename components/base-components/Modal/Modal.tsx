@@ -1,7 +1,7 @@
-import { FC, Fragment, useRef } from "react"
+import { FC, Fragment, useCallback, useRef, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { PencilIcon, EmojiSadIcon } from "@heroicons/react/solid"
-import { Range } from "../Inputs"
+import { Range, Stars } from "../Inputs"
 import { addReview, useAuth } from "../../../utils"
 import { useRouter } from "next/router"
 import { MapView } from "../MapView"
@@ -13,6 +13,10 @@ type ModalProps = {
 export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const { user } = useAuth()
   const router = useRouter()
+  const [mapInfo, setMapInfo] = useState<{
+    address: string
+    coordinates: []
+  }>()
   const cancelButtonRef = useRef(null)
 
   const kitchenRef = useRef<HTMLInputElement>(null)
@@ -25,6 +29,9 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const handleCancelClick = () => {
     closeModal(false)
   }
+  const callback = useCallback((info) => {
+    setMapInfo(info)
+  }, [])
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -46,8 +53,6 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-
-          {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className="hidden sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
@@ -80,20 +85,20 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       >
                         Write a review
                       </Dialog.Title>
-                      <div className="mt-2">
+                      <div className="mt-2 text-l text-left">
                         Enter an address
                         <MapView
                           lat={58.3941248}
                           lng={13.8534906}
                           showGeocoder
+                          infoCallback={callback}
                         />
                       </div>
-                      <div className="mt-2">
-                        <Range title="kitchen" ref={kitchenRef} />
-                        <Range title="bathroom" ref={bathroomRef} />
-                        <Range title="washroom" ref={washroomRef} />
-                        <Range title="internet" ref={internetRef} />
-
+                      <div className="mt-4">
+                        <Stars title="Kitchen" ref={kitchenRef} />
+                        <Stars title="Bathroom" ref={bathroomRef} />
+                        <Stars title="Washroom" ref={washroomRef} />
+                        <Stars title="Internet" ref={internetRef} />
                         <div className="border-t border-gray-200 mt-5 pt-5" />
 
                         <div className="mt-3">
@@ -101,7 +106,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                             htmlFor="review"
                             className="text-left block text-m font-medium text-gray-700"
                           >
-                            Add your feedback
+                            How was your experience?
                           </label>
                           <div className="mt-2">
                             <textarea
@@ -193,7 +198,8 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         bathroomRef.current &&
                         washroomRef.current &&
                         internetRef.current &&
-                        feedbackRef.current
+                        feedbackRef.current &&
+                        mapInfo
                       ) {
                         await addReview({
                           kitchen: kitchenRef.current.value,
@@ -201,9 +207,11 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           washroom: washroomRef.current.value,
                           internet: internetRef.current.value,
                           feedback: feedbackRef.current.value,
-                        }).then(() => console.log("dibe"))
+                          address: mapInfo.address,
+                          coordinates: mapInfo.coordinates,
+                        }).then(() => handleCancelClick())
                       } else {
-                        handleCancelClick
+                        handleCancelClick()
                       }
                     }}
                   >

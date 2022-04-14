@@ -1,7 +1,7 @@
 import { Layout, Listing, MapView, Modal } from "../components"
 import { StarIcon } from "@heroicons/react/solid"
 import { classNames, getSchoolByName, SchoolType } from "../utils"
-import { Fragment, useEffect, useRef, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import {
@@ -127,7 +127,7 @@ function SchoolPage({ props }: any) {
                 {filters.map((section) => (
                   <Disclosure
                     as="div"
-                    key={section.id}
+                    key={`section.id${section.id}`}
                     className="border-t border-gray-200 px-4 py-6"
                   >
                     {({ open }) => (
