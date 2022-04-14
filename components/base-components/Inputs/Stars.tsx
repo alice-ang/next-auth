@@ -10,7 +10,7 @@ const Stars = forwardRef<HTMLInputElement, Props>(({ title }, ref) => {
   const [clickedStar, setClickedStar] = useState<number>(0)
   return (
     <div className="flex justify-between w-full py-2">
-      <p className="text-center text-gray-600 text-l font-bold">{title}</p>
+      <p className="text-center text-gray-600 text-l ">{title}</p>
       <div className="flex">
         {[1, 2, 3, 4, 5].map((rating) => (
           <>
