@@ -94,7 +94,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           infoCallback={callback}
                         />
                       </div>
-                      <div className="mt-2">
+                      <div className="mt-4">
                         <Stars title="Kitchen" ref={kitchenRef} />
                         <Stars title="Bathroom" ref={bathroomRef} />
                         <Stars title="Washroom" ref={washroomRef} />
