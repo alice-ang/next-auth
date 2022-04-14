@@ -1,7 +1,7 @@
 import { FC, Fragment, useCallback, useRef, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { PencilIcon, EmojiSadIcon } from "@heroicons/react/solid"
-import { Range } from "../Inputs"
+import { Range, Stars } from "../Inputs"
 import { addReview, useAuth } from "../../../utils"
 import { useRouter } from "next/router"
 import { MapView } from "../MapView"
@@ -95,11 +95,10 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         />
                       </div>
                       <div className="mt-2">
-                        <Range title="kitchen" ref={kitchenRef} />
-                        <Range title="bathroom" ref={bathroomRef} />
-                        <Range title="washroom" ref={washroomRef} />
-                        <Range title="internet" ref={internetRef} />
-
+                        <Stars title="Kitchen" ref={kitchenRef} />
+                        <Stars title="Bathroom" ref={bathroomRef} />
+                        <Stars title="Washroom" ref={washroomRef} />
+                        <Stars title="Internet" ref={internetRef} />
                         <div className="border-t border-gray-200 mt-5 pt-5" />
 
                         <div className="mt-3">
