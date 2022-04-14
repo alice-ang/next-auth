@@ -5,18 +5,6 @@ import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
 import { reviews, amenities } from "../../utils"
 
-const policies = [
-  {
-    name: "International delivery",
-    icon: StarIcon,
-    description: "Get your order in 2 years",
-  },
-  {
-    name: "Loyalty rewards",
-    icon: StarIcon,
-    description: "Don't look at other tees",
-  },
-]
 const faqs = [
   {
     question: "Lorem ipsum dolor?",
@@ -111,7 +99,7 @@ export default function ListingPage() {
               </dl>
             </div>
             {/*DESCRIPTION*/}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h2 className="text-sm font-semibold text-gray-900">
                 Description
               </h2>
@@ -124,7 +112,7 @@ export default function ListingPage() {
               `,
                 }}
               />
-            </div>
+            </div> */}
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h4 className="text-center text-xl font-extrabold tracking-tight text-gray-700 sm:text-3xl">
                 Amenities
