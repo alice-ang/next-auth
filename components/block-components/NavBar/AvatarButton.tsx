@@ -1,4 +1,4 @@
-import { classNames, useAuth, User } from "../../../utils"
+import { classNames, useAuth } from "../../../utils"
 import { Menu, Transition } from "@headlessui/react"
 import { Avatar, AvatarProps } from "../../base-components"
 import { FC, Fragment } from "react"

@@ -23,7 +23,6 @@ export const MapView: FC<MapProps> = ({
 }) => {
   // this is where the map instance will be stored after initialization
   const [map, setMap] = useState<mapboxgl.Map>()
-  const [currentMarkers, setCurrentMarkers] = useState<mapboxgl.Marker[]>([])
   const mapNode = useRef(null)
 
   useEffect(() => {
@@ -41,11 +40,11 @@ export const MapView: FC<MapProps> = ({
     const geocoder = new MapboxGeocoder({
       accessToken: process.env.NEXT_PUBLIC_MAPBOX_API ?? "",
       marker: {
-        // @ts-expect-error
+        // @ts-expect-error ts types not working
         draggable: true,
         color: "#6B63FC",
       },
-      // @ts-expect-error
+      // @ts-expect-error ts types not working
       mapboxgl: mapboxgl,
     })
 

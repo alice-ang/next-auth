@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { StarIcon, EyeIcon, ThumbUpIcon } from "@heroicons/react/solid"
+import { StarIcon, ThumbUpIcon } from "@heroicons/react/solid"
 import { Avatar, SecondaryButton } from "../../base-components"
 import { classNames } from "../../../utils"
 import type { ReviewType } from "../../../utils"

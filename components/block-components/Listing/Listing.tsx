@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { HeartIcon, StarIcon } from "@heroicons/react/solid"
 
-import { Badge, SecondaryButton, Alert } from "../../base-components"
+import { Badge, SecondaryButton } from "../../base-components"
 import { classNames, ListingType } from "../../../utils"
 import Link from "next/link"
 
