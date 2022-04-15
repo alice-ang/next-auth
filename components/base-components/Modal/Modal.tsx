@@ -94,12 +94,13 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           infoCallback={callback}
                         />
                       </div>
-                      <div className="mt-4">
-                        <Stars title="Kitchen" ref={kitchenRef} />
-                        <Stars title="Bathroom" ref={bathroomRef} />
-                        <Stars title="Washroom" ref={washroomRef} />
-                        <Stars title="Internet" ref={internetRef} />
-                        <div className="border-t border-gray-200 mt-5 pt-5" />
+                      <div className="mt-4 ">
+                        <div className="px-5">
+                          <Stars title="Kitchen" ref={kitchenRef} />
+                          <Stars title="Bathroom" ref={bathroomRef} />
+                          <Stars title="Washroom" ref={washroomRef} />
+                          <Stars title="Internet" ref={internetRef} />
+                        </div>
 
                         <div className="mt-3">
                           <label
