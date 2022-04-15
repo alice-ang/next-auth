@@ -19,7 +19,7 @@ const Stars = forwardRef<HTMLInputElement, Props>(({ title }, ref) => {
               onClick={() => setClickedStar(rating)}
               className={classNames(
                 clickedStar >= rating ? "text-yellow-400" : "text-gray-200",
-                "h-5 w-5 flex-shrink-0 hover:text-yellow-400"
+                "h-6 w-6 flex-shrink-0 hover:text-yellow-400"
               )}
               aria-hidden="true"
             />
