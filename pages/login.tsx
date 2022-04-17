@@ -33,7 +33,11 @@ export default function LoginPage() {
     e.preventDefault()
 
     try {
-      await signUpWithEmailAndPassword(data.email, data.password)
+      if (isSignup) {
+        await signUpWithEmailAndPassword(data.email, data.password)
+      } else {
+        await loginWithEmailAndPassword(data.email, data.password)
+      }
     } catch (err: any) {
       console.log(err)
       switch (err.code) {
