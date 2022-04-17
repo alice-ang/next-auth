@@ -9,9 +9,12 @@ export default function LoginPage() {
     user,
     signInWithFacebook,
     loginWithEmailAndPassword,
+    signUpWithEmailAndPassword,
     signInWithGoogle,
   } = useAuth()
 
+  const emailRef = useRef<HTMLInputElement | null>(null)
+  const passwordRef = useRef<HTMLInputElement | null>(null)
   const formRef = useRef<HTMLFormElement | null>(null)
   const router = useRouter()
   const [data, setData] = useState({
@@ -57,6 +60,7 @@ export default function LoginPage() {
                 </label>
                 <div className="mt-1">
                   <input
+                    ref={emailRef}
                     id="email"
                     name="email"
                     type="email"
@@ -76,6 +80,7 @@ export default function LoginPage() {
                 </label>
                 <div className="mt-1">
                   <input
+                    ref={passwordRef}
                     id="password"
                     name="password"
                     type="password"
@@ -114,7 +119,15 @@ export default function LoginPage() {
 
               <div>
                 <button
-                  onClick={loginWithEmailAndPassword}
+                  onClick={(e) => {
+                    if (emailRef.current && passwordRef.current) {
+                      setData({
+                        email: emailRef.current.value,
+                        password: passwordRef.current.value,
+                      })
+                      handleSignup(e)
+                    }
+                  }}
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >

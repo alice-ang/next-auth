@@ -24,7 +24,6 @@ export const AuthContextProvider = ({
   const router = useRouter()
 
   useEffect(() => {
-    console.log(user)
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser({
@@ -71,17 +70,30 @@ export const AuthContextProvider = ({
   const signInWithFacebook = () => {
     const facebookProvider = new FacebookAuthProvider()
     signInWithPopup(auth, facebookProvider)
-      .then((response) => {})
+      .then((response) => {
+        setUser(response.user)
+        router.push("/search")
+      })
       .catch((err) => console.log(err))
   }
 
   // EMIAL & PASSWORD
   const signUpWithEmailAndPassword = (email: string, password: string) => {
-    return createUserWithEmailAndPassword(auth, email, password)
+    return createUserWithEmailAndPassword(auth, email, password).then(
+      (response) => {
+        setUser(response.user)
+        router.push("/search")
+      }
+    )
   }
 
   const loginWithEmailAndPassword = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password)
+      .then((response) => {
+        setUser(response.user)
+        router.push("/search")
+      })
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -90,6 +102,7 @@ export const AuthContextProvider = ({
         user,
         signUpWithEmailAndPassword,
         logOut,
+        createUserWithEmailAndPassword,
         loginWithEmailAndPassword,
         signInWithGoogle,
         signInWithFacebook,
