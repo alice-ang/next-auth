@@ -7,13 +7,19 @@ import Link from "next/link"
 
 export const AvatarButton: FC<AvatarProps> = ({ url, displayName }) => {
   const { logOut } = useAuth()
-
+  console.log(displayName)
   return (
     <div className="mx-4 flex items-center md:mx-6">
       <button
         type="button"
-        className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
-      ></button>
+        className="lg:hidden bg-white p-1 rounded-full text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
+      >
+        {url ? (
+          <Avatar className="h-8 w-8 rounded-full" url={url} />
+        ) : (
+          displayName
+        )}
+      </button>
 
       <Menu as="div" className="ml-3 relative">
         <div>
