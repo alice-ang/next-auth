@@ -10,23 +10,12 @@ export const AvatarButton: FC<AvatarProps> = ({ url, displayName }) => {
   console.log(displayName)
   return (
     <div className="mx-4 flex items-center md:mx-6">
-      <button
-        type="button"
-        className="lg:hidden bg-white p-1 rounded-full text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
-      >
-        {url ? (
-          <Avatar className="h-8 w-8 rounded-full" url={url} />
-        ) : (
-          displayName
-        )}
-      </button>
-
       <Menu as="div" className="ml-3 relative">
         <div>
           <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
             {url && <Avatar className="h-8 w-8 rounded-full" url={url} />}
 
-            <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
+            <span className="hidden ml-3 text-gray-700 text-sm font-medium md:block">
               <span className="sr-only">Open user menu for </span>
               {displayName && displayName}
             </span>
