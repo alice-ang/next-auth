@@ -49,6 +49,11 @@ export default function LoginPage() {
         case "weak-password":
           alert("Password should be at least 6 characters")
           break
+        case "auth/wrong-password":
+          alert("Wrong password")
+        case "auth/user-not-found":
+          alert("User not found")
+          break
         default:
           break
       }

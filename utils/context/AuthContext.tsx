@@ -79,12 +79,31 @@ export const AuthContextProvider = ({
 
   // EMIAL & PASSWORD
   const signUpWithEmailAndPassword = (email: string, password: string) => {
-    return createUserWithEmailAndPassword(auth, email, password).then(
-      (response) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then((response) => {
         setUser(response.user)
         router.push("/search")
-      }
-    )
+      })
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+            alert("Email already in use")
+            break
+          case "auth/invalid-email":
+            alert("Invalid email")
+            break
+          case "weak-password":
+            alert("Password should be at least 6 characters")
+            break
+          case "auth/wrong-password":
+            alert("Wrong password")
+          case "auth/user-not-found":
+            alert("User not found")
+            break
+          default:
+            break
+        }
+      })
   }
 
   const loginWithEmailAndPassword = (email: string, password: string) => {
@@ -93,7 +112,26 @@ export const AuthContextProvider = ({
         setUser(response.user)
         router.push("/search")
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+            alert("Email already in use")
+            break
+          case "auth/invalid-email":
+            alert("Invalid email")
+            break
+          case "weak-password":
+            alert("Password should be at least 6 characters")
+            break
+          case "auth/wrong-password":
+            alert("Wrong password")
+          case "auth/user-not-found":
+            alert("User not found")
+            break
+          default:
+            break
+        }
+      })
   }
 
   return (
