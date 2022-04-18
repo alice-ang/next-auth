@@ -13,24 +13,22 @@ const Stars = forwardRef<HTMLInputElement, Props>(({ title }, ref) => {
       <p className="text-center text-gray-600 text-l font-semibold">{title}</p>
       <div className="flex">
         {[1, 2, 3, 4, 5].map((rating) => (
-          <>
+          <span key={`starKey${rating}`}>
             <StarIcon
-              key={`starKey${rating}`}
               onClick={() => setClickedStar(rating)}
               className={classNames(
-                clickedStar >= rating ? "text-yellow-400" : "text-gray-200",
-                "h-6 w-6 flex-shrink-0 hover:text-yellow-400"
+                clickedStar >= rating ? "text-indigo-400" : "text-gray-200",
+                "h-6 w-6 flex-shrink-0 hover:text-indigo-400"
               )}
               aria-hidden="true"
             />
             <input
-              key={`input${rating}`}
               ref={ref}
               type="hidden"
               value={clickedStar}
               onChange={() => setClickedStar(rating)}
             />
-          </>
+          </span>
         ))}
       </div>
     </div>

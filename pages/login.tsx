@@ -9,11 +9,15 @@ export default function LoginPage() {
     user,
     signInWithFacebook,
     loginWithEmailAndPassword,
+    signUpWithEmailAndPassword,
     signInWithGoogle,
   } = useAuth()
 
+  const emailRef = useRef<HTMLInputElement | null>(null)
+  const passwordRef = useRef<HTMLInputElement | null>(null)
   const formRef = useRef<HTMLFormElement | null>(null)
   const router = useRouter()
+  const [isSignup, setIsSignUp] = useState(false)
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -29,9 +33,25 @@ export default function LoginPage() {
     e.preventDefault()
 
     try {
-      await loginWithEmailAndPassword(data.email, data.password)
-    } catch (err) {
-      console.log(err)
+      if (isSignup) {
+        await signUpWithEmailAndPassword(data.email, data.password)
+      } else {
+        await loginWithEmailAndPassword(data.email, data.password)
+      }
+    } catch (err: any) {
+      switch (err.code) {
+        case "auth/email-already-in-use":
+          alert("Email already in use")
+          break
+        case "auth/invalid-email":
+          alert("Invalid email")
+          break
+        case "weak-password":
+          alert("Password should be at least 6 characters")
+          break
+        default:
+          break
+      }
     }
     formRef.current?.reset()
   }
@@ -41,13 +61,13 @@ export default function LoginPage() {
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+            {isSignup ? "Sign up for a new account" : "Sign in to your account"}
           </h2>
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" action="#" method="POST" ref={formRef}>
               <div>
                 <label
                   htmlFor="email"
@@ -57,6 +77,7 @@ export default function LoginPage() {
                 </label>
                 <div className="mt-1">
                   <input
+                    ref={emailRef}
                     id="email"
                     name="email"
                     type="email"
@@ -76,6 +97,7 @@ export default function LoginPage() {
                 </label>
                 <div className="mt-1">
                   <input
+                    ref={passwordRef}
                     id="password"
                     name="password"
                     type="password"
@@ -114,11 +136,19 @@ export default function LoginPage() {
 
               <div>
                 <button
-                  onClick={loginWithEmailAndPassword}
+                  onClick={(e) => {
+                    if (emailRef.current && passwordRef.current) {
+                      setData({
+                        email: emailRef.current.value,
+                        password: passwordRef.current.value,
+                      })
+                      handleSignup(e)
+                    }
+                  }}
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Sign in
+                  {isSignup ? "Sign up" : "Sign in"}
                 </button>
               </div>
             </form>
@@ -134,7 +164,6 @@ export default function LoginPage() {
                   </span>
                 </div>
               </div>
-
               <div className="mt-6 grid grid-cols-2 gap-3">
                 <div>
                   <span
@@ -155,6 +184,28 @@ export default function LoginPage() {
                   </span>
                 </div>
               </div>
+
+              {!isSignup ? (
+                <div className="text-sm text-center pt-3">
+                  <span>Don&apos;t have an account? </span>
+                  <a
+                    onClick={() => setIsSignUp(true)}
+                    className="font-medium hover:font-semibold text-indigo-600 hover:text-indigo-5700"
+                  >
+                    Sign up
+                  </a>
+                </div>
+              ) : (
+                <div className="text-sm text-center pt-3">
+                  <span>Already have an account? </span>
+                  <a
+                    onClick={() => setIsSignUp(false)}
+                    className="font-medium hover:font-semibold text-indigo-600 hover:text-indigo-5700"
+                  >
+                    Sign in
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

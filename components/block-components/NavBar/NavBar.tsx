@@ -62,7 +62,7 @@ export const NavBar = () => {
                     {user ? (
                       <AvatarButton
                         url={user.photo}
-                        displayName={user.displayName}
+                        displayName={user.displayName ?? user.email}
                       />
                     ) : (
                       <Link href={`/login`} passHref>
@@ -173,20 +173,25 @@ export const NavBar = () => {
               <div className="flex items-center px-4">
                 {user && (
                   <>
-                    <div className="flex-shrink-0">
-                      <Avatar
-                        className="h-10 w-10 rounded-full"
-                        url={user.photo}
-                      />
-                    </div>
+                    {user.photo && (
+                      <div className="flex-shrink-0">
+                        <Avatar
+                          className="h-10 w-10 rounded-full"
+                          url={user.photo}
+                        />
+                      </div>
+                    )}
 
                     <div className="ml-3">
-                      <div className="text-base font-medium text-gray-800">
-                        {user.displayName}
-                      </div>
-                      <div className="text-sm font-medium text-gray-500">
-                        {user.email}
-                      </div>
+                      {user.displayName ? (
+                        <div className="text-base font-medium text-gray-800">
+                          {user.displayName}
+                        </div>
+                      ) : (
+                        <div className="text-sm font-medium text-gray-500">
+                          {user.email}
+                        </div>
+                      )}
                     </div>
                   </>
                 )}
