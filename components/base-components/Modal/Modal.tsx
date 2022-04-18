@@ -1,7 +1,7 @@
 import { FC, Fragment, useCallback, useRef, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { PencilIcon, EmojiSadIcon } from "@heroicons/react/solid"
-import { Range, Stars } from "../Inputs"
+import { Stars } from "../Inputs"
 import { addReview, useAuth } from "../../../utils"
 import { useRouter } from "next/router"
 import { MapView } from "../MapView"

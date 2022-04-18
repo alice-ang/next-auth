@@ -39,7 +39,6 @@ export default function LoginPage() {
         await loginWithEmailAndPassword(data.email, data.password)
       }
     } catch (err: any) {
-      console.log(err)
       switch (err.code) {
         case "auth/email-already-in-use":
           alert("Email already in use")
@@ -188,7 +187,7 @@ export default function LoginPage() {
 
               {!isSignup ? (
                 <div className="text-sm text-center pt-3">
-                  <span>Don't have an account? </span>
+                  <span>Don&apos;t have an account? </span>
                   <a
                     onClick={() => setIsSignUp(true)}
                     className="font-medium hover:font-semibold text-indigo-600 hover:text-indigo-5700"
