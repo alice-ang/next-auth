@@ -5,6 +5,7 @@ import { Stars } from "../Inputs"
 import { addReview, useAuth } from "../../../utils"
 import { useRouter } from "next/router"
 import { MapView } from "../MapView"
+import { Dropdown } from "../Dropdown"
 
 type ModalProps = {
   closeModal: any
@@ -19,6 +20,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   }>()
   const cancelButtonRef = useRef(null)
 
+  const schoolRef = useRef<HTMLInputElement>(null)
   const kitchenRef = useRef<HTMLInputElement>(null)
   const bathroomRef = useRef<HTMLInputElement>(null)
   const washroomRef = useRef<HTMLInputElement>(null)
@@ -85,6 +87,18 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       >
                         Write a review
                       </Dialog.Title>
+                      <div className="mt-2 text-left">
+                        <Dropdown label="Which school did you attend?" />
+                        <label className="block">
+                          Which school did you attend?
+                        </label>
+                        <input
+                          ref={schoolRef}
+                          type="text"
+                          className="w-full border-gray-300 border-b-2 focus:to-indigo-500 pt-2"
+                          placeholder="Enter school name"
+                        />
+                      </div>
                       <div className="mt-2 text-l text-left">
                         Enter an address
                         <MapView
@@ -195,6 +209,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
                     onClick={async () => {
                       if (
+                        schoolRef.current &&
                         kitchenRef.current &&
                         bathroomRef.current &&
                         washroomRef.current &&
@@ -203,6 +218,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         mapInfo
                       ) {
                         await addReview({
+                          school: schoolRef.current.value,
                           kitchen: kitchenRef.current.value,
                           bathroom: bathroomRef.current.value,
                           washroom: washroomRef.current.value,

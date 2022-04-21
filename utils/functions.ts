@@ -49,6 +49,7 @@ export const getSchoolByName = async (name: string) => {
 }
 
 export const addReview = async (review: {
+  school: string
   kitchen: string
   bathroom: string
   washroom: string
@@ -57,7 +58,8 @@ export const addReview = async (review: {
   address: string
   coordinates: []
 }) => {
-  const docRef = await addDoc(collection(db, "reviews"), {
+  await addDoc(collection(db, "reviews"), {
+    school: review.school,
     kitchen: review.kitchen,
     bathroom: review.bathroom,
     washroom: review.washroom,
@@ -66,5 +68,5 @@ export const addReview = async (review: {
     address: review.address,
     coordinates: review.coordinates,
     status: "pending",
-  })
+  }).then((res) => console.log(res))
 }

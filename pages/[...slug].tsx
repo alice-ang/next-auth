@@ -55,13 +55,14 @@ const filters = [
 
 function SchoolPage({ props }: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("rating")
+  const [currentTab, setCurrentTab] = useState("housing")
   const [school, setSchool] = useState<SchoolType | null>(null)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
       await getSchoolByName(props.school).then((res) => setSchool(res))
+      console.log(school)
     }
     if (props.school) {
       getData()
