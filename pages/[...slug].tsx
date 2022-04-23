@@ -62,7 +62,6 @@ function SchoolPage({ props }: any) {
   useEffect(() => {
     const getData = async () => {
       await getSchoolByName(props.school).then((res) => setSchool(res))
-      console.log(school)
     }
     if (props.school) {
       getData()
