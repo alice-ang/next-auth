@@ -1,11 +1,12 @@
-import { FC, Fragment, useCallback, useRef, useState } from "react"
+import { FC, Fragment, useCallback, useEffect, useRef, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { PencilIcon, EmojiSadIcon } from "@heroicons/react/solid"
 import { Stars } from "../Inputs"
-import { addReview, useAuth } from "../../../utils"
+import { addReview, getAllSchools, useAuth } from "../../../utils"
 import { useRouter } from "next/router"
 import { MapView } from "../MapView"
 import { Dropdown } from "../Dropdown"
+import { DocumentData } from "firebase/firestore"
 
 type ModalProps = {
   closeModal: any
@@ -14,12 +15,15 @@ type ModalProps = {
 export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const { user } = useAuth()
   const router = useRouter()
-  const [mapInfo, setMapInfo] = useState<{
+  const [modalInfo, setModalInfo] = useState<{
+    school: string
     address: string
     coordinates: []
   }>()
-  const cancelButtonRef = useRef(null)
 
+  const [schools, setSchools] = useState<DocumentData | null>(null)
+
+  const cancelButtonRef = useRef(null)
   const schoolRef = useRef<HTMLInputElement>(null)
   const kitchenRef = useRef<HTMLInputElement>(null)
   const bathroomRef = useRef<HTMLInputElement>(null)
@@ -31,8 +35,20 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const handleCancelClick = () => {
     closeModal(false)
   }
+
+  useEffect(() => {
+    const getSchools = async () => {
+      const schoolsArray = await getAllSchools()
+
+      setSchools(schoolsArray)
+    }
+    if (!schools) {
+      getSchools()
+    }
+  }, [schools])
+
   const callback = useCallback((info) => {
-    setMapInfo(info)
+    setModalInfo(info)
   }, [])
 
   return (
@@ -88,19 +104,16 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         Write a review
                       </Dialog.Title>
                       <div className="mt-2 text-left">
-                        <Dropdown label="Which school did you attend?" />
-                        <label className="block">
-                          Which school did you attend?
-                        </label>
-                        <input
-                          ref={schoolRef}
-                          type="text"
-                          className="w-full border-gray-300 border-b-2 focus:to-indigo-500 pt-2"
-                          placeholder="Enter school name"
+                        <Dropdown
+                          label="Which school did you attend?"
+                          newLabel="Enter new school"
+                          placeholder="Name of school..."
+                          valueCallback={callback}
+                          items={schools}
                         />
                       </div>
                       <div className="mt-2 text-l text-left">
-                        Enter an address
+                        Enter the address
                         <MapView
                           lat={58.3941248}
                           lng={13.8534906}
@@ -215,7 +228,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         washroomRef.current &&
                         internetRef.current &&
                         feedbackRef.current &&
-                        mapInfo
+                        modalInfo
                       ) {
                         await addReview({
                           school: schoolRef.current.value,
@@ -224,8 +237,8 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           washroom: washroomRef.current.value,
                           internet: internetRef.current.value,
                           feedback: feedbackRef.current.value,
-                          address: mapInfo.address,
-                          coordinates: mapInfo.coordinates,
+                          address: modalInfo.address,
+                          coordinates: modalInfo.coordinates,
                         }).then(() => handleCancelClick())
                       } else {
                         handleCancelClick()
