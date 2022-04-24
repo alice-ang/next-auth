@@ -75,5 +75,6 @@ export const addReview = async (review: {
     address: review.address,
     coordinates: review.coordinates,
     status: "pending",
-  }).then(() => console.log("Document added with id:", docRef.id))
+  })
+  console.log("Document added with id:", docRef.id)
 }
