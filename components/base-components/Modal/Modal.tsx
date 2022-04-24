@@ -15,16 +15,16 @@ type ModalProps = {
 export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const { user } = useAuth()
   const router = useRouter()
-  const [modalInfo, setModalInfo] = useState<{
+  const [mapInfo, setMapInfo] = useState<{
     school: string
     address: string
     coordinates: []
   }>()
 
   const [schools, setSchools] = useState<DocumentData | null>(null)
+  const [school, setSchool] = useState<string | null>(null)
 
   const cancelButtonRef = useRef(null)
-  const schoolRef = useRef<HTMLInputElement>(null)
   const kitchenRef = useRef<HTMLInputElement>(null)
   const bathroomRef = useRef<HTMLInputElement>(null)
   const washroomRef = useRef<HTMLInputElement>(null)
@@ -37,18 +37,18 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   }
 
   useEffect(() => {
-    const getSchools = async () => {
+    const getData = async () => {
       const schoolsArray = await getAllSchools()
 
       setSchools(schoolsArray)
     }
     if (!schools) {
-      getSchools()
+      getData()
     }
   }, [schools])
 
   const callback = useCallback((info) => {
-    setModalInfo(info)
+    setMapInfo(info)
   }, [])
 
   return (
@@ -108,7 +108,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           label="Which school did you attend?"
                           newLabel="Enter new school"
                           placeholder="Name of school..."
-                          valueCallback={callback}
+                          valueCallback={setSchool}
                           items={schools}
                         />
                       </div>
@@ -222,23 +222,23 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
                     onClick={async () => {
                       if (
-                        schoolRef.current &&
+                        school &&
                         kitchenRef.current &&
                         bathroomRef.current &&
                         washroomRef.current &&
                         internetRef.current &&
                         feedbackRef.current &&
-                        modalInfo
+                        mapInfo
                       ) {
                         await addReview({
-                          school: schoolRef.current.value,
+                          school: school,
                           kitchen: kitchenRef.current.value,
                           bathroom: bathroomRef.current.value,
                           washroom: washroomRef.current.value,
                           internet: internetRef.current.value,
                           feedback: feedbackRef.current.value,
-                          address: modalInfo.address,
-                          coordinates: modalInfo.coordinates,
+                          address: mapInfo.address,
+                          coordinates: mapInfo.coordinates,
                         }).then(() => handleCancelClick())
                       } else {
                         handleCancelClick()

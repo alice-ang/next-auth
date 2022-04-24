@@ -29,7 +29,7 @@ export const Dropdown: FC<Props> = ({
   const newRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    valueCallback({ selected: selected ?? newRef?.current?.value })
+    valueCallback(selected?.name ?? newRef?.current?.value)
   }, [selected, newRef?.current?.value])
 
   return (
