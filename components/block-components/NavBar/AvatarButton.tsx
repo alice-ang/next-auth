@@ -7,7 +7,6 @@ import Link from "next/link"
 
 export const AvatarButton: FC<AvatarProps> = ({ url, displayName }) => {
   const { logOut } = useAuth()
-  console.log(displayName)
   return (
     <div className="mx-4 flex items-center md:mx-6">
       <Menu as="div" className="ml-3 relative">

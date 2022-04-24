@@ -63,6 +63,8 @@ export const MapView: FC<MapProps> = ({
     setMap(mapboxMap)
 
     mapboxMap.on("load", () => {
+      // disable map zoom when using scroll
+      mapboxMap.scrollZoom.disable()
       if (!showGeocoder) {
         mapboxMap.addSource("listings", {
           type: "geojson",

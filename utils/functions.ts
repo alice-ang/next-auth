@@ -1,16 +1,23 @@
 import {
-  collection,
   query,
   where,
   getDocs,
   DocumentData,
   addDoc,
+  collection,
 } from "firebase/firestore"
 
 import { db } from "../firebase/clientApp"
 
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
+}
+
+export const CompareInputs = (input: string, database: string) => {
+  if (input.toLowerCase() === database.toLowerCase()) {
+    return input
+  }
+  return null
 }
 
 export const getAllSchools = async () => {
@@ -49,6 +56,7 @@ export const getSchoolByName = async (name: string) => {
 }
 
 export const addReview = async (review: {
+  school: string
   kitchen: string
   bathroom: string
   washroom: string
@@ -58,6 +66,7 @@ export const addReview = async (review: {
   coordinates: []
 }) => {
   const docRef = await addDoc(collection(db, "reviews"), {
+    school: review.school,
     kitchen: review.kitchen,
     bathroom: review.bathroom,
     washroom: review.washroom,
@@ -67,4 +76,5 @@ export const addReview = async (review: {
     coordinates: review.coordinates,
     status: "pending",
   })
+  console.log("Document added with id:", docRef.id)
 }

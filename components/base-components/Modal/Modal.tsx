@@ -1,10 +1,12 @@
-import { FC, Fragment, useCallback, useRef, useState } from "react"
+import { FC, Fragment, useCallback, useEffect, useRef, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { PencilIcon, EmojiSadIcon } from "@heroicons/react/solid"
 import { Stars } from "../Inputs"
-import { addReview, useAuth } from "../../../utils"
+import { addReview, getAllSchools, useAuth } from "../../../utils"
 import { useRouter } from "next/router"
 import { MapView } from "../MapView"
+import { Dropdown } from "../Dropdown"
+import { DocumentData } from "firebase/firestore"
 
 type ModalProps = {
   closeModal: any
@@ -14,11 +16,15 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const { user } = useAuth()
   const router = useRouter()
   const [mapInfo, setMapInfo] = useState<{
+    school: string
     address: string
     coordinates: []
   }>()
-  const cancelButtonRef = useRef(null)
 
+  const [schools, setSchools] = useState<DocumentData | null>(null)
+  const [school, setSchool] = useState<string | null>(null)
+
+  const cancelButtonRef = useRef(null)
   const kitchenRef = useRef<HTMLInputElement>(null)
   const bathroomRef = useRef<HTMLInputElement>(null)
   const washroomRef = useRef<HTMLInputElement>(null)
@@ -29,6 +35,18 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
   const handleCancelClick = () => {
     closeModal(false)
   }
+
+  useEffect(() => {
+    const getData = async () => {
+      const schoolsArray = await getAllSchools()
+
+      setSchools(schoolsArray)
+    }
+    if (!schools) {
+      getData()
+    }
+  }, [schools])
+
   const callback = useCallback((info) => {
     setMapInfo(info)
   }, [])
@@ -85,8 +103,17 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       >
                         Write a review
                       </Dialog.Title>
+                      <div className="mt-2 text-left">
+                        <Dropdown
+                          label="Which school did you attend?"
+                          newLabel="Enter new school"
+                          placeholder="Name of school..."
+                          valueCallback={setSchool}
+                          items={schools}
+                        />
+                      </div>
                       <div className="mt-2 text-l text-left">
-                        Enter an address
+                        Enter the address
                         <MapView
                           lat={58.3941248}
                           lng={13.8534906}
@@ -195,6 +222,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
                     onClick={async () => {
                       if (
+                        school &&
                         kitchenRef.current &&
                         bathroomRef.current &&
                         washroomRef.current &&
@@ -203,6 +231,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                         mapInfo
                       ) {
                         await addReview({
+                          school: school,
                           kitchen: kitchenRef.current.value,
                           bathroom: bathroomRef.current.value,
                           washroom: washroomRef.current.value,
