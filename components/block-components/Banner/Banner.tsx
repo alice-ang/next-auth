@@ -31,8 +31,11 @@ export const Banner: FC<BannerProps> = ({ url, adLink, children }) => {
       {children}
       {adLink && (
         <a href={`${adLink}`} target="_blank">
-          <div className="rounded absolute bg-gray-900 bg-opacity-50 w-fit text-white p-2 bottom-10 right-10">
-            Ad for Telenor
+          <div className="absolute text-white bottom-10 right-10  ">
+            <div className="rounded p-2 bg-gray-900 bg-opacity-50 w-fit ">
+              <p>Adspace</p>
+            </div>
+            <p className="text-xl font-extrabold pt-2 ">Lorem ipsum dolor</p>
           </div>
         </a>
       )}
