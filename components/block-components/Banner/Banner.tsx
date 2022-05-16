@@ -1,16 +1,17 @@
 import { FC } from "react"
 import { classNames } from "../../../utils"
+import { BannerTag } from "./BannerTag"
 
 type BannerProps = {
   url?: string
-  adLink?: string
+  link?: string
 }
 
-export const Banner: FC<BannerProps> = ({ url, adLink, children }) => {
+export const Banner: FC<BannerProps> = ({ url, link, children }) => {
   return (
     <a
-      className={adLink ? "cursor-pointer" : "cursor-none"}
-      href={adLink ? `${adLink}` : undefined}
+      className={link ? "cursor-pointer" : "cursor-default"}
+      href={link ? `${link}` : undefined}
       target="_blank"
       rel="noreferrer"
     >
@@ -34,14 +35,6 @@ export const Banner: FC<BannerProps> = ({ url, adLink, children }) => {
           )}
         />
         {children}
-        {adLink && (
-          <div className="absolute text-white bottom-10 right-10  ">
-            <div className="rounded p-2 bg-gray-900 bg-opacity-50 w-fit ">
-              <p>Adspace</p>
-            </div>
-            <p className="text-xl font-extrabold pt-2 ">Lorem ipsum dolor</p>
-          </div>
-        )}
       </div>
     </a>
   )

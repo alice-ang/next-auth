@@ -1,4 +1,12 @@
-import { BlogSection, FAQ, Hero, Layout, Banner, Search } from "../components"
+import {
+  BlogSection,
+  FAQ,
+  Hero,
+  Layout,
+  Banner,
+  Search,
+  BannerTag,
+} from "../components"
 import { XIcon } from "@heroicons/react/outline"
 import { useState } from "react"
 
@@ -47,6 +55,7 @@ export default function IndexPage() {
 
           <Search />
         </div>
+        <BannerTag text="Ad for Telenor" heading="Lorem ipsum dolor" />
       </Banner>
       <Hero />
       <BlogSection />

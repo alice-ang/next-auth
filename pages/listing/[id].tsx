@@ -1,4 +1,12 @@
-import { Badge, Layout, Modal, Rating, Review, Banner } from "../../components"
+import {
+  Badge,
+  Layout,
+  Modal,
+  Rating,
+  Review,
+  Banner,
+  BannerTag,
+} from "../../components"
 import { classNames } from "../../utils"
 import { Fragment, useState } from "react"
 import { StarIcon } from "@heroicons/react/solid"
@@ -23,21 +31,14 @@ export default function ListingPage() {
   const [open, setOpen] = useState(false)
   return (
     <Layout>
-      <Banner />
+      <Banner>
+        <BannerTag text="Photo by Alice A" />
+      </Banner>
       <div className="mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         {/* Listing */}
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
-          {/* Listing image */}
-          {/* <div className="lg:row-end-1 lg:col-span-4 bg-white">
-            <img
-              className=" rounded-lg p-20"
-              src="/apartment.svg"
-              alt="listing picture"
-            />
-          </div> */}
-
           {/* Listing details 🐕  */}
-          <div className="bg-white  p-8 max-w-2xl mx-auto mt-6 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+          <div className="bg-white  p-8 max-w-2xl mx-auto lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
@@ -60,19 +61,27 @@ export default function ListingPage() {
 
               <div>
                 <h3 className="sr-only">Reviews</h3>
-                <div className="flex items-center">
-                  {[0, 1, 2, 3, 4].map((rating) => (
-                    <StarIcon
-                      key={`rating${rating}`}
-                      className={classNames(
-                        reviews.average > rating
-                          ? "text-yellow-400"
-                          : "text-gray-300",
-                        "h-5 w-5 flex-shrink-0"
-                      )}
-                      aria-hidden="true"
-                    />
-                  ))}
+                <div className="mt-3 flex items-center">
+                  <div>
+                    <div className="flex items-center">
+                      {[0, 1, 2, 3, 4].map((rating, i) => (
+                        <StarIcon
+                          key={`star${i}`}
+                          className={classNames(
+                            reviews.average > rating
+                              ? "text-yellow-400"
+                              : "text-gray-300",
+                            "flex-shrink-0 h-5 w-5"
+                          )}
+                          aria-hidden="true"
+                        />
+                      ))}
+                    </div>
+                    <p className="sr-only">{reviews.average} out of 5 stars</p>
+                  </div>
+                  <p className="ml-2 text-sm text-gray-900">
+                    Based on {reviews.totalCount} reviews
+                  </p>
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
               </div>
