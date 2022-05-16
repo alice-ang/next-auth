@@ -1,4 +1,3 @@
-import { Search } from "../../base-components"
 import {
   GlobeAltIcon,
   LightningBoltIcon,
