@@ -4,11 +4,7 @@ import { classNames, getSchoolByName, ReviewType, SchoolType } from "../utils"
 import { Fragment, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
-import {
-  ChevronDownIcon,
-  MinusSmIcon,
-  PlusSmIcon,
-} from "@heroicons/react/solid"
+import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid"
 import { Rating } from "../components"
 import { reviews, listings } from "../utils"
 import { NextPageContext } from "next"
@@ -198,7 +194,7 @@ function SchoolPage({ props }: any) {
 
           <div className="flex items-center">
             <Menu as="div" className="relative inline-block text-left">
-              <div className="pr-4">
+              {/* <div className="pr-4">
                 <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
                   <ChevronDownIcon
@@ -206,7 +202,7 @@ function SchoolPage({ props }: any) {
                     aria-hidden="true"
                   />
                 </Menu.Button>
-              </div>
+              </div> */}
 
               <Transition
                 as={Fragment}

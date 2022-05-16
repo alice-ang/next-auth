@@ -1,4 +1,4 @@
-import { Badge, Layout, Modal, Rating, Review } from "../../components"
+import { Badge, Layout, Modal, Rating, Review, Banner } from "../../components"
 import { classNames } from "../../utils"
 import { Fragment, useState } from "react"
 import { StarIcon } from "@heroicons/react/solid"
@@ -23,19 +23,20 @@ export default function ListingPage() {
   const [open, setOpen] = useState(false)
   return (
     <Layout>
+      <Banner />
       <div className="mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        {/* Product */}
+        {/* Listing */}
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
-          {/* Product image */}
-          <div className="lg:row-end-1 lg:col-span-4 bg-white">
+          {/* Listing image */}
+          {/* <div className="lg:row-end-1 lg:col-span-4 bg-white">
             <img
               className=" rounded-lg p-20"
               src="/apartment.svg"
               alt="listing picture"
             />
-          </div>
+          </div> */}
 
-          {/* Product details 🐕  */}
+          {/* Listing details 🐕  */}
           <div className="bg-white  p-8 max-w-2xl mx-auto mt-6 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
