@@ -45,7 +45,7 @@ export default function IndexPage() {
           </div>
         </div>
       )}
-      <Banner link="https://www.telenor.se/handla/mobiler/apple/iphone-13/#clr%3D%23376785%26cty%3D128%26c%3Dn%26p%3Dts">
+      <Banner link="#">
         <div className="sm:w-full md:w-[80%] xl:w-[50%] m-auto text-center">
           <div className="relative  items-center text-center">
             <h2 className="text-3xl font-bold  text-white sm:text-4xl pb-4">
@@ -55,7 +55,7 @@ export default function IndexPage() {
 
           <Search />
         </div>
-        <BannerTag text="Ad for Telenor" heading="Lorem ipsum dolor" />
+        <BannerTag text="Ad space" heading="Lorem ipsum dolor" />
       </Banner>
       <Hero />
       <BlogSection />
