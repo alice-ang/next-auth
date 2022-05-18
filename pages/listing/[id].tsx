@@ -6,26 +6,13 @@ import {
   Review,
   Banner,
   BannerTag,
+  Grid,
 } from "../../components"
 import { classNames } from "../../utils"
 import { Fragment, useState } from "react"
 import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
 import { reviews, amenities } from "../../utils"
-
-const faqs = [
-  {
-    question: "Lorem ipsum dolor?",
-    answer:
-      "Nulla dictum, lectus nec lobortis tristique, quam sapien ultrices neque.",
-  },
-  {
-    question: "Lectus nec lobortis tristique?",
-    answer:
-      "uis et placerat massa. Maecenas volutpat non est vitae ultrices. Sed convallis.",
-  },
-  // More FAQs...
-]
 
 export default function ListingPage() {
   const [open, setOpen] = useState(false)
@@ -38,28 +25,12 @@ export default function ListingPage() {
         {/* Listing */}
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
           {/* Listing details 🐕  */}
-          <div className="bg-white  p-8 max-w-2xl mx-auto lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
-            <div className="flex flex-col-reverse">
+          <div className="bg-white shadow p-8 max-w-2xl mx-auto lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+            <div className="flex flex-col">
               <div className="mt-4">
                 <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
                   Norra Trängallén 3
                 </h1>
-
-                <h2 id="information-heading" className="sr-only">
-                  Listing information
-                </h2>
-                <div className="flex my-4 flex-wrap">
-                  <span className="pr-2 pb-3">
-                    <Badge>primary lease</Badge>
-                  </span>
-
-                  <span className="pr-2 pb-3">
-                    <Badge color="gray">doorm</Badge>
-                  </span>
-                </div>
-              </div>
-
-              <div>
                 <h3 className="sr-only">Reviews</h3>
                 <div className="mt-3 flex items-center">
                   <div>
@@ -85,6 +56,21 @@ export default function ListingPage() {
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
               </div>
+
+              <div>
+                <h2 id="information-heading" className="sr-only">
+                  Listing information
+                </h2>
+                <div className="flex my-4 flex-wrap">
+                  <span className="pr-2 pb-3">
+                    <Badge>primary lease</Badge>
+                  </span>
+
+                  <span className="pr-2 pb-3">
+                    <Badge color="gray">doorm</Badge>
+                  </span>
+                </div>
+              </div>
             </div>
             <div className="mt-6">
               <h3 className="sr-only">Review data</h3>
@@ -108,21 +94,7 @@ export default function ListingPage() {
                 ))}
               </dl>
             </div>
-            {/*DESCRIPTION*/}
-            {/* <div className="mt-6">
-              <h2 className="text-sm font-semibold text-gray-900">
-                Description
-              </h2>
 
-              <div
-                className="mt-4 prose prose-sm text-gray-500"
-                dangerouslySetInnerHTML={{
-                  __html: ` 
-                <p>Nulla dictum, lectus nec lobortis tristique, quam sapien ultrices neque, quis fermentum ipsum nisl mollis lectus. Duis et placerat massa. Maecenas volutpat non est vitae ultrices. Sed convallis, tellus vitae congue gravida, nisl diam tincidunt est, vel ultrices diam risus non erat. Praesent ultrices lectus lorem, ac iaculis eros dignissim vel. Morbi feugiat purus dui, sed finibus nisi iaculis non. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-              `,
-                }}
-              />
-            </div> */}
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h4 className="text-center text-xl font-extrabold tracking-tight text-gray-700 sm:text-3xl">
                 Amenities
@@ -222,37 +194,36 @@ export default function ListingPage() {
 
           <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
             <Tab.Group as="div">
-              <div className="border-b border-gray-200">
-                <Tab.List className="mb-10 flex space-x-8">
-                  <Tab
-                    className={({ selected }) =>
-                      classNames(
-                        selected
-                          ? "border-indigo-600 text-indigo-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
-                      )
-                    }
-                  >
-                    Student Reviews
-                    <span className="pl-3">
-                      <Badge>{reviews.featured.length}</Badge>
-                    </span>
-                  </Tab>
-                  <Tab
-                    className={({ selected }) =>
-                      classNames(
-                        selected
-                          ? "border-indigo-600 text-indigo-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
-                      )
-                    }
-                  >
-                    FAQ
-                  </Tab>
-                </Tab.List>
-              </div>
+              <Tab.List className="mb-10 flex space-x-8">
+                <Tab
+                  className={({ selected }) =>
+                    classNames(
+                      selected
+                        ? "border-indigo-600 text-indigo-600"
+                        : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
+                      "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                    )
+                  }
+                >
+                  Student Reviews
+                  <span className="pl-3">
+                    <Badge>{reviews.featured.length}</Badge>
+                  </span>
+                </Tab>
+                <Tab
+                  className={({ selected }) =>
+                    classNames(
+                      selected
+                        ? "border-indigo-600 text-indigo-600"
+                        : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
+                      "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                    )
+                  }
+                >
+                  Photos
+                </Tab>
+              </Tab.List>
+
               <Tab.Panels as={Fragment}>
                 <Tab.Panel className="mb-10">
                   <h3 className="sr-only">Student Reviews</h3>
@@ -263,18 +234,9 @@ export default function ListingPage() {
                 </Tab.Panel>
 
                 <Tab.Panel as="dl" className="text-sm text-gray-500">
-                  <h3 className="sr-only">Frequently Asked Questions</h3>
+                  <h3 className="sr-only">Photos</h3>
 
-                  {faqs.map((faq) => (
-                    <Fragment key={faq.question}>
-                      <dt className="mt-10 font-medium text-gray-900">
-                        {faq.question}
-                      </dt>
-                      <dd className="mt-2 prose prose-sm max-w-none text-gray-500">
-                        <p>{faq.answer}</p>
-                      </dd>
-                    </Fragment>
-                  ))}
+                  <Grid />
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
