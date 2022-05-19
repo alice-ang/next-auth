@@ -5,6 +5,7 @@ import { BannerTag } from "./BannerTag"
 type BannerProps = {
   url?: string
   link?: string
+  children?: React.ReactNode[]
 }
 
 export const Banner: FC<BannerProps> = ({ url, link, children }) => {

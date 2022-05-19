@@ -2,7 +2,7 @@ import { FC } from "react"
 import { classNames, ColorType } from "../../../utils"
 import { WifiIcon } from "@heroicons/react/solid"
 import { FaToiletPaper } from "react-icons/fa"
-import { MdKitchen } from "react-icons/md"
+import { MdKitchen, MdLocationPin } from "react-icons/md"
 import { GiWashingMachine } from "react-icons/gi"
 
 type RatingProps = ColorType & {
@@ -29,6 +29,8 @@ export const Rating: FC<RatingProps> = ({
         return <WifiIcon className="h-6 w-6" />
       case "washroom":
         return <GiWashingMachine className="h-6 w-6" />
+      // case "location":
+      //   return <MdLocationPin className="h-6 w-6" />
       default:
         break
     }

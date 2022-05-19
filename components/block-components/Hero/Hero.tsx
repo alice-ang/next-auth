@@ -3,6 +3,8 @@ import {
   LightningBoltIcon,
   ScaleIcon,
 } from "@heroicons/react/outline"
+import { useTranslation } from "next-i18next"
+import { Trans } from "react-i18next"
 
 const transferFeatures = [
   {
@@ -29,31 +31,31 @@ const transferFeatures = [
 ]
 
 export const Hero = () => {
+  const { t } = useTranslation(["home"])
+
   return (
     <div className="py-16 bg-gray-50 overflow-hidden lg:py-24">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
         <div className=" relative text-center">
           <h2 className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Finding <span className="text-indigo-600">your</span> student
-            housing made easy
+            <Trans
+              i18nKey="hero.title"
+              t={t}
+              components={[<span className="text-indigo-600"></span>]}
+            />
           </h2>
           <p className="max-w-4xl mt-5 mx-auto text-md text-gray-500">
-            New to the area? Perhaps new to the country? Don&apos;t stress! Keep
-            up with reviews from current and old students to make it easier for
-            you to find YOUR perfect housing.
+            {t("hero.subTitle")}
           </p>
         </div>
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div className="relative">
             <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
-              How does it work?
+              {t("hero.description.title")}
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-              minima sequi recusandae, porro maiores officia assumenda aliquam
-              laborum ab aliquid veritatis impedit odit adipisci optio iste
-              blanditiis facere. Totam, velit.
+              {t("hero.description.subTitle")}
             </p>
 
             <dl className="mt-10 space-y-10">

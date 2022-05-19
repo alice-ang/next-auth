@@ -1,6 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Disclosure } from "@headlessui/react"
 import { ChevronDownIcon } from "@heroicons/react/outline"
+import { useTranslation } from "next-i18next"
 import { classNames } from "../../../utils"
 
 const faqs = [
@@ -34,6 +35,8 @@ const faqs = [
 ]
 
 export const FAQ = () => {
+  const { t } = useTranslation(["home"])
+
   return (
     <div className="">
       <img
@@ -44,7 +47,7 @@ export const FAQ = () => {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto divide-y-2 divide-gray-200">
           <h2 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Frequently asked questions
+            {t("faq.title")}
           </h2>
           <dl className="mt-6 space-y-6 divide-y divide-gray-200">
             {faqs.map((faq, i) => (

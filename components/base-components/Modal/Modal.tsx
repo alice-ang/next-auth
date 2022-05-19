@@ -47,7 +47,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
     }
   }, [schools])
 
-  const callback = useCallback((info) => {
+  const callback = useCallback((info: any) => {
     setMapInfo(info)
   }, [])
 

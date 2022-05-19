@@ -9,10 +9,12 @@ import {
 } from "../components"
 import { XIcon } from "@heroicons/react/outline"
 import { useState } from "react"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { useTranslation } from "next-i18next"
 
 export default function IndexPage() {
   const [open, setOpen] = useState(true)
-
+  const { t } = useTranslation(["home"])
   return (
     <Layout>
       {open && (
@@ -49,7 +51,7 @@ export default function IndexPage() {
         <div className="sm:w-full md:w-[80%] xl:w-[50%] m-auto text-center">
           <div className="relative  items-center text-center">
             <h2 className="text-3xl font-bold  text-white sm:text-4xl pb-4">
-              What are you looking for? 🔎
+              {t("banner.title")}
             </h2>
           </div>
 
@@ -62,4 +64,13 @@ export default function IndexPage() {
       <FAQ />
     </Layout>
   )
+}
+
+export async function getStaticProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "home"])),
+      // Will be passed to the page component as props
+    },
+  }
 }

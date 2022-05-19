@@ -118,6 +118,11 @@ export const amenities = [
     count: 54,
     totalCount: 100,
   },
+  // {
+  //   type: "location",
+  //   count: 43,
+  //   totalCount: 100,
+  // },
 ]
 
 export const listings = [

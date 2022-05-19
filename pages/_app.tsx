@@ -4,8 +4,9 @@ import "tailwindcss/tailwind.css"
 import { AuthContextProvider } from "../utils/context/AuthContext"
 import { useRouter } from "next/router"
 import { ProtectedRoute } from "../components"
+import { appWithTranslation } from "next-i18next"
 
-export default function App({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
   const authRequired = ["/profile"]
 
@@ -21,3 +22,4 @@ export default function App({ Component, pageProps }: AppProps) {
     </AuthContextProvider>
   )
 }
+export default appWithTranslation(MyApp)
