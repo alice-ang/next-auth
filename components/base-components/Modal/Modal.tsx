@@ -105,11 +105,12 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       </Dialog.Title>
                       <div className="mt-2 text-left">
                         <Dropdown
+                          showNew
                           label="Which school did you attend?"
                           newLabel="Enter new school"
                           placeholder="Name of school..."
                           valueCallback={setSchool}
-                          items={schools}
+                          items={schools ?? []}
                         />
                       </div>
                       <div className="mt-2 text-l text-left">

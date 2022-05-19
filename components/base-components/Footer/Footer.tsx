@@ -1,4 +1,6 @@
-import { SVGProps } from "react"
+import { useTranslation } from "next-i18next"
+import { SVGProps, useState } from "react"
+import { LanguageSwitcher } from "../../block-components"
 
 const navigation = {
   main: [
@@ -49,6 +51,12 @@ const navigation = {
 }
 
 export const Footer = () => {
+  const { i18n } = useTranslation()
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng)
+    console.log("language is:", lng)
+  }
   return (
     <footer className="bg-white">
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
@@ -78,6 +86,9 @@ export const Footer = () => {
               <item.icon className="h-6 w-6" aria-hidden="true" />
             </a>
           ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+          <LanguageSwitcher />
         </div>
         <p className="mt-8 text-center text-base text-gray-400">
           &copy; {new Date().getFullYear()} StudentHem | All rights reserved.

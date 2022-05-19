@@ -77,7 +77,14 @@ export const reviews = {
     },
   ],
 }
-
+export const locales = [
+  {
+    name: "sv",
+  },
+  {
+    name: "en",
+  },
+]
 export const schools = [
   {
     id: 1,
