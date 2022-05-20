@@ -105,7 +105,6 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                       </Dialog.Title>
                       <div className="mt-2 text-left">
                         <Dropdown
-                          showNew
                           label="Which school did you attend?"
                           newLabel="Enter new school"
                           placeholder="Name of school..."

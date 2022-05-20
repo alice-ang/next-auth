@@ -3,6 +3,7 @@ import { FC } from "react"
 
 type AlertProps = {
   closeAlert: any
+  children?: React.ReactNode[]
 }
 export const Alert: FC<AlertProps> = ({ closeAlert, children }) => {
   const handleClose = () => {

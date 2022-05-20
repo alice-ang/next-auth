@@ -2,10 +2,7 @@ import Link from "next/link"
 import { FC } from "react"
 import { ButtonType } from "../../../utils"
 
-export const PrimaryButton: FC<ButtonType> = (
-  { buttonLink },
-  children: React.ReactNode
-) => {
+export const PrimaryButton: FC<ButtonType> = ({ buttonLink, children }) => {
   return (
     <>
       {buttonLink ? (
