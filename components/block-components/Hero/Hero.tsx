@@ -41,7 +41,7 @@ export const Hero = () => {
             <Trans
               i18nKey="hero.title"
               t={t}
-              components={[<span className="text-indigo-600" />]}
+              components={[<span className="text-indigo-600" key="hero" />]}
             />
           </h2>
           <p className="max-w-4xl mt-5 mx-auto text-md text-gray-500">
