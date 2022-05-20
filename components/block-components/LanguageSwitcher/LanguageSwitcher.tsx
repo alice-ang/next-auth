@@ -1,23 +1,31 @@
-import { FC, Fragment, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import { FC } from "react"
+import { langToLocale } from "../../../utils"
 
-type Props = {
-  getLanguage?: any
-}
+type Props = {}
 
-export const LanguageSwitcher: FC<Props> = ({ getLanguage }) => {
+export const LanguageSwitcher: FC<Props> = () => {
+  const { i18n } = useTranslation()
+
+  const changeLanguage = (locale: string) => {
+    i18n.changeLanguage("en")
+    console.log("language is:", locale)
+  }
+
   return (
     <div>
       <label
         htmlFor="location"
-        className="block text-sm font-medium text-gray-700"
+        className="block text-sm font-medium text-gray-500"
       >
         Select Language
       </label>
       <select
         id="location"
         name="location"
-        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
         defaultValue="Swedish"
+        onChange={(e) => changeLanguage(langToLocale(e.target.value))}
       >
         <option>Swedish</option>
         <option>English</option>

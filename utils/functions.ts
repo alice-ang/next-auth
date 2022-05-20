@@ -13,6 +13,16 @@ export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ")
 }
 
+export const langToLocale = (lang: string) => {
+  switch (lang.toLocaleLowerCase()) {
+    case "swedish":
+      return "sv"
+    case "english":
+      return "en"
+    default:
+      return "sv"
+  }
+}
 export const CompareInputs = (input: string, database: string) => {
   if (input.toLowerCase() === database.toLowerCase()) {
     return input
