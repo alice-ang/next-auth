@@ -2,14 +2,11 @@ import { useTranslation } from "react-i18next"
 import { FC } from "react"
 import { langToLocale } from "../../../utils"
 
-type Props = {}
-
-export const LanguageSwitcher: FC<Props> = () => {
+export const LanguageSwitcher: FC = () => {
   const { i18n } = useTranslation()
 
   const changeLanguage = (locale: string) => {
-    i18n.changeLanguage("en")
-    console.log("language is:", locale)
+    i18n.changeLanguage(locale)
   }
 
   return (
