@@ -1,0 +1,19 @@
+{
+  "banner": {
+    "title": "Vad letar du efter? 🔎"
+  },
+  "hero": {
+    "title": "Hjälper dig hitta <0>ditt</0> studentboende",
+    "subTitle": "Ny i området? Kanske ny i landet? Stressa inte! Håll dig uppdaterad med recensioner från nuvarande och gamla studenter för att göra det lättare för dig att hitta DITT perfekta boende",
+    "description": {
+      "title": "Hur fungerar det?",
+      "subTitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur minima sequi recusandae, porro maiores officia assumenda aliquam laborum ab aliquid veritatis impedit odit adipisci optio iste blanditiis facere. Totam, velit."
+    }
+  },
+  "blog": {
+    "title": "Från bloggen"
+  },
+  "faq": {
+    "title": "Vanliga frågor"
+  }
+}

@@ -47,7 +47,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
     }
   }, [schools])
 
-  const callback = useCallback((info) => {
+  const callback = useCallback((info: any) => {
     setMapInfo(info)
   }, [])
 
@@ -109,7 +109,7 @@ export const Modal: FC<ModalProps> = ({ closeModal }) => {
                           newLabel="Enter new school"
                           placeholder="Name of school..."
                           valueCallback={setSchool}
-                          items={schools}
+                          items={schools ?? []}
                         />
                       </div>
                       <div className="mt-2 text-l text-left">

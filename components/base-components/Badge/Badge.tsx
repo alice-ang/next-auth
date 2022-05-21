@@ -1,7 +1,11 @@
 import { FC } from "react"
 import { classNames, ColorType } from "../../../utils"
 
-export const Badge: FC<ColorType> = ({ children, color }) => {
+type BadgeProps = ColorType & {
+  children?: any
+}
+
+export const Badge: FC<BadgeProps> = ({ color, children }) => {
   return (
     <span
       className={classNames(

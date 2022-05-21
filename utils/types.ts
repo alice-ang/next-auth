@@ -65,4 +65,5 @@ export type ProviderType = {
 }
 export type ButtonType = ColorType & {
   buttonLink?: string
+  children?: any
 }

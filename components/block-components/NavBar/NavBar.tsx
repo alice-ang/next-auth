@@ -169,49 +169,47 @@ export const NavBar = () => {
               )}
             </div>
 
-            <div className="pt-4 pb-3 border-t border-gray-200">
-              <div className="flex items-center px-4">
-                {user && (
-                  <>
-                    {user.photo && (
-                      <div className="flex-shrink-0">
-                        <Avatar
-                          className="h-10 w-10 rounded-full"
-                          url={user.photo}
-                        />
+            {user && (
+              <div className="pt-4 pb-3 border-t border-gray-200">
+                <div className="flex items-center px-4">
+                  {user.photo && (
+                    <div className="flex-shrink-0">
+                      <Avatar
+                        className="h-10 w-10 rounded-full"
+                        url={user.photo}
+                      />
+                    </div>
+                  )}
+
+                  <div className="ml-3">
+                    {user.displayName ? (
+                      <div className="text-base font-medium text-gray-800">
+                        {user.displayName}
+                      </div>
+                    ) : (
+                      <div className="text-sm font-medium text-gray-500">
+                        {user.email}
                       </div>
                     )}
-
-                    <div className="ml-3">
-                      {user.displayName ? (
-                        <div className="text-base font-medium text-gray-800">
-                          {user.displayName}
-                        </div>
-                      ) : (
-                        <div className="text-sm font-medium text-gray-500">
-                          {user.email}
-                        </div>
-                      )}
-                    </div>
-                  </>
-                )}
+                  </div>
+                </div>
+                <div className="mt-3 space-y-1">
+                  <Disclosure.Button
+                    as="a"
+                    href="/profile"
+                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                  >
+                    Profile
+                  </Disclosure.Button>
+                  <button
+                    onClick={logOut}
+                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                  >
+                    Sign out
+                  </button>
+                </div>
               </div>
-              <div className="mt-3 space-y-1">
-                <Disclosure.Button
-                  as="a"
-                  href="/profile"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                >
-                  Profile
-                </Disclosure.Button>
-                <Disclosure.Button
-                  onClick={logOut}
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                >
-                  Sign out
-                </Disclosure.Button>
-              </div>
-            </div>
+            )}
           </Disclosure.Panel>
         </>
       )}

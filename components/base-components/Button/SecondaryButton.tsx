@@ -3,9 +3,9 @@ import { FC } from "react"
 import { ButtonType, classNames } from "../../../utils"
 
 export const SecondaryButton: FC<ButtonType> = ({
-  children,
   buttonLink,
   color,
+  children,
 }) => {
   return (
     <>

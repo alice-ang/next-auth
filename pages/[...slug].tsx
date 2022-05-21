@@ -194,16 +194,6 @@ function SchoolPage({ props }: any) {
 
           <div className="flex items-center">
             <Menu as="div" className="relative inline-block text-left">
-              {/* <div className="pr-4">
-                <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                  Sort
-                  <ChevronDownIcon
-                    className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </Menu.Button>
-              </div> */}
-
               <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"
