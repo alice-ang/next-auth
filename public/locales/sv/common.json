@@ -1,1 +1,9 @@
-{}
+{   
+     "nav":  {
+        "search": "Sök",
+        "blog": "Blogg",
+        "forum": "Forum",
+        "discounts": "Rabatter"
+  }
+
+}

@@ -1,1 +1,9 @@
-{}
+{   
+  "nav":  {
+     "search": "Search",
+     "blog": "Blog",
+     "forum": "Forum",
+     "discounts": "Student discounts"
+}
+
+}

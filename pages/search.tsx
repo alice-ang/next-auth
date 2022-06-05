@@ -8,6 +8,7 @@ import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid"
 import { Rating } from "../components"
 import { reviews, listings } from "../utils"
 import { NextPageContext } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 const tabs = [
   { id: "housing", name: "Housing", current: true },
@@ -465,10 +466,16 @@ function SchoolPage({ props }: any) {
   )
 }
 
-SchoolPage.getInitialProps = async (ctx: NextPageContext) => {
-  const data = ctx.query
 
-  return { props: data }
+export async function getServerSideProps(ctx: NextPageContext) {
+  const data = ctx.query
+  return {
+    props: {
+      data,
+      ...(await serverSideTranslations(ctx.locale ?? 'sv', ["common", "home"])),
+    },
+  };
+
 }
 
 export default SchoolPage

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react"
+import React, { Context, createContext, useContext, useEffect, useState } from "react"
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
@@ -10,6 +10,7 @@ import {
 } from "firebase/auth"
 import { auth } from "../../firebase/clientApp"
 import { useRouter } from "next/router"
+
 const AuthContext = createContext({})
 
 export const useAuth = () => useContext<any>(AuthContext)
