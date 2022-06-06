@@ -3,7 +3,6 @@ import { SVGProps, useState } from "react"
 import { LanguageSwitcher } from "../../block-components"
 
 const navigation = {
-
   social: [
     {
       name: "Facebook",
@@ -44,17 +43,11 @@ const navigation = {
 }
 
 export const Footer = () => {
-  const { t, i18n } = useTranslation(["common"])
+  const { t } = useTranslation(["common"])
 
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
-    console.log("language is:", lng)
-  }
   return (
     <footer className="bg-white">
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-
         <div className="mt-8 flex justify-center space-x-6">
           {navigation.social.map((item) => (
             <a
