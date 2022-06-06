@@ -5,8 +5,7 @@ import { AuthContextProvider } from "../utils/context/AuthContext"
 import { useRouter } from "next/router"
 import { ProtectedRoute } from "../components"
 import { appWithTranslation } from "next-i18next"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
-import { NextPageContext } from "next"
+import "../i18n"
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()

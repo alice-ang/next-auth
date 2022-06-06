@@ -5,6 +5,10 @@
     "forum": "Forum",
     "discounts": "Rabatter"
   },
+  "search": {
+    "placeholder": "Sök skola",
+    "button": "Sök"
+  },
   "languageSwitcher": {
     "label": "Välj språk",
     "swedish": "Svenska",
