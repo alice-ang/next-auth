@@ -1,1 +1,20 @@
-{}
+{
+  "nav": {
+    "search": "Search",
+    "blog": "Blog",
+    "forum": "Forum",
+    "discounts": "Student discounts"
+  },
+  "search": {
+    "placeholder": "Search school",
+    "button": "Search"
+  },
+  "languageSwitcher": {
+    "label": "Select language",
+    "swedish": "Swedish",
+    "english": "English"
+  },
+  "footer": {
+    "copyright": "StudentHem"
+  }
+}

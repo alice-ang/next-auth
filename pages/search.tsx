@@ -8,6 +8,8 @@ import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid"
 import { Rating } from "../components"
 import { reviews, listings } from "../utils"
 import { NextPageContext } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { allNamespaces } from "../utils/consts"
 
 const tabs = [
   { id: "housing", name: "Housing", current: true },
@@ -49,7 +51,7 @@ const filters = [
   },
 ]
 
-function SchoolPage({ props }: any) {
+function SchoolPage(props: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("housing")
   const [school, setSchool] = useState<SchoolType | null>(null)
@@ -57,17 +59,17 @@ function SchoolPage({ props }: any) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
+    const { data } = props
     const getData = async () => {
-      await getSchoolByName(props.school).then((res) => setSchool(res))
+      await getSchoolByName(data.school).then((res) => setSchool(res))
     }
-    if (props.school) {
+    if (data.school) {
       getData()
     }
   }, [props])
 
   return (
     <Layout>
-      {/* Mobile filter dialog */}
       <Transition.Root show={mobileFiltersOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -465,10 +467,14 @@ function SchoolPage({ props }: any) {
   )
 }
 
-SchoolPage.getInitialProps = async (ctx: NextPageContext) => {
+export async function getServerSideProps(ctx: NextPageContext) {
   const data = ctx.query
-
-  return { props: data }
+  return {
+    props: {
+      data,
+      ...(await serverSideTranslations(ctx.locale ?? "sv", allNamespaces)),
+    },
+  }
 }
 
 export default SchoolPage

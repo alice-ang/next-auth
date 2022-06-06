@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
@@ -6,28 +5,30 @@ import Link from "next/link"
 import { classNames, useAuth } from "../../../utils"
 import { AvatarButton } from "./AvatarButton"
 import { Avatar, Logo } from "../../base-components"
+import { useTranslation } from "next-i18next"
 
 const navigation = [
   {
-    page: "Search",
+
     value: "search",
   },
   {
-    page: "Blog",
-    value: null,
+
+    value: 'blog',
   },
   {
-    page: "Forum",
-    value: null,
+
+    value: 'forum',
   },
   {
     page: "Student discounts",
-    value: null,
+    value: "discounts",
   },
 ]
 
 export const NavBar = () => {
   const { user, logOut } = useAuth()
+  const { t } = useTranslation(["common"])
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -48,7 +49,8 @@ export const NavBar = () => {
                         key={`item${i}`}
                       >
                         <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
-                          {item.page}
+   
+                          {t(`nav.${item.value.toLocaleLowerCase()}`)}
                         </a>
                       </Link>
                     )
@@ -214,5 +216,6 @@ export const NavBar = () => {
         </>
       )}
     </Disclosure>
-  )
+  ) 
 }
+

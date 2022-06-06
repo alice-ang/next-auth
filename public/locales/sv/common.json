@@ -1,1 +1,20 @@
-{}
+{
+  "nav": {
+    "search": "Sök",
+    "blog": "Blogg",
+    "forum": "Forum",
+    "discounts": "Rabatter"
+  },
+  "search": {
+    "placeholder": "Sök skola",
+    "button": "Sök"
+  },
+  "languageSwitcher": {
+    "label": "Välj språk",
+    "swedish": "Svenska",
+    "english": "Engelska"
+  },
+  "footer": {
+    "copyright": "StudentHem"
+  }
+}

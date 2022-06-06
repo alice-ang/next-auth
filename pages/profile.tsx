@@ -5,9 +5,12 @@ import {
   PencilIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/solid"
+import { NextPageContext } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { Avatar, Layout } from "../components"
 import { classNames, useAuth } from "../utils"
+import { allNamespaces } from "../utils/consts"
 
 const cards = [
   { name: "Favourites", icon: HeartIcon, amount: "5" },
@@ -257,4 +260,15 @@ export default function ProfilePage() {
       </div>
     </Layout>
   )
+}
+
+export async function getServerSideProps(ctx: NextPageContext) {
+  const data = ctx.query
+  return {
+    props: {
+      data,
+      ...(await serverSideTranslations(ctx.locale ?? 'sv', allNamespaces)),
+    },
+  };
+
 }
