@@ -51,7 +51,7 @@ const filters = [
   },
 ]
 
-function SchoolPage({ props }: any) {
+function SchoolPage(props: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("housing")
   const [school, setSchool] = useState<SchoolType | null>(null)
@@ -59,17 +59,17 @@ function SchoolPage({ props }: any) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
+    const { data } = props
     const getData = async () => {
-      await getSchoolByName(props.school).then((res) => setSchool(res))
+      await getSchoolByName(data.school).then((res) => setSchool(res))
     }
-    if (props.school) {
+    if (data.school) {
       getData()
     }
   }, [props])
 
   return (
     <Layout>
-      {/* Mobile filter dialog */}
       <Transition.Root show={mobileFiltersOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -467,16 +467,14 @@ function SchoolPage({ props }: any) {
   )
 }
 
-
 export async function getServerSideProps(ctx: NextPageContext) {
   const data = ctx.query
   return {
     props: {
       data,
-      ...(await serverSideTranslations(ctx.locale ?? 'sv', allNamespaces)),
+      ...(await serverSideTranslations(ctx.locale ?? "sv", allNamespaces)),
     },
-  };
-
+  }
 }
 
 export default SchoolPage

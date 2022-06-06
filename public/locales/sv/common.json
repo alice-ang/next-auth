@@ -1,17 +1,16 @@
-{   
-     "nav":  {
-        "search": "Sök",
-        "blog": "Blogg",
-        "forum": "Forum",
-        "discounts": "Rabatter"
+{
+  "nav": {
+    "search": "Sök",
+    "blog": "Blogg",
+    "forum": "Forum",
+    "discounts": "Rabatter"
   },
   "languageSwitcher": {
-    "label":"Välj språk",
+    "label": "Välj språk",
     "swedish": "Svenska",
     "english": "Engelska"
   },
-  "footer":  {
-    "copyright": "Alla rättigheter förbehållna"
+  "footer": {
+    "copyright": "StudentHem"
   }
-
 }
