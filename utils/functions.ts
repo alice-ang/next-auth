@@ -23,6 +23,18 @@ export const langToLocale = (lang: string) => {
       return "sv"
   }
 }
+
+export const localeToLang = (locale: string) => {
+  switch (locale.toLocaleLowerCase()) {
+    case "sv":
+      return "swedish"
+    case "en":
+      return "english"
+    default:
+      return "swedish"
+  }
+}
+
 export const CompareInputs = (input: string, database: string) => {
   if (input.toLowerCase() === database.toLowerCase()) {
     return input

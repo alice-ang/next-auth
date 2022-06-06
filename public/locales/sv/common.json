@@ -5,6 +5,11 @@
         "forum": "Forum",
         "discounts": "Rabatter"
   },
+  "languageSwitcher": {
+    "label":"Välj språk",
+    "swedish": "Svenska",
+    "english": "Engelska"
+  },
   "footer":  {
     "copyright": "Alla rättigheter förbehållna"
   }

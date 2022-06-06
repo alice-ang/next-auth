@@ -5,6 +5,11 @@
      "forum": "Forum",
      "discounts": "Student discounts"
 },
+"languageSwitcher": {
+  "label":"Select language",
+  "swedish": "Swedish",
+  "english": "English"
+},
 "footer":  {
   "copyright": "All rights reserved"
 }
