@@ -4,6 +4,9 @@
         "blog": "Blogg",
         "forum": "Forum",
         "discounts": "Rabatter"
+  },
+  "footer":  {
+    "copyright": "Alla rättigheter förbehållna"
   }
 
 }

@@ -4,6 +4,9 @@
      "blog": "Blog",
      "forum": "Forum",
      "discounts": "Student discounts"
+},
+"footer":  {
+  "copyright": "All rights reserved"
 }
 
 }

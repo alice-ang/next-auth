@@ -15,6 +15,7 @@ import { Tab } from "@headlessui/react"
 import { reviews, amenities } from "../../utils"
 import { NextPageContext } from "next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { allNamespaces } from "../../utils/consts"
 
 export default function ListingPage() {
   const [open, setOpen] = useState(false)
@@ -255,7 +256,7 @@ export async function getServerSideProps(ctx: NextPageContext) {
   return {
     props: {
       data,
-      ...(await serverSideTranslations(ctx.locale ?? 'sv', ["common", "home"])),
+      ...(await serverSideTranslations(ctx.locale ?? 'sv', allNamespaces)),
     },
   };
 

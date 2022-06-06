@@ -6,8 +6,6 @@ import { classNames, useAuth } from "../../../utils"
 import { AvatarButton } from "./AvatarButton"
 import { Avatar, Logo } from "../../base-components"
 import { useTranslation } from "next-i18next"
-import { NextPageContext } from "next"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 const navigation = [
   {

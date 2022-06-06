@@ -3,14 +3,7 @@ import { SVGProps, useState } from "react"
 import { LanguageSwitcher } from "../../block-components"
 
 const navigation = {
-  main: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Accessibility", href: "#" },
-    { name: "Partners", href: "#" },
-  ],
+
   social: [
     {
       name: "Facebook",
@@ -51,7 +44,8 @@ const navigation = {
 }
 
 export const Footer = () => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation(["common"])
+
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
@@ -60,21 +54,7 @@ export const Footer = () => {
   return (
     <footer className="bg-white">
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-        <nav
-          className="-mx-5 -my-2 flex flex-wrap justify-center"
-          aria-label="Footer"
-        >
-          {navigation.main.map((item) => (
-            <div key={item.name} className="px-5 py-2">
-              <a
-                href={item.href}
-                className="text-base text-gray-500 hover:text-gray-900"
-              >
-                {item.name}
-              </a>
-            </div>
-          ))}
-        </nav>
+
         <div className="mt-8 flex justify-center space-x-6">
           {navigation.social.map((item) => (
             <a
@@ -91,7 +71,7 @@ export const Footer = () => {
           <LanguageSwitcher />
         </div>
         <p className="mt-4 text-center text-base text-gray-400">
-          &copy; {new Date().getFullYear()} StudentHem | All rights reserved.
+          &copy; {new Date().getFullYear()} | {t("footer.copyright")}
         </p>
       </div>
     </footer>
