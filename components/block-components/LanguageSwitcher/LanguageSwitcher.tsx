@@ -21,7 +21,7 @@ export const LanguageSwitcher: FC = () => {
     <div>
       <label
         htmlFor="location"
-        className="block text-sm font-medium text-gray-500"
+        className="block text-sm text-center font-medium text-gray-500"
       >
         {t("languageSwitcher.label")}
       </label>
