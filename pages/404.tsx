@@ -32,7 +32,9 @@ export default function NotFoundPage() {
                   href="/"
                   className="text-base font-medium text-indigo-600 hover:text-indigo-500"
                 >
-                  Go back home<span aria-hidden="true"> &rarr;</span>
+                  <span>
+                    Go back home<span aria-hidden="true"> &rarr;</span>
+                  </span>
                 </Link>
               </div>
             </div>
