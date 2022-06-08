@@ -11,6 +11,7 @@ type RatingProps = ColorType & {
   title?: string
   rating?: number
   children?: any
+  hideRating?: boolean
 }
 
 export const Rating: FC<RatingProps> = ({
@@ -18,6 +19,7 @@ export const Rating: FC<RatingProps> = ({
   totalCount,
   title,
   rating,
+  hideRating,
   color,
   children,
 }) => {
@@ -45,7 +47,7 @@ export const Rating: FC<RatingProps> = ({
         <div className="flex items-center text-sm">
           <dt className="flex-1 flex items-center">
             <p className="w-3 font-medium text-gray-900">
-              {rating}
+              {hideRating ? null : rating}
               <span className="sr-only"> star reviews</span>
             </p>
             <div aria-hidden="true" className="ml-1 flex-1 flex items-center">

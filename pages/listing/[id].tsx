@@ -78,23 +78,27 @@ export default function ListingPage() {
             <div className="mt-6">
               <h3 className="sr-only">Review data</h3>
 
-              <dl className="space-y-3">
-                {reviews.counts.map((count, i) => (
-                  <Rating
-                    count={count.count}
-                    totalCount={reviews.totalCount}
-                    rating={count.rating}
-                    key={`count${i}`}
-                  >
-                    <StarIcon
-                      className={classNames(
-                        count.count > 0 ? "text-yellow-400" : "text-gray-300",
-                        "flex-shrink-0 h-5 w-5"
-                      )}
-                      aria-hidden="true"
-                    />
-                  </Rating>
-                ))}
+              <dl className="space-y-3 ">
+                {reviews.counts.map((count, i) => {
+                  return (
+                    <>
+                      <span className="flex justify-center">
+                        {count.rating}
+                        <StarIcon
+                          className="text-yellow-400 flex-shrink-0 h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      </span>
+                      <Rating
+                        hideRating
+                        count={count.count}
+                        totalCount={reviews.totalCount}
+                        rating={count.rating}
+                        key={`count${i}`}
+                      />
+                    </>
+                  )
+                })}
               </dl>
             </div>
 
@@ -256,8 +260,7 @@ export async function getServerSideProps(ctx: NextPageContext) {
   return {
     props: {
       data,
-      ...(await serverSideTranslations(ctx.locale ?? 'sv', allNamespaces)),
+      ...(await serverSideTranslations(ctx.locale ?? "sv", allNamespaces)),
     },
-  };
-
+  }
 }

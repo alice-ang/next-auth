@@ -10,13 +10,16 @@ export const Listing: FC<ListingType> = ({ listing }) => {
 
   return (
     <>
-      <div className="bg-white rounded shadow flex flex-col lg:flex-row mt-6 ">
-        <div className="block w-full lg:w-1/2 min-h-[200px] lg:min-h-full rounded">
+      <div className="bg-white rounded shadow flex flex-col lg:flex-row mt-6 hover:shadow-md">
+      <Link href={`/listing/${listing.id}`} passHref>
+        <div className="block w-full lg:w-1/2 min-h-[200px] lg:min-h-full rounded cursor-pointer">
           <img
             className="m-auto w-1/2  min-h-full rounded "
             src="/apartment.svg"
           />
         </div>
+        </Link>
+        
         <div className="p-3 lg:p-8 w-full lg:w-1/2 cursor-pointer">
           <Link href={`/listing/${listing.id}`} passHref>
             <div>
