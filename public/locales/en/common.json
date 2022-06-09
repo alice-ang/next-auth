@@ -1,4 +1,6 @@
 {
+  "signIn": "Sign in",
+  "signOut": "Sign out",
   "nav": {
     "search": "Search",
     "blog": "Blog",

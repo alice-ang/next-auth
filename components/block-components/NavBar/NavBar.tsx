@@ -9,16 +9,13 @@ import { useTranslation } from "next-i18next"
 
 const navigation = [
   {
-
     value: "search",
   },
   {
-
-    value: 'blog',
+    value: "blog",
   },
   {
-
-    value: 'forum',
+    value: "forum",
   },
   {
     page: "Student discounts",
@@ -44,13 +41,12 @@ export const NavBar = () => {
                   {navigation.map((item, i) => {
                     return (
                       <Link
-                        href={item.value ? `${item.value}` : "#"}
+                        href={item.value ? `/${item.value}` : "#"}
                         passHref
                         key={`item${i}`}
                       >
                         <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
-   
-                          {t(`nav.${item.value.toLocaleLowerCase()}`)}
+                          {`${t(`nav.${item.value.toLocaleLowerCase()}`)}`}
                         </a>
                       </Link>
                     )
@@ -72,7 +68,7 @@ export const NavBar = () => {
                           type="button"
                           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                          Log in
+                          {t("signIn")}
                         </button>
                       </Link>
                     )}
@@ -124,7 +120,7 @@ export const NavBar = () => {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Sign out
+                            {t("signOut")}
                           </button>
                         )}
                       </Menu.Item>
@@ -156,7 +152,7 @@ export const NavBar = () => {
                     className="  block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                     key={item.page}
                   >
-                    {item.page}
+                    {`${t(`nav.${item.value.toLocaleLowerCase()}`)}`}
                   </Disclosure.Button>
                 )
               })}
@@ -166,7 +162,7 @@ export const NavBar = () => {
                   href={`/login`}
                   className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                 >
-                  Sign in
+                  {t("signIn")}
                 </Disclosure.Button>
               )}
             </div>
@@ -207,7 +203,7 @@ export const NavBar = () => {
                     onClick={logOut}
                     className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                   >
-                    Sign out
+                    {t("signOut")}
                   </button>
                 </div>
               </div>
@@ -216,6 +212,5 @@ export const NavBar = () => {
         </>
       )}
     </Disclosure>
-  ) 
+  )
 }
-

@@ -1,4 +1,6 @@
 {
+  "signIn": "Logga in",
+  "signOut": "Logga ut",
   "nav": {
     "search": "Sök",
     "blog": "Blogg",
