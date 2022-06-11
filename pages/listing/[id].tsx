@@ -40,7 +40,7 @@ export default function ListingPage() {
                     <div className="flex items-center">
                       {[0, 1, 2, 3, 4].map((rating, i) => (
                         <StarIcon
-                          key={`star${i}`}
+                          key={rating}
                           className={classNames(
                             reviews.average > rating
                               ? "text-yellow-400"
