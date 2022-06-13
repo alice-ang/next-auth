@@ -13,7 +13,7 @@ const Stars = forwardRef<HTMLInputElement, Props>(({ title }, ref) => {
       <p className="text-center text-gray-600 text-l font-semibold">{title}</p>
       <div className="flex">
         {[1, 2, 3, 4, 5].map((rating) => (
-          <span key={`starKey${rating}`}>
+          <span key={Math.random() * rating}>
             <StarIcon
               onClick={() => setClickedStar(rating)}
               className={classNames(

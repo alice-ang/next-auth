@@ -38,9 +38,9 @@ export default function ListingPage() {
                 <div className="mt-3 flex items-center">
                   <div>
                     <div className="flex items-center">
-                      {[0, 1, 2, 3, 4].map((rating, i) => (
+                      {[0, 1, 2, 3, 4].map((rating) => (
                         <StarIcon
-                          key={rating}
+                          key={Math.random()}
                           className={classNames(
                             reviews.average > rating
                               ? "text-yellow-400"
@@ -81,7 +81,7 @@ export default function ListingPage() {
               <dl className="space-y-3 ">
                 {reviews.counts.map((count, i) => {
                   return (
-                    <>
+                    <div key={Math.random() * i}>
                       <span className="flex justify-center">
                         {count.rating}
                         <StarIcon
@@ -94,9 +94,8 @@ export default function ListingPage() {
                         count={count.count}
                         totalCount={reviews.totalCount}
                         rating={count.rating}
-                        key={`count${i}`}
                       />
-                    </>
+                    </div>
                   )
                 })}
               </dl>
@@ -235,9 +234,9 @@ export default function ListingPage() {
                 <Tab.Panel className="mb-10">
                   <h3 className="sr-only">Student Reviews</h3>
 
-                  {reviews.featured.map((review, i) => (
-                    <Review review={review} key={`featured${i}`} />
-                  ))}
+                  {/* {reviews.featured.map((review, i) => (
+                    <Review review={review} key={Math.random() * i} />
+                  ))} */}
                 </Tab.Panel>
 
                 <Tab.Panel as="dl" className="text-sm text-gray-500">
@@ -256,10 +255,8 @@ export default function ListingPage() {
 }
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  const data = ctx.query
   return {
     props: {
-      data,
       ...(await serverSideTranslations(ctx.locale ?? "sv", allNamespaces)),
     },
   }
