@@ -229,12 +229,9 @@ export default function LoginPage() {
 }
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  const data = ctx.query
   return {
     props: {
-      data,
-      ...(await serverSideTranslations(ctx.locale ?? 'sv', allNamespaces)),
+      ...(await serverSideTranslations(ctx.locale ?? "sv", allNamespaces)),
     },
-  };
-
+  }
 }
