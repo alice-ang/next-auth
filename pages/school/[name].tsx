@@ -4,9 +4,6 @@ import { Fragment } from "react"
 import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
 import { reviews } from "../../utils"
-import { NextPageContext } from "next"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
-import { allNamespaces } from "../../utils/consts"
 
 const product = {
   name: "Högskolan i Skövde",
@@ -245,15 +242,4 @@ export default function FullSchoolPage() {
       </div>
     </Layout>
   )
-}
-
-export async function getServerSideProps(ctx: NextPageContext) {
-  const data = ctx.query
-  return {
-    props: {
-      data,
-      ...(await serverSideTranslations(ctx.locale ?? 'sv', allNamespaces)),
-    },
-  };
-
 }

@@ -231,9 +231,9 @@ export default function ListingPage() {
                 <Tab.Panel className="mb-10">
                   <h3 className="sr-only">Student Reviews</h3>
 
-                  {/* {reviews.featured.map((review, i) => (
+                  {reviews.featured.map((review, i) => (
                     <Review review={review} key={Math.random() * i} />
-                  ))} */}
+                  ))}
                 </Tab.Panel>
 
                 <Tab.Panel as="dl" className="text-sm text-gray-500">

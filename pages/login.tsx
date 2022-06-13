@@ -3,9 +3,6 @@ import { Layout } from "../components"
 import { useAuth } from "../utils/context"
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/router"
-import { NextPageContext } from "next"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
-import { allNamespaces } from "../utils/consts"
 
 export default function LoginPage() {
   const {
@@ -226,12 +223,4 @@ export default function LoginPage() {
       </div>
     </Layout>
   )
-}
-
-export async function getServerSideProps(ctx: NextPageContext) {
-  return {
-    props: {
-      ...(await serverSideTranslations(ctx.locale ?? "sv", allNamespaces)),
-    },
-  }
 }
