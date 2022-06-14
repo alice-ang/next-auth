@@ -9,7 +9,7 @@ export const LanguageSwitcher: FC = () => {
   const [currentLang, setCurrentLang] = useState(
     localeToLang(router.locale ?? "sv")
   )
-  console.log(router.locale)
+
   return (
     <div>
       <label
