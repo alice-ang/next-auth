@@ -1,5 +1,5 @@
-import { useTranslation } from "next-i18next"
-import { SVGProps, useState } from "react"
+import useTranslation from "next-translate/useTranslation"
+import { SVGProps } from "react"
 import { LanguageSwitcher } from "../../block-components"
 
 const navigation = {
@@ -43,7 +43,7 @@ const navigation = {
 }
 
 export const Footer = () => {
-  const { t } = useTranslation(["common"])
+  const { t } = useTranslation("common")
 
   return (
     <footer className="bg-white">

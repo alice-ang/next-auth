@@ -4,8 +4,6 @@ import "tailwindcss/tailwind.css"
 import { AuthContextProvider } from "../utils/context/AuthContext"
 import { useRouter } from "next/router"
 import { ProtectedRoute } from "../components"
-import { appWithTranslation } from "next-i18next"
-import "../i18n"
 import Script from "next/script"
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -40,4 +38,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default appWithTranslation(MyApp)
+export default MyApp

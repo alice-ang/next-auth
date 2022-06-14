@@ -3,8 +3,8 @@ import {
   LightningBoltIcon,
   ScaleIcon,
 } from "@heroicons/react/outline"
-import { useTranslation } from "next-i18next"
-import { Trans } from "react-i18next"
+import useTranslation from "next-translate/useTranslation"
+import Trans from "next-translate/Trans"
 
 const transferFeatures = [
   {
@@ -31,17 +31,24 @@ const transferFeatures = [
 ]
 
 export const Hero = () => {
-  const { t } = useTranslation(["home"])
+  const { t } = useTranslation("home")
 
   return (
     <div className="py-16 bg-gray-50 overflow-hidden lg:py-24">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
         <div className=" relative text-center">
           <h2 className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            <Trans
+            {/* <Trans
               i18nKey="hero.title"
               t={t}
               components={[<span className="text-indigo-600" key="hero" />]}
+            /> */}
+            <Trans
+              i18nKey="home:hero.title"
+              components={{
+                component: <h2 />,
+                span: <span className="text-indigo-600" />,
+              }}
             />
           </h2>
           <p className="max-w-4xl mt-5 mx-auto text-md text-gray-500">

@@ -9,13 +9,11 @@ import {
 } from "../components"
 import { XIcon } from "@heroicons/react/outline"
 import { useState } from "react"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
-import { useTranslation } from "next-i18next"
-import { allNamespaces } from "../utils/consts"
+import useTranslation from "next-translate/useTranslation"
 
 export default function IndexPage() {
   const [open, setOpen] = useState(true)
-  const { t } = useTranslation(allNamespaces)
+  const { t } = useTranslation("home")
   return (
     <Layout>
       {open && (
@@ -65,13 +63,4 @@ export default function IndexPage() {
       <FAQ />
     </Layout>
   )
-}
-
-export async function getStaticProps({ locale }: any) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, allNamespaces)),
-      // Will be passed to the page component as props
-    },
-  }
 }

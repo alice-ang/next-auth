@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next"
+import useTranslation from "next-translate/useTranslation"
 
 const posts = [
   {
@@ -58,7 +58,7 @@ const posts = [
 ]
 
 export const BlogSection = () => {
-  const { t } = useTranslation(["home"])
+  const { t } = useTranslation("home")
 
   return (
     <div className="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
