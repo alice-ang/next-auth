@@ -5,7 +5,7 @@ import Link from "next/link"
 import { classNames, useAuth } from "../../../utils"
 import { AvatarButton } from "./AvatarButton"
 import { Avatar, Logo } from "../../base-components"
-import { useTranslation } from "next-i18next"
+import useTranslation from "next-translate/useTranslation"
 
 const navigation = [
   {
@@ -25,7 +25,7 @@ const navigation = [
 
 export const NavBar = () => {
   const { user, logOut } = useAuth()
-  const { t } = useTranslation(["common"])
+  const { t } = useTranslation("common")
 
   return (
     <Disclosure as="nav" className="bg-white shadow">

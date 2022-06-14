@@ -2,8 +2,10 @@
   "banner": {
     "title": "What are you looking for? 🔎"
   },
+  "test": "Hjälper dig hitta <0>ditt<0> studentboende",
+
   "hero": {
-    "title": "Finding <0>your</0> student housing made easy",
+    "title": "Finding your student housing made easy",
     "subTitle": "New to the area? Perhaps new to the country? Don't stress! Keep up with reviews from current and old students to make it easier for you to find YOUR perfect housing",
     "description": {
       "title": "How does it work",

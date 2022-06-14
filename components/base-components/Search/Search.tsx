@@ -1,10 +1,10 @@
 import { AcademicCapIcon } from "@heroicons/react/solid"
-import { useTranslation } from "next-i18next"
+import useTranslation from "next-translate/useTranslation"
 import { useRouter } from "next/router"
 import { useRef } from "react"
 
 export const Search = () => {
-  const { t } = useTranslation(["common"])
+  const { t } = useTranslation("common")
   const serachRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 

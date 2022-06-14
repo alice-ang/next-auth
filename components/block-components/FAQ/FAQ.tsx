@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Disclosure } from "@headlessui/react"
 import { ChevronDownIcon } from "@heroicons/react/outline"
-import { useTranslation } from "next-i18next"
+import useTranslation from "next-translate/useTranslation"
 import { classNames } from "../../../utils"
 
 const faqs = [
@@ -35,7 +35,7 @@ const faqs = [
 ]
 
 export const FAQ = () => {
-  const { t } = useTranslation(["home"])
+  const { t } = useTranslation("home")
 
   return (
     <div className="">
