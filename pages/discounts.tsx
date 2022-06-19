@@ -12,13 +12,13 @@ export default function DiscountPage() {
         <div className="py-8">
           <HorizontalScroll isLarge>
             {[0, 1, 2, 3, 4].map(() => {
-              return <AdCard />
+              return <AdCard key={Math.random()} />
             })}
           </HorizontalScroll>
         </div>
         <Grid>
           {[0, 1, 2, 3, 4].map(() => {
-            return <AdCard />
+            return <AdCard key={Math.random()} />
           })}
         </Grid>
       </div>
