@@ -3,6 +3,6 @@
   "defaultLocale": "sv",
   "pages": {
     "/": ["home", "common"],
-    "*": ["common"]
+    "*": ["home", "common"]
   }
 }

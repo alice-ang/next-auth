@@ -8,7 +8,7 @@ import {
   BannerTag,
   Grid,
 } from "../../components"
-import { classNames } from "../../utils"
+import { classNames, files } from "../../utils"
 import { Fragment, useState } from "react"
 import { StarIcon } from "@heroicons/react/solid"
 import { Tab } from "@headlessui/react"
@@ -239,7 +239,27 @@ export default function ListingPage() {
                 <Tab.Panel as="dl" className="text-sm text-gray-500">
                   <h3 className="sr-only">Photos</h3>
 
-                  <Grid />
+                  <Grid>
+                    {files.map((file) => (
+                      <li key={file.source} className="relative">
+                        <div className="group block w-full aspect-w-10 aspect-h-7 rounded bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                          <img
+                            src={file.source}
+                            alt=""
+                            className="object-cover pointer-events-none group-hover:opacity-75"
+                          />
+                          <button
+                            type="button"
+                            className="absolute inset-0 focus:outline-none"
+                          >
+                            <span className="sr-only">
+                              View details for {file.title}
+                            </span>
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </Grid>
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
