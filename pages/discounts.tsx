@@ -1,12 +1,4 @@
-import {
-  AdCard,
-  Banner,
-  BannerTag,
-  Grid,
-  Hero,
-  HorizontalScroll,
-  Layout,
-} from "../components"
+import { AdCard, Banner, Grid, HorizontalScroll, Layout } from "../components"
 
 export default function DiscountPage() {
   return (
@@ -20,7 +12,7 @@ export default function DiscountPage() {
         <div className="py-8">
           <HorizontalScroll>
             {[0, 1, 2, 3, 4].map(() => {
-              return <AdCard />
+              return <AdCard hideButton />
             })}
           </HorizontalScroll>
         </div>

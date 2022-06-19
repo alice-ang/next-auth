@@ -10,7 +10,7 @@ export const HorizontalScroll: FC<ScrollProps> = ({ children }) => {
       {children &&
         children.map((child: any) => {
           return (
-            <div className="flex-none w-2/3 md:w-1/3 mr-8 md:pb-4 ">
+            <div className="flex-none w-2/3 md:w-1/4 lg:1/3 mr-8 md:pb-4 ">
               {child}
             </div>
           )
